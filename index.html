@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1" />
+<title>Invariants — an algebraic topology quiz</title>
+<meta name="description" content="A hard, Kahoot-style algebraic topology quiz. Read off the invariant. Three punctures and you're out." />
+<style>
+  :root{
+    --bg:#0e1014; --panel:#15181f; --panel-2:#1b1f29; --line:#2a2f3b;
+    --ink:#eef0f3; --ink-dim:#9aa3b2; --chalk:#e8e6df;
+    --cyan:#7fd4c8;
+    --A:#e0454e; --A-d:#b5343c;
+    --B:#2f7fd1; --B-d:#245f9c;
+    --C:#d39a2a; --C-d:#a9791e;
+    --D:#2f9e6b; --D-d:#237a52;
+    --good:#2f9e6b; --bad:#e0454e;
+    --r:16px;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --math:"STIX Two Math","Cambria Math","Latin Modern Math",Cambria,Georgia,serif;
+    --sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{height:100%}
+  body{
+    margin:0;background:
+      radial-gradient(120% 80% at 50% -10%, #181c25 0%, var(--bg) 55%) fixed;
+    color:var(--ink);font-family:var(--sans);
+    overflow:hidden;
+    -webkit-user-select:none;user-select:none;
+  }
+  #app{
+    height:100dvh;max-width:560px;margin:0 auto;
+    display:flex;flex-direction:column;
+    padding:max(14px,env(safe-area-inset-top)) 16px max(14px,env(safe-area-inset-bottom));
+  }
+  .screen{flex:1;min-height:0;display:flex;flex-direction:column}
+  .hidden{display:none!important}
+
+  /* ---------- HEADER (in-game) ---------- */
+  .hud{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
+  .lives{display:flex;gap:9px;align-items:center}
+  .pt{width:15px;height:15px;border-radius:50%;background:var(--chalk);
+      box-shadow:0 0 0 0 rgba(224,69,78,0);transition:.35s}
+  .pt.lost{background:transparent;border:2px solid var(--bad);box-shadow:0 0 12px rgba(224,69,78,.35)}
+  .stat{font-family:var(--mono);font-size:12px;color:var(--ink-dim);text-align:right;line-height:1.25}
+  .stat b{display:block;color:var(--ink);font-size:19px;letter-spacing:.5px}
+  .stat .streak{color:var(--cyan)}
+
+  /* ---------- TIMER ---------- */
+  .timer{height:5px;border-radius:99px;background:#23283400;margin-bottom:14px;overflow:hidden;
+         background:#202531}
+  .timer > i{display:block;height:100%;width:100%;border-radius:99px;
+             background:linear-gradient(90deg,var(--cyan),#cfe9e4);
+             transform-origin:left;transition:transform .1s linear}
+  .timer.warn > i{background:linear-gradient(90deg,var(--C),#f0c15a)}
+  .timer.crit > i{background:linear-gradient(90deg,var(--A),#f2767c)}
+
+  /* ---------- QUESTION CARD ---------- */
+  .qwrap{flex:1;min-height:0;display:flex;flex-direction:column;gap:12px}
+  .card{
+    background:linear-gradient(180deg,var(--panel),#12151c);
+    border:1px solid var(--line);border-radius:var(--r);
+    padding:20px 18px;display:flex;flex-direction:column;gap:14px;
+    box-shadow:0 1px 0 rgba(255,255,255,.03) inset, 0 20px 40px -30px #000;
+  }
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--ink-dim)}
+  .space{
+    font-family:var(--math);color:var(--chalk);
+    font-size:clamp(26px,7.5vw,40px);line-height:1.12;letter-spacing:.3px;
+  }
+  .ask{
+    font-family:var(--math);font-size:clamp(22px,6.2vw,32px);
+    color:var(--cyan);border-top:1px dashed var(--line);padding-top:12px;
+  }
+
+  /* ---------- ANSWER TILES ---------- */
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:auto}
+  .tile{
+    position:relative;border:none;border-radius:var(--r);cursor:pointer;
+    min-height:84px;padding:14px 14px 14px 46px;
+    display:flex;align-items:center;text-align:left;
+    font-family:var(--math);font-size:clamp(19px,5.4vw,26px);color:#fff;
+    line-height:1.1;transition:transform .08s, filter .15s, opacity .2s;
+    box-shadow:0 5px 0 0 var(--sh,#0006), 0 10px 22px -14px #000;
+  }
+  .tile:active{transform:translateY(2px)}
+  .tile .ico{position:absolute;left:14px;top:50%;transform:translateY(-50%);
+             font-size:18px;opacity:.92}
+  .tile.A{background:var(--A);--sh:var(--A-d)}
+  .tile.B{background:var(--B);--sh:var(--B-d)}
+  .tile.C{background:var(--C);--sh:var(--C-d)}
+  .tile.D{background:var(--D);--sh:var(--D-d)}
+  .tile[disabled]{cursor:default}
+  .locked .tile{opacity:.32}
+  .locked .tile.correct{opacity:1;outline:3px solid #fff;outline-offset:-3px;
+                        animation:pop .35s ease}
+  .locked .tile.wrong{opacity:.85;filter:grayscale(.2) brightness(.7)}
+  @keyframes pop{0%{transform:scale(1)}45%{transform:scale(1.04)}100%{transform:scale(1)}}
+  @keyframes shake{10%,90%{transform:translateX(-1px)}30%,70%{transform:translateX(3px)}50%{transform:translateX(-4px)}}
+  .shake{animation:shake .4s}
+
+  /* ---------- REVEAL / EXPLANATION ---------- */
+  .reveal{
+    margin-top:10px;background:var(--panel-2);border:1px solid var(--line);
+    border-radius:var(--r);padding:14px 16px;display:flex;flex-direction:column;gap:12px;
+    animation:rise .25s ease;
+  }
+  @keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .verdict{font-family:var(--mono);font-size:13px;letter-spacing:1px;text-transform:uppercase;display:flex;justify-content:space-between;align-items:center}
+  .verdict.ok{color:var(--good)} .verdict.no{color:var(--bad)}
+  .verdict .gain{color:var(--cyan)}
+  .why{color:var(--ink-dim);font-size:14.5px;line-height:1.5}
+  .why .ans{font-family:var(--math);color:var(--chalk)}
+  .next{
+    appearance:none;border:none;border-radius:12px;cursor:pointer;
+    background:var(--chalk);color:#15181f;font-weight:700;font-family:var(--sans);
+    font-size:16px;padding:14px;letter-spacing:.3px;
+  }
+  .next:active{transform:translateY(1px)}
+
+  /* ---------- START / OVER SCREENS ---------- */
+  .center{flex:1;display:flex;flex-direction:column;justify-content:center;gap:22px}
+  .brand{display:flex;flex-direction:column;gap:8px}
+  .wordmark{
+    font-family:var(--sans);font-weight:800;letter-spacing:-1.5px;
+    font-size:clamp(44px,13vw,68px);line-height:.92;
+    background:linear-gradient(180deg,#fff,#aeb6c4);-webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .wordmark .dim{color:var(--line);-webkit-text-fill-color:var(--line)}
+  .tag{color:var(--ink-dim);font-size:15.5px;line-height:1.55;max-width:34ch}
+  .tag b{color:var(--chalk);font-weight:600}
+  .rules{font-family:var(--mono);font-size:12.5px;color:var(--ink-dim);
+         border-left:2px solid var(--line);padding-left:12px;line-height:1.9}
+  .rules .k{color:var(--chalk)}
+  .cta{
+    appearance:none;border:none;border-radius:14px;cursor:pointer;
+    padding:18px;font-size:18px;font-weight:800;font-family:var(--sans);letter-spacing:.3px;
+    background:linear-gradient(180deg,var(--cyan),#5cbcb0);color:#0c1413;
+    box-shadow:0 8px 26px -10px rgba(127,212,200,.6);
+  }
+  .cta:active{transform:translateY(1px)}
+  .best{font-family:var(--mono);font-size:13px;color:var(--ink-dim);text-align:center}
+  .best b{color:var(--cyan)}
+
+  .gobig{font-family:var(--math);font-size:clamp(40px,12vw,64px);color:var(--chalk);line-height:1}
+  .gosub{color:var(--ink-dim);font-size:15px;margin-top:-6px}
+  .scoreline{display:flex;gap:14px;flex-wrap:wrap}
+  .chip{flex:1;min-width:120px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+  .chip .lab{font-family:var(--mono);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-dim)}
+  .chip .val{font-family:var(--mono);font-size:30px;color:var(--ink);margin-top:4px}
+  .chip .val.cy{color:var(--cyan)}
+  .footnote{font-family:var(--mono);font-size:11px;color:#5b6271;text-align:center;margin-top:4px}
+
+  @media (max-height:680px){
+    .space{font-size:clamp(22px,6.4vw,34px)} .ask{font-size:clamp(19px,5.4vw,27px)}
+    .tile{min-height:74px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+  }
+</style>
+</head>
+<body>
+<div id="app">
+
+  <!-- ============ START ============ -->
+  <section id="start" class="screen">
+    <div class="center">
+      <div class="brand">
+        <div class="wordmark">INVARI<span class="dim">A</span>NTS</div>
+        <div class="tag">An algebraic topology quiz. A space appears — read off the invariant before the chalk runs out.</div>
+      </div>
+      <div class="rules">
+        <div><span class="k">▸</span> π₁, Hₙ, χ, homotopy type — pick 1 of 4.</div>
+        <div><span class="k">▸</span> Faster answers score more.</div>
+        <div><span class="k">▸</span> Three punctures <span class="k">●●●→○○○</span> and you're out.</div>
+      </div>
+      <button class="cta" id="startBtn">Start</button>
+      <div class="best">Best run: <b id="bestStart">—</b></div>
+    </div>
+    <div class="footnote">conventions: integral coefficients · ℤ/n = ℤ/nℤ · Fₖ = free group</div>
+  </section>
+
+  <!-- ============ GAME ============ -->
+  <section id="game" class="screen hidden">
+    <div class="hud">
+      <div class="lives" id="lives" aria-label="lives"></div>
+      <div class="stat">
+        <span>score · <span class="streak" id="streak">×1</span></span>
+        <b id="score">0</b>
+      </div>
+    </div>
+    <div class="timer" id="timer"><i id="timerBar"></i></div>
+
+    <div class="qwrap">
+      <div class="card">
+        <div class="eyebrow" id="qcount">question 1</div>
+        <div class="space" id="space"></div>
+        <div class="ask" id="ask"></div>
+      </div>
+
+      <div class="grid" id="grid" role="group" aria-label="answers"></div>
+      <div id="reveal"></div>
+    </div>
+  </section>
+
+  <!-- ============ GAME OVER ============ -->
+  <section id="over" class="screen hidden">
+    <div class="center">
+      <div>
+        <div class="gobig">∂ ↛ 0</div>
+        <div class="gosub" id="overMsg">The sequence didn't close.</div>
+      </div>
+      <div class="scoreline">
+        <div class="chip"><div class="lab">Score</div><div class="val cy" id="finalScore">0</div></div>
+        <div class="chip"><div class="lab">Correct</div><div class="val" id="finalCorrect">0</div></div>
+        <div class="chip"><div class="lab">Best streak</div><div class="val" id="finalStreak">0</div></div>
+      </div>
+      <div class="best">Best run: <b id="bestOver">—</b></div>
+      <button class="cta" id="againBtn">Play again</button>
+    </div>
+    <div class="footnote">built for the train · works offline · MIT</div>
+  </section>
+
+</div>
+
+<script>
+"use strict";
+/* ============================================================
+   INVARIANTS — a hard algebraic-topology quiz
+   Single file, no dependencies. All invariants hand-checked.
+   ============================================================ */
+
+/* ---- Unicode sup/sub for generated questions ---- */
+const SUP="⁰¹²³⁴⁵⁶⁷⁸⁹", SUB="₀₁₂₃₄₅₆₇₈₉";
+const sup = n => String(n).split("").map(d=>d==="-"?"⁻":SUP[+d]).join("");
+const sub = n => String(n).split("").map(d=>SUB[+d]).join("");
+const Z  = n => n===0 ? "0" : n===1 ? "ℤ" : "ℤ"+sup(n);   // free part ℤ^n
+
+/* ---- distractor pool for generated homology questions ---- */
+const HOM_POOL = ["0","ℤ","ℤ²","ℤ³","ℤ⁴","ℤ⁵","ℤ⁶","ℤ/2","ℤ/3","ℤ⊕ℤ/2","ℤ/2⊕ℤ/2"];
+function genDistractors(answer, pool, n=3){
+  const opts=[];
+  const src=pool.filter(x=>x!==answer);
+  while(opts.length<n && src.length){
+    const i=Math.floor(Math.random()*src.length);
+    opts.push(src.splice(i,1)[0]);
+  }
+  return opts;
+}
+
+/* ============================================================
+   CURATED BANK  — {space, q, a (answer), d:[3 distractors], why}
+   ============================================================ */
+const BANK = [
+  // --- Real projective spaces (orientability traps) ---
+  {space:"ℝP²", q:"H₂(–;ℤ) = ?", a:"0", d:["ℤ","ℤ/2","ℤ⊕ℤ/2"], why:"ℝP² is a closed non-orientable surface, so its top integral homology vanishes."},
+  {space:"ℝP²", q:"H₁(–;ℤ) = ?", a:"ℤ/2", d:["ℤ","0","ℤ⊕ℤ/2"], why:"H₁ is the abelianization of π₁ = ℤ/2."},
+  {space:"ℝP²", q:"π₁ = ?", a:"ℤ/2", d:["ℤ","0","ℤ⊕ℤ/2"], why:"S² → ℝP² is a double cover with deck group ℤ/2."},
+  {space:"ℝP³", q:"H₂(–;ℤ) = ?", a:"0", d:["ℤ","ℤ/2","ℤ²"], why:"n=3 is odd, so ℝP³ is orientable and the middle homology vanishes."},
+  {space:"ℝP³", q:"H₃(–;ℤ) = ?", a:"ℤ", d:["0","ℤ/2","ℤ²"], why:"ℝPⁿ is orientable iff n is odd; here the top class is ℤ."},
+  {space:"ℝP⁴", q:"H₄(–;ℤ) = ?", a:"0", d:["ℤ","ℤ/2","ℤ⊕ℤ/2"], why:"n=4 even ⇒ non-orientable ⇒ top homology is 0."},
+  {space:"ℝP⁴", q:"H₃(–;ℤ) = ?", a:"ℤ/2", d:["ℤ","0","ℤ²"], why:"For 0<k<n, Hₖ(ℝPⁿ)=ℤ/2 when k is odd."},
+  {space:"ℝP⁵", q:"H₅(–;ℤ) = ?", a:"ℤ", d:["0","ℤ/2","ℤ⁵"], why:"n=5 odd ⇒ orientable ⇒ top homology ℤ."},
+  {space:"ℝP⁶", q:"H₅(–;ℤ) = ?", a:"ℤ/2", d:["ℤ","0","ℤ/6"], why:"k=5 is odd and 0<5<6, so Hₖ=ℤ/2."},
+
+  // --- Klein bottle & surfaces ---
+  {space:"Klein bottle 𝕂", q:"H₁(–;ℤ) = ?", a:"ℤ⊕ℤ/2", d:["ℤ²","ℤ","ℤ/2⊕ℤ/2"], why:"Abelianizing ⟨a,b | abab⁻¹⟩ gives ℤ⊕ℤ/2."},
+  {space:"Klein bottle 𝕂", q:"H₂(–;ℤ) = ?", a:"0", d:["ℤ","ℤ/2","ℤ²"], why:"Closed non-orientable surface ⇒ H₂=0."},
+  {space:"Klein bottle 𝕂", q:"π₁ = ?", a:"⟨a,b | abab⁻¹⟩", d:["ℤ²","ℤ⊕ℤ/2","ℤ⋊ℤ"], why:"It is the indicated non-abelian group; ℤ⊕ℤ/2 is only its abelianization."},
+  {space:"genus-2 surface Σ₂", q:"H₁(–;ℤ) = ?", a:"ℤ⁴", d:["ℤ²","ℤ⁸","ℤ⁴⊕ℤ/2"], why:"For an orientable Σ_g, H₁=ℤ^{2g}; here g=2."},
+  {space:"genus-3 surface Σ₃", q:"H₁(–;ℤ) = ?", a:"ℤ⁶", d:["ℤ³","ℤ⁹","ℤ⁵"], why:"H₁=ℤ^{2g}, g=3."},
+  {space:"genus-2 surface Σ₂", q:"χ = ?", a:"−2", d:["2","0","−4"], why:"χ(Σ_g)=2−2g = 2−4 = −2."},
+  {space:"genus-2 surface Σ₂", q:"H₂(–;ℤ) = ?", a:"ℤ", d:["ℤ²","0","ℤ⁴"], why:"It is closed orientable, so the fundamental class gives H₂=ℤ."},
+
+  // --- Tori (product vs wedge) ---
+  {space:"torus T² = S¹×S¹", q:"H₁ = ?", a:"ℤ²", d:["ℤ","ℤ⁴","ℤ⊕ℤ/2"], why:"Künneth: rank C(2,1)=2."},
+  {space:"torus T² = S¹×S¹", q:"π₁ = ?", a:"ℤ²", d:["ℤ","F₂ (free, rank 2)","ℤ⊕ℤ/2"], why:"π₁ of a product is the product; the wedge S¹∨S¹ is what gives F₂."},
+  {space:"3-torus T³", q:"H₂ = ?", a:"ℤ³", d:["ℤ","ℤ⁶","ℤ²"], why:"Rank C(3,2)=3."},
+  {space:"3-torus T³", q:"H₁ = ?", a:"ℤ³", d:["ℤ","ℤ⁶","ℤ⁹"], why:"Rank C(3,1)=3."},
+  {space:"4-torus T⁴", q:"H₂ = ?", a:"ℤ⁶", d:["ℤ⁴","ℤ⁸","ℤ³"], why:"Rank C(4,2)=6."},
+
+  // --- Wedges (free products) ---
+  {space:"S¹ ∨ S¹  (figure eight)", q:"π₁ = ?", a:"F₂ (free, rank 2)", d:["ℤ²","ℤ","ℤ⋆ℤ/2"], why:"Van Kampen gives the free product ℤ⋆ℤ = F₂."},
+  {space:"S¹ ∨ S¹", q:"H₁ = ?", a:"ℤ²", d:["ℤ","F₂","ℤ⁴"], why:"H₁ is the abelianization of F₂, namely ℤ²."},
+  {space:"S² ∨ S²", q:"H₂ = ?", a:"ℤ²", d:["ℤ","ℤ⁴","0"], why:"Reduced homology of a wedge is the direct sum."},
+  {space:"S² ∨ S²", q:"π₁ = ?", a:"0", d:["ℤ","ℤ²","F₂"], why:"A wedge of simply-connected spaces is simply connected."},
+  {space:"S¹ ∨ S²", q:"π₁ = ?", a:"ℤ", d:["0","ℤ²","F₂"], why:"S² contributes nothing to π₁, so π₁ = π₁(S¹) = ℤ."},
+  {space:"S¹ ∨ S²", q:"H₂ = ?", a:"ℤ", d:["0","ℤ²","ℤ/2"], why:"From the S² summand."},
+  {space:"S² ∨ S⁴", q:"H₄ = ?", a:"ℤ", d:["0","ℤ²","ℤ/2"], why:"From the S⁴ summand; the wedge has cells only in dim 0,2,4."},
+  {space:"S¹ ∨ S¹ ∨ S¹", q:"π₁ = ?", a:"F₃ (free, rank 3)", d:["ℤ³","ℤ","F₂"], why:"Van Kampen: free product of three copies of ℤ."},
+  {space:"S² ∨ S³ ∨ S³", q:"H₃ = ?", a:"ℤ²", d:["ℤ","ℤ³","0"], why:"Two S³ summands contribute ℤ each."},
+
+  // --- Complex / quaternionic / octonionic projective ---
+  {space:"ℂP²", q:"H₄ = ?", a:"ℤ", d:["0","ℤ²","ℤ/2"], why:"ℂP² has one cell in each even dimension 0,2,4."},
+  {space:"ℂP²", q:"H₃ = ?", a:"0", d:["ℤ","ℤ/2","ℤ²"], why:"All odd-degree homology of ℂPⁿ vanishes."},
+  {space:"ℂP³", q:"H₆ = ?", a:"ℤ", d:["0","ℤ²","ℤ/2"], why:"Top cell of ℂP³ sits in dimension 6."},
+  {space:"ℂP³", q:"H₅ = ?", a:"0", d:["ℤ","ℤ²","ℤ/2"], why:"Odd degree ⇒ 0."},
+  {space:"ℂP³", q:"χ = ?", a:"4", d:["3","6","0"], why:"One cell in each even dim 0,2,4,6 ⇒ χ = n+1 = 4."},
+  {space:"ℂP²", q:"π₁ = ?", a:"0", d:["ℤ","ℤ/2","ℤ²"], why:"ℂPⁿ is simply connected."},
+  {space:"ℍP² (quaternionic plane)", q:"H₄ = ?", a:"ℤ", d:["0","ℤ²","ℤ/2"], why:"ℍP² has cells in dimensions 0,4,8."},
+  {space:"ℍP² (quaternionic plane)", q:"H₅ = ?", a:"0", d:["ℤ","ℤ/2","ℤ²"], why:"No cell in dimension 5."},
+  {space:"ℍP² (quaternionic plane)", q:"H₈ = ?", a:"ℤ", d:["0","ℤ²","ℤ/4"], why:"Top cell in dimension 8."},
+  {space:"ℍP¹", q:"is homeomorphic to ?", a:"S⁴", d:["S²","S⁸","S³"], why:"ℍP¹ ≅ S⁴ (one cell each in dim 0 and 4)."},
+  {space:"𝕆P² (Cayley plane)", q:"H₈ = ?", a:"ℤ", d:["0","ℤ²","ℤ/2"], why:"The Cayley plane has cells only in dimensions 0,8,16."},
+  {space:"𝕆P² (Cayley plane)", q:"H₁₆ = ?", a:"ℤ", d:["0","ℤ²","ℤ/2"], why:"Top cell lives in dimension 16."},
+
+  // --- Products / Künneth ---
+  {space:"S² × S²", q:"H₂ = ?", a:"ℤ²", d:["ℤ","ℤ⁴","0"], why:"Künneth: two independent degree-2 classes."},
+  {space:"S² × S²", q:"H₄ = ?", a:"ℤ", d:["ℤ²","0","ℤ/2"], why:"Single top class, the product of the two fundamental classes."},
+  {space:"S¹ × S²", q:"π₁ = ?", a:"ℤ", d:["ℤ²","0","F₂"], why:"π₁ of a product; S² is simply connected."},
+  {space:"S¹ × S²", q:"H₁ = ?", a:"ℤ", d:["ℤ²","0","ℤ/2"], why:"Only the S¹ factor contributes in degree 1."},
+  {space:"S² × S³", q:"H₅ = ?", a:"ℤ", d:["0","ℤ²","ℤ/2"], why:"Top class in degree 2+3."},
+  {space:"S³ × S³", q:"H₃ = ?", a:"ℤ²", d:["ℤ","ℤ⁴","0"], why:"Two independent degree-3 classes."},
+
+  // --- Lens spaces ---
+  {space:"lens space L(7,1)", q:"π₁ = ?", a:"ℤ/7", d:["ℤ","ℤ/49","0"], why:"π₁(L(p,q)) = ℤ/p."},
+  {space:"lens space L(5,2)", q:"H₁ = ?", a:"ℤ/5", d:["ℤ","ℤ/25","0"], why:"H₁ = ℤ/p."},
+  {space:"lens space L(p,q)", q:"H₃(–;ℤ) = ?", a:"ℤ", d:["0","ℤ/p","ℤ²"], why:"A closed orientable 3-manifold has H₃=ℤ."},
+  {space:"lens space L(5,2)", q:"H₂(–;ℤ) = ?", a:"0", d:["ℤ","ℤ/5","ℤ²"], why:"By Poincaré duality / UCT, H₂=0 for L(p,q)."},
+
+  // --- Lie groups ---
+  {space:"SU(2)", q:"is homeomorphic to ?", a:"S³", d:["S¹","ℝP³","SO(3)"], why:"SU(2) is the unit quaternions, i.e. S³."},
+  {space:"SO(3)", q:"π₁ = ?", a:"ℤ/2", d:["0","ℤ","ℤ/2⊕ℤ/2"], why:"SO(3) ≅ ℝP³, so π₁ = ℤ/2."},
+  {space:"SU(3)", q:"H₃ = ?", a:"ℤ", d:["0","ℤ²","ℤ/2"], why:"H*(SU(3)) = Λ(x₃,x₅); a generator sits in degree 3."},
+  {space:"SU(3)", q:"H₅ = ?", a:"ℤ", d:["0","ℤ²","ℤ/2"], why:"The second exterior generator is in degree 5."},
+  {space:"U(2)", q:"π₁ = ?", a:"ℤ", d:["0","ℤ/2","ℤ²"], why:"det : U(2) → S¹ induces π₁ = ℤ (U(2) ≃ S¹×S³)."},
+  {space:"U(2)", q:"H₃ = ?", a:"ℤ", d:["0","ℤ²","ℤ/2"], why:"U(2) ≃ S¹×S³; the degree-3 class comes from S³."},
+
+  // --- Suspensions / Moore spaces ---
+  {space:"ΣℝP²  (suspension)", q:"H₂(–;ℤ) = ?", a:"ℤ/2", d:["ℤ","0","ℤ/2⊕ℤ/2"], why:"H̃ₙ(ΣX) = H̃ₙ₋₁(X); here H̃₁(ℝP²)=ℤ/2."},
+  {space:"ΣℝP²  (suspension)", q:"H₃(–;ℤ) = ?", a:"0", d:["ℤ/2","ℤ","ℤ⊕ℤ/2"], why:"H̃₃(ΣℝP²)=H̃₂(ℝP²)=0."},
+  {space:"Moore space M(ℤ/3, 2)", q:"H₂ = ?", a:"ℤ/3", d:["ℤ","0","ℤ/9"], why:"By definition, reduced homology is ℤ/3 concentrated in degree 2."},
+  {space:"Moore space M(ℤ/3, 2)", q:"H₃ = ?", a:"0", d:["ℤ/3","ℤ","ℤ/9"], why:"All reduced homology away from degree 2 vanishes."},
+
+  // --- Higher homotopy (famous) ---
+  {space:"S²", q:"π₃ = ?", a:"ℤ", d:["0","ℤ/2","ℤ²"], why:"The Hopf map η : S³ → S² generates π₃(S²)=ℤ."},
+  {space:"S²", q:"π₂ = ?", a:"ℤ", d:["0","ℤ²","ℤ/2"], why:"By Hurewicz, π₂(S²)=H₂(S²)=ℤ."},
+  {space:"S³", q:"π₄ = ?", a:"ℤ/2", d:["ℤ","0","ℤ/3"], why:"The first stable stem: π_{n+1}(Sⁿ)=ℤ/2 for n≥3."},
+  {space:"S⁷", q:"π₇ = ?", a:"ℤ", d:["0","ℤ/2","ℤ²"], why:"πₙ(Sⁿ)=ℤ, generated by the identity (degree)."},
+  {space:"S⁴", q:"π₃ = ?", a:"0", d:["ℤ","ℤ/2","ℤ²"], why:"πₖ(Sⁿ)=0 for k<n."},
+
+  // --- Homotopy-type / deformation-retract traps ---
+  {space:"Möbius band", q:"π₁ = ?", a:"ℤ", d:["0","ℤ/2","ℤ²"], why:"It deformation retracts onto its core circle, so it's homotopy equivalent to S¹."},
+  {space:"Möbius band", q:"H₂(–;ℤ) = ?", a:"0", d:["ℤ","ℤ/2","ℤ²"], why:"It
