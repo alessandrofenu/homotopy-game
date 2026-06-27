@@ -30,7 +30,7 @@
     -webkit-user-select:none;user-select:none;
   }
   #app{
-    height:100dvh;max-width:560px;margin:0 auto;
+    height:100vh;height:100dvh;max-width:560px;margin:0 auto;
     display:flex;flex-direction:column;
     padding:max(14px,env(safe-area-inset-top)) 16px max(14px,env(safe-area-inset-bottom));
   }
@@ -227,6 +227,18 @@
 
 <script>
 "use strict";
+/* On-screen error banner: if any script error occurs, show it instead of
+   failing silently (useful on phones with no dev console). Harmless if no error. */
+window.onerror=function(msg,src,line,col){
+  try{
+    var b=document.createElement("div");
+    b.style.cssText="position:fixed;left:0;right:0;bottom:0;z-index:9999;"+
+      "background:#e0454e;color:#fff;font:13px/1.4 monospace;padding:10px;white-space:pre-wrap";
+    b.textContent="Script error → "+msg+"  (line "+line+")";
+    document.body.appendChild(b);
+  }catch(e){}
+  return false;
+};
 /* ============================================================
    INVARIANTS — a hard algebraic-topology quiz
    Single file, no dependencies. All invariants hand-checked.
@@ -343,4 +355,274 @@ const BANK = [
 
   // --- Homotopy-type / deformation-retract traps ---
   {space:"Möbius band", q:"π₁ = ?", a:"ℤ", d:["0","ℤ/2","ℤ²"], why:"It deformation retracts onto its core circle, so it's homotopy equivalent to S¹."},
-  {space:"Möbius band", q:"H₂(–;ℤ) = ?", a:"0", d:["ℤ","ℤ/2","ℤ²"], why:"It
+  {space:"Möbius band", q:"H₂(–;ℤ) = ?", a:"0", d:["ℤ","ℤ/2","ℤ²"], why:"It is homotopy equivalent to S¹, which has no H₂."},
+  {space:"ℝ³ ∖ {0}", q:"H₂ = ?", a:"ℤ", d:["0","ℤ³","ℤ/2"], why:"It deformation retracts onto S²."},
+  {space:"ℝ³ ∖ {0}", q:"π₁ = ?", a:"0", d:["ℤ","ℤ²","ℤ/2"], why:"≃ S², which is simply connected."},
+  {space:"ℝ² ∖ {2 points}", q:"π₁ = ?", a:"F₂ (free, rank 2)", d:["ℤ²","ℤ","0"], why:"Homotopy equivalent to a figure eight."},
+  {space:"ℝ³ ∖ (a line)", q:"π₁ = ?", a:"ℤ", d:["0","ℤ²","ℤ/2"], why:"≃ S¹ (retract to a linking circle)."},
+  {space:"ℂ ∖ {0}", q:"π₁ = ?", a:"ℤ", d:["0","ℤ²","ℤ/2"], why:"≃ S¹; the winding number is the invariant."},
+  {space:"solid torus  S¹×D²", q:"π₁ = ?", a:"ℤ", d:["ℤ²","0","F₂"], why:"Deformation retracts onto the core S¹."},
+  {space:"ℝP² # ℝP²", q:"H₁(–;ℤ) = ?", a:"ℤ⊕ℤ/2", d:["ℤ/2⊕ℤ/2","ℤ²","ℤ"], why:"ℝP²#ℝP² is the Klein bottle, with H₁=ℤ⊕ℤ/2."},
+];
+
+/* ============================================================
+   GENERATORS — bulletproof families, for endless variety
+   each returns {space,q,a,d,why}
+   ============================================================ */
+const rint=(lo,hi)=>lo+Math.floor(Math.random()*(hi-lo+1));
+const pick=arr=>arr[Math.floor(Math.random()*arr.length)];
+
+function genSphere(){
+  const n=rint(2,7);
+  // ask H_k: with prob ask the top (ℤ) else a middle (0)
+  const k = Math.random()<0.5 ? n : pick([1,2,3,4,5,6,7].filter(x=>x!==0&&x!==n&&x<=n+1));
+  const a = (k===0||k===n) ? "ℤ" : "0";
+  return {space:"S"+sup(n), q:"H"+sub(k)+" = ?", a,
+    d:genDistractors(a,HOM_POOL),
+    why:"Hₖ(Sⁿ)=ℤ for k=0,n and 0 otherwise (n="+n+")."};
+}
+function genCP(){
+  const n=rint(2,4);
+  const k=rint(1,2*n);
+  const a=(k%2===0)?"ℤ":"0";
+  return {space:"ℂP"+sup(n), q:"H"+sub(k)+" = ?", a,
+    d:genDistractors(a,HOM_POOL),
+    why:"ℂPⁿ has one cell in each even dimension 0…2n; odd degrees vanish."};
+}
+function genWedgeSpheres(){
+  const m=rint(2,3);
+  const dims=[]; for(let i=0;i<m;i++) dims.push(rint(2,4)); // ≥2 keeps π₁ trivial, homology clean
+  const label=dims.map(d=>"S"+sup(d)).join(" ∨ ");
+  // ask about a degree that may or may not be present
+  const askPresent=Math.random()<0.65;
+  const k = askPresent ? pick(dims) : pick([2,3,4].filter(x=>!dims.includes(x)).concat([5]));
+  const c = dims.filter(d=>d===k).length;
+  const a = Z(c);
+  return {space:label, q:"H"+sub(k)+" = ?", a,
+    d:genDistractors(a,HOM_POOL),
+    why:"Reduced homology of a wedge is the direct sum: count the Sᵏ summands."};
+}
+const GENERATORS=[genSphere,genCP,genWedgeSpheres];
+
+/* ============================================================
+   ENGINE
+   ============================================================ */
+const $=id=>document.getElementById(id);
+const TOTAL_TIME=20000;            // ms per question
+const MAX_LIVES=3;
+const SHAPES=[["A","▲"],["B","◆"],["C","●"],["D","■"]];
+
+let state;
+function freshState(){
+  return {score:0, lives:MAX_LIVES, mistakes:0, streak:0, bestStreak:0,
+          correctCount:0, qIndex:0, deck:[], answered:false,
+          tStart:0, raf:0, current:null, frac:1};
+}
+
+function buildDeck(){ // shuffled curated indices, replenished when empty
+  const idx=[...BANK.keys()];
+  for(let i=idx.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[idx[i],idx[j]]=[idx[j],idx[i]];}
+  return idx;
+}
+
+function nextRaw(){
+  // 55% curated (no immediate repeat), else generated
+  let q;
+  if(Math.random()<0.55){
+    if(state.deck.length===0) state.deck=buildDeck();
+    q=BANK[state.deck.pop()];
+  } else {
+    q=pick(GENERATORS)();
+  }
+  // avoid identical to previous
+  if(state.current && q.space===state.current.space && q.q===state.current.q) return nextRaw();
+  return q;
+}
+
+function makeOptions(raw){
+  let opts=[raw.a, ...raw.d];
+  // dedupe defensively
+  opts=[...new Set(opts)];
+  while(opts.length<4){
+    const extra=pick(HOM_POOL);
+    if(!opts.includes(extra)) opts.push(extra);
+  }
+  opts=opts.slice(0,4);
+  // shuffle, remember correct
+  for(let i=opts.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[opts[i],opts[j]]=[opts[j],opts[i]];}
+  return {opts, correct:opts.indexOf(raw.a)};
+}
+
+/* ---------- rendering ---------- */
+function renderLives(){
+  const el=$("lives"); el.innerHTML="";
+  for(let i=0;i<MAX_LIVES;i++){
+    const d=document.createElement("div");
+    d.className="pt"+(i<state.mistakes?" lost":"");
+    el.appendChild(d);
+  }
+}
+function renderHUD(){
+  $("score").textContent=state.score;
+  $("streak").textContent="×"+(1+Math.max(0,state.streak-1));
+  $("qcount").textContent="question "+(state.qIndex);
+  renderLives();
+}
+
+function loadQuestion(){
+  state.qIndex++;
+  state.answered=false;
+  const raw=nextRaw();
+  state.current=raw;
+  const {opts,correct}=makeOptions(raw);
+  state.correct=correct;
+
+  $("space").textContent=raw.space;
+  $("ask").textContent=raw.q;
+  $("reveal").innerHTML="";
+  renderHUD();
+
+  const grid=$("grid");
+  grid.className="grid";
+  grid.innerHTML="";
+  opts.forEach((txt,i)=>{
+    const [cls,ico]=SHAPES[i];
+    const b=document.createElement("button");
+    b.className="tile "+cls;
+    b.innerHTML='<span class="ico">'+ico+'</span>'+txt;
+    b.setAttribute("aria-label","answer "+(i+1)+": "+txt);
+    b.onclick=()=>choose(i,b);
+    grid.appendChild(b);
+  });
+
+  startTimer();
+}
+
+/* ---------- timer ---------- */
+function startTimer(){
+  cancelAnimationFrame(state.raf);
+  state.tStart=performance.now();
+  const bar=$("timerBar"), box=$("timer");
+  box.className="timer";
+  const tick=now=>{
+    const elapsed=now-state.tStart;
+    let f=1-elapsed/TOTAL_TIME;
+    if(f<0)f=0;
+    state.frac=f;
+    bar.style.transform="scaleX("+f+")";
+    box.className="timer"+(f<0.5?(f<0.2?" crit":" warn"):"");
+    if(f<=0){ timeUp(); return; }
+    if(!state.answered) state.raf=requestAnimationFrame(tick);
+  };
+  state.raf=requestAnimationFrame(tick);
+}
+function stopTimer(){ cancelAnimationFrame(state.raf); }
+
+function timeUp(){
+  if(state.answered) return;
+  resolve(-1, null); // no selection
+}
+
+/* ---------- answering ---------- */
+function choose(i, btn){
+  if(state.answered) return;
+  resolve(i, btn);
+}
+
+function resolve(chosen, btn){
+  state.answered=true;
+  stopTimer();
+  const grid=$("grid");
+  grid.classList.add("locked");
+  [...grid.children].forEach((b,idx)=>{
+    b.disabled=true;
+    if(idx===state.correct) b.classList.add("correct");
+    else if(idx===chosen) b.classList.add("wrong");
+  });
+
+  const right = chosen===state.correct;
+  let gained=0;
+  if(right){
+    state.streak++;
+    state.bestStreak=Math.max(state.bestStreak,state.streak);
+    state.correctCount++;
+    const timeBonus=Math.round(100*state.frac);
+    const streakBonus=Math.max(0,state.streak-1)*20;
+    gained=100+timeBonus+streakBonus;
+    state.score+=gained;
+  } else {
+    state.streak=0;
+    state.mistakes++;
+    if(btn) btn.classList.add("shake");
+    vibrate(45);
+  }
+  renderHUD();
+  showReveal(right, gained, chosen);
+}
+
+function showReveal(right, gained, chosen){
+  const raw=state.current;
+  const lost = state.mistakes>=MAX_LIVES;
+  const verdict = chosen===-1 ? "Time" : (right?"Correct":"Wrong");
+  const cls = right?"ok":"no";
+  const gainTxt = right ? '<span class="gain">+'+gained+'</span>' : '';
+  const btnTxt = lost ? "See results" : "Next";
+  const r=$("reveal");
+  r.innerHTML=
+    '<div class="reveal">'+
+      '<div class="verdict '+cls+'"><span>'+verdict+'</span>'+gainTxt+'</div>'+
+      '<div class="why"><span class="ans">'+raw.space+'</span> &nbsp;'+raw.q.replace(/=\s*\?$/,'=')+
+        ' <span class="ans">'+raw.a+'</span>. '+raw.why+'</div>'+
+      '<button class="next" id="nextBtn">'+btnTxt+'</button>'+
+    '</div>';
+  $("nextBtn").onclick=()=> lost ? endGame() : loadQuestion();
+  $("nextBtn").focus({preventScroll:true});
+}
+
+/* ---------- screens ---------- */
+function show(id){ ["start","game","over"].forEach(s=>$(s).classList.toggle("hidden",s!==id)); }
+
+function startGame(){
+  state=freshState();
+  state.deck=buildDeck();
+  show("game");
+  loadQuestion();
+}
+function endGame(){
+  stopTimer();
+  $("finalScore").textContent=state.score;
+  $("finalCorrect").textContent=state.correctCount;
+  $("finalStreak").textContent=state.bestStreak;
+  const best=saveBest(state.score);
+  $("bestOver").textContent=best;
+  $("overMsg").textContent = pick([
+    "The sequence didn't close.",
+    "Obstruction non-trivial.",
+    "Your chain wasn't a cycle.",
+    "Diagram failed to commute.",
+  ]);
+  show("over");
+}
+
+/* ---------- best score (localStorage, degrades gracefully) ---------- */
+function readBest(){ try{ return parseInt(localStorage.getItem("invariants_best")||"0",10)||0; }catch(e){ return 0; } }
+function saveBest(s){ let b=readBest(); if(s>b){ b=s; try{ localStorage.setItem("invariants_best",String(b)); }catch(e){} } return b; }
+function paintBest(){ const b=readBest(); const t=b?b.toLocaleString():"—"; $("bestStart").textContent=t; }
+
+function vibrate(ms){ try{ if(navigator.vibrate) navigator.vibrate(ms); }catch(e){} }
+
+/* ---------- wiring ---------- */
+$("startBtn").onclick=startGame;
+$("againBtn").onclick=startGame;
+document.addEventListener("keydown",e=>{
+  if(!$("game").classList.contains("hidden") && (!state || !state.answered)){
+    const map={"1":0,"2":1,"3":2,"4":3};
+    if(e.key in map){ const b=$("grid").children[map[e.key]]; if(b) b.click(); }
+  }
+  if(e.key==="Enter"){ const n=$("nextBtn"); if(n) n.click();
+    else if(!$("start").classList.contains("hidden")) startGame(); }
+});
+paintBest();
+</script>
+</body>
+</html>
