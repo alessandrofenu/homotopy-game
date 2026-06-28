@@ -185,19 +185,31 @@
   @media (min-width:880px){
     #app{
       max-width:1080px;height:100vh;height:100dvh;
-      padding:40px 32px 32px;
+      padding:28px 32px 28px;
     }
 
-    /* in-game: question on the left, answers + reveal on the right */
-    .qwrap{flex-direction:row;align-items:stretch;gap:22px}
-    .card{flex:1 1 46%;justify-content:center;padding:34px 32px}
-    .space{font-size:clamp(30px,3.6vw,44px)}
-    .ask{font-size:clamp(24px,2.8vw,34px)}
-    .answers-col{flex:1 1 54%;display:flex;flex-direction:column;min-width:0}
-    .grid{flex:1;margin-top:0;align-content:center;gap:16px}
-    .tile{min-height:120px;padding:18px 18px 18px 54px;font-size:clamp(20px,2vw,26px)}
-    .tile .ico{font-size:21px}
-    .reveal{margin-top:16px}
+    /* in-game: question on the left, answers + reveal on the right.
+       The whole screen is height-bounded and must never scroll: the grid
+       flexes to share whatever vertical space is left after the HUD/timer,
+       and the reveal box is capped with its own internal scroll. */
+    .qwrap{flex-direction:row;align-items:center;gap:22px;min-height:0}
+    .card{
+      flex:1 1 46%;align-self:center;justify-content:flex-start;
+      padding:26px 30px;gap:12px;max-height:100%;overflow:auto;
+    }
+    .eyebrow{font-size:11px}
+    .space{font-size:clamp(19px,1.7vw,24px);line-height:1.25;letter-spacing:.2px}
+    .ask{font-size:clamp(16px,1.35vw,19px);line-height:1.45;padding-top:11px}
+    .answers-col{flex:1 1 54%;display:flex;flex-direction:column;justify-content:center;min-width:0;min-height:0}
+    .grid{flex:0 1 auto;min-height:0;margin-top:0;gap:14px;
+          grid-auto-rows:minmax(0,1fr)}
+    .tile{
+      min-height:96px;max-height:200px;padding:14px 16px 14px 46px;
+      font-size:clamp(15px,1.15vw,18px);line-height:1.3;align-items:center;
+    }
+    .tile .ico{font-size:17px;left:16px}
+    .reveal{margin-top:14px;flex:0 0 auto;max-height:34vh;overflow:auto}
+    .why{font-size:13.5px}
 
     /* start / game-over: two columns instead of one centered stack */
     .center{
