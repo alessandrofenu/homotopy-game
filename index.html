@@ -83,7 +83,7 @@
     font-family:var(--math);font-size:clamp(19px,5.4vw,26px);color:#fff;
     line-height:1.1;transition:transform .08s, filter .15s, opacity .2s;
     box-shadow:0 5px 0 0 var(--sh,#0006), 0 10px 22px -14px #000;
-    overflow-wrap:break-word;word-break:break-word;
+    overflow-wrap:break-word;
   }
   .tile:active{transform:translateY(2px)}
   .tile .ico{position:absolute;left:14px;top:50%;transform:translateY(-50%);
@@ -231,9 +231,9 @@
   /* ---- KaTeX integration ---- */
   .katex{font-size:1em}
   .space .katex{font-size:1.02em}
-  .tile .lab{flex:1 1 auto;min-width:0;overflow-wrap:break-word;word-break:break-word}
-  .tile .katex{white-space:normal!important}
-  .tile .katex .base{white-space:normal!important}
+  .tile .lab{flex:1 1 auto;min-width:0;overflow-wrap:break-word}
+  .tile .katex{white-space:normal}
+  .tile .katex .base{white-space:nowrap}
   .ansline{font-family:var(--math);color:var(--chalk);font-size:17px}
   .ansline .katex{font-size:1.05em}
 </style>
