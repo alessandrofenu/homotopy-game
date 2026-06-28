@@ -22,329 +22,446 @@ const x = String.raw;
 
 const BANK = [
  {
-  "space": "Stiefel-Whitney classes",
-  "q": "Stiefel–Whitney classes $w_i(E)$ of a real vector bundle live in which cohomology?",
+  "space": "Stiefel–Whitney classes",
+  "q": "The class $w_i(E)$ of a real bundle lives in which group?",
   "a": "$H^i(B;\\mathbb{Z}/2)$",
   "d": [
    "$H^i(B;\\mathbb{Z})$",
-   "$H_i(B;\\mathbb{Z}/2)$",
-   "$H^{2i}(B;\\mathbb{Z})$"
+   "$H^{2i}(B;\\mathbb{Z})$",
+   "$H_i(B;\\mathbb{Z}/2)$"
   ],
-  "why": "Stiefel–Whitney classes are defined with $\\mathbb{Z}/2$ coefficients: $w_i(E)\\in H^i(B;\\mathbb{Z}/2)$.",
+  "why": "Stiefel\\u2013Whitney classes are defined with $\\mathbb{Z}/2$ coefficients: $w_i(E)\\in H^i(B;\\mathbb{Z}/2)$.",
   "subj": "characteristic-classes",
   "diff": 2
  },
  {
-  "space": "$w_1$ and orientability",
-  "q": "A real vector bundle $E\\to B$ is orientable if and only if which class vanishes?",
-  "a": "$w_1(E)=0$",
+  "space": "orientability and $w_1$",
+  "q": "A real bundle is orientable iff which class vanishes?",
+  "a": "$w_1$",
   "d": [
-   "$w_2(E)=0$",
-   "$c_1(E)=0$",
-   "$p_1(E)=0$"
+   "$w_2$",
+   "$c_1$",
+   "$p_1$"
   ],
-  "why": "The first Stiefel–Whitney class $w_1$ is exactly the obstruction to orientability.",
+  "why": "The first Stiefel\\u2013Whitney class is exactly the obstruction to orientability.",
   "subj": "characteristic-classes",
   "diff": 2
  },
  {
-  "space": "$w_2$ and spin structures",
-  "q": "A vector bundle admits a spin structure iff which classes vanish?",
-  "a": "$w_1=0$ and $w_2=0$",
+  "space": "spin structures",
+  "q": "An oriented bundle admits a spin structure iff which class vanishes?",
+  "a": "$w_2$",
   "d": [
-   "Only $w_1=0$",
-   "Only $w_2=0$, regardless of $w_1$",
-   "$w_1=w_2=w_3=0$"
+   "$w_1$",
+   "$w_3$",
+   "$p_1$"
   ],
-  "why": "Spin structures require orientability ($w_1=0$) plus vanishing of the second Stiefel–Whitney class $w_2$, which is the obstruction to lifting the structure group to $\\mathrm{Spin}(n)$.",
+  "why": "Given orientability ($w_1=0$), the obstruction to a spin structure is the vanishing of $w_2$.",
   "subj": "characteristic-classes",
   "diff": 4
  },
  {
-  "space": "Chern classes of complex line bundles",
-  "q": "Complex line bundles over $X$ are classified (up to isomorphism) by which invariant?",
-  "a": "The first Chern class $c_1\\in H^2(X;\\mathbb{Z})$",
+  "space": "complex line bundles",
+  "q": "Complex line bundles over $X$ are classified by which class?",
+  "a": "$c_1\\in H^2(X;\\mathbb{Z})$",
   "d": [
-   "The rank only",
    "$w_1\\in H^1(X;\\mathbb{Z}/2)$",
-   "The Euler characteristic of $X$"
+   "$c_1\\in H^1(X;\\mathbb{Z})$",
+   "$p_1\\in H^4(X;\\mathbb{Z})$"
   ],
-  "why": "Complex line bundles correspond to $[X,BU(1)]=[X,\\mathbb{CP}^\\infty]\\cong H^2(X;\\mathbb{Z})$, with the bijection given by $c_1$.",
+  "why": "Complex line bundles correspond to $[X,\\mathbb{CP}^\\infty]\\cong H^2(X;\\mathbb{Z})$ via the first Chern class.",
   "subj": "characteristic-classes",
   "diff": 3
  },
  {
-  "space": "the Euler class",
-  "q": "For an oriented rank-$n$ real vector bundle, the Euler class $e(E)$ lives in $H^n(B;\\mathbb{Z})$, and relates to which top Chern/SW class if $E$ has a complex structure?",
-  "a": "$e(E)=c_n(E)$, the top Chern class, when $E$ is a complex bundle of rank $n$ (viewed as real of rank $2n$)",
+  "space": "the Euler class of a complex bundle",
+  "q": "For a rank-$n$ complex bundle, the Euler class of the underlying oriented real bundle equals which class?",
+  "a": "The top Chern class $c_n$",
   "d": [
-   "$e(E)=w_n(E)$ always, with no need for orientability",
-   "$e(E)$ is unrelated to Chern classes in general",
-   "$e(E)=c_1(E)^n$"
+   "The class $c_1^n$",
+   "The class $w_{2n}$",
+   "The class $p_n$"
   ],
-  "why": "For a complex vector bundle, the Euler class of the underlying oriented real bundle equals the top Chern class.",
+  "why": "For a complex bundle the Euler class of the underlying real bundle is the top Chern class $c_n$.",
   "subj": "characteristic-classes",
   "diff": 4
  },
  {
-  "space": "the tangent bundle of $S^n$ and the Euler class",
-  "q": "The Euler class of $TS^n$ is nonzero exactly when $n$ is what?",
-  "a": "Even",
+  "space": "the Euler class and $\\chi$",
+  "q": "Evaluated on the fundamental class, the Euler class of $TM$ gives which invariant of a closed oriented manifold?",
+  "a": "The Euler characteristic $\\chi(M)$",
   "d": [
-   "Odd",
-   "Always nonzero",
-   "Never nonzero"
+   "The signature $\\sigma(M)$",
+   "The first Betti number",
+   "The dimension of $M$"
   ],
-  "why": "$e(TS^n)$ corresponds to $\\chi(S^n)$ via Poincaré–Hopf, and $\\chi(S^n)=2$ for even $n$, $0$ for odd $n$.",
+  "why": "The Euler class of the tangent bundle integrates to $\\chi(M)$, by the Poincar\\u00e9\\u2013Hopf / Gauss\\u2013Bonnet theorem.",
   "subj": "characteristic-classes",
   "diff": 3
  },
  {
   "space": "Pontryagin classes",
-  "q": "Pontryagin classes $p_i(E)$ of a real vector bundle live in which cohomology, with what convention on degree?",
+  "q": "The class $p_i(E)$ of a real bundle lives in which group?",
   "a": "$H^{4i}(B;\\mathbb{Z})$",
   "d": [
    "$H^{2i}(B;\\mathbb{Z})$",
    "$H^{i}(B;\\mathbb{Z}/2)$",
    "$H^{4i}(B;\\mathbb{Z}/2)$"
   ],
-  "why": "Pontryagin classes are defined via $p_i(E)=(-1)^i c_{2i}(E\\otimes\\mathbb{C})\\in H^{4i}(B;\\mathbb{Z})$.",
+  "why": "Pontryagin classes are defined by $p_i(E)=(-1)^i c_{2i}(E\\otimes\\mathbb{C})\\in H^{4i}(B;\\mathbb{Z})$.",
   "subj": "characteristic-classes",
   "diff": 4
  },
  {
   "space": "the Whitney sum formula",
-  "q": "For Stiefel–Whitney classes of a direct sum $E\\oplus F$, the total class satisfies what?",
-  "a": "$w(E\\oplus F)=w(E)\\cup w(F)$",
+  "q": "The total Stiefel\\u2013Whitney class of $E\\oplus F$ equals what?",
+  "a": "$w(E)\\cup w(F)$",
   "d": [
-   "$w(E\\oplus F)=w(E)+w(F)$",
-   "$w(E\\oplus F)=w(E)$ if $\\mathrm{rank}(F)=0$ but otherwise unrelated",
-   "No general formula exists"
+   "$w(E)+w(F)$",
+   "$w(E)\\cup w(F)^{-1}$",
+   "$w(E)\\otimes w(F)$"
   ],
-  "why": "This is the Whitney sum (product) formula for total Stiefel–Whitney class (and analogously for total Chern class), a defining axiom of characteristic class theory.",
+  "why": "The Whitney sum formula states $w(E\\oplus F)=w(E)\\cup w(F)$ for the total class (and similarly for total Chern class).",
   "subj": "characteristic-classes",
   "diff": 3
  },
  {
+  "space": "Chern classes",
+  "q": "The class $c_i(E)$ of a complex bundle lives in which group?",
+  "a": "$H^{2i}(B;\\mathbb{Z})$",
+  "d": [
+   "$H^{i}(B;\\mathbb{Z})$",
+   "$H^{2i}(B;\\mathbb{Z}/2)$",
+   "$H^{4i}(B;\\mathbb{Z})$"
+  ],
+  "why": "Chern classes are integral classes in even degree: $c_i(E)\\in H^{2i}(B;\\mathbb{Z})$.",
+  "subj": "characteristic-classes",
+  "diff": 2
+ },
+ {
+  "space": "the tangent bundle of $\\mathbb{CP}^n$",
+  "q": "The total Chern class of $T\\mathbb{CP}^n$ equals which expression?",
+  "a": "$(1+\\alpha)^{n+1}$",
+  "d": [
+   "$(1+\\alpha)^{n}$",
+   "$(1+\\alpha)^{n-1}$",
+   "$1+(n+1)\\alpha$"
+  ],
+  "why": "From the Euler sequence $0\\to\\mathbb{C}\\to(\\mathcal{O}(1))^{n+1}\\to T\\mathbb{CP}^n\\to0$, the total Chern class is $(1+\\alpha)^{n+1}$ where $\\alpha=c_1(\\mathcal{O}(1))$.",
+  "subj": "characteristic-classes",
+  "diff": 5
+ },
+ {
+  "space": "the first Pontryagin class via Chern classes",
+  "q": "For a complex bundle $E$, $p_1$ of the underlying real bundle equals which combination?",
+  "a": "$c_1^2-2c_2$",
+  "d": [
+   "$c_1^2+2c_2$",
+   "$c_1^2-c_2$",
+   "$2c_2-c_1^2$"
+  ],
+  "why": "Expanding $p_1(E_\\mathbb{R})=-c_2(E\\otimes\\mathbb{C})$ with $E\\otimes\\mathbb{C}\\cong E\\oplus\\bar E$ gives $p_1=c_1^2-2c_2$.",
+  "subj": "characteristic-classes",
+  "diff": 5
+ },
+ {
+  "space": "Stiefel–Whitney class $w_0$",
+  "q": "What is $w_0(E)$ for any real bundle $E$?",
+  "a": "$1$",
+  "d": [
+   "$0$",
+   "the rank of $E$",
+   "$w_1(E)$"
+  ],
+  "why": "By convention the total class starts $w(E)=1+w_1+\\cdots$, so $w_0=1$ always.",
+  "subj": "characteristic-classes",
+  "diff": 2
+ },
+ {
   "space": "$\\mathbb{CP}^n$",
   "q": "What is the cohomology ring $H^*(\\mathbb{CP}^n;\\mathbb{Z})$?",
-  "a": "$\\mathbb{Z}[\\alpha]/(\\alpha^{n+1})$ with $\\deg\\alpha=2$",
+  "a": "$\\mathbb{Z}[\\alpha]/(\\alpha^{n+1})$, $\\deg\\alpha=2$",
   "d": [
-   "$\\mathbb{Z}[\\alpha]/(\\alpha^{n})$ with $\\deg\\alpha=2$",
-   "An exterior algebra $\\Lambda[\\alpha]$, $\\deg\\alpha=2$",
-   "$\\mathbb{Z}[\\alpha]/(\\alpha^{n+1})$ with $\\deg\\alpha=1$"
+   "$\\mathbb{Z}[\\alpha]/(\\alpha^{n})$, $\\deg\\alpha=2$",
+   "$\\Lambda[\\alpha]$, $\\deg\\alpha=2$",
+   "$\\mathbb{Z}[\\alpha]/(\\alpha^{n+1})$, $\\deg\\alpha=1$"
   ],
-  "why": "The hyperplane class $\\alpha\\in H^2(\\mathbb{CP}^n)$ generates a truncated polynomial ring, with $\\alpha^{n+1}=0$ since $H^{2n+2}=0$.",
+  "why": "The degree-$2$ hyperplane class generates a truncated polynomial ring with $\\alpha^{n+1}=0$ since $H^{2n+2}=0$.",
   "subj": "cohomology",
   "diff": 3
+ },
+ {
+  "space": "$\\mathbb{RP}^n$ with $\\mathbb{Z}/2$ coefficients",
+  "q": "What is $H^*(\\mathbb{RP}^n;\\mathbb{Z}/2)$ as a ring?",
+  "a": "$(\\mathbb{Z}/2)[\\alpha]/(\\alpha^{n+1})$, $\\deg\\alpha=1$",
+  "d": [
+   "$(\\mathbb{Z}/2)[\\alpha]/(\\alpha^{n})$, $\\deg\\alpha=1$",
+   "$\\Lambda[\\alpha]$, $\\deg\\alpha=1$",
+   "$(\\mathbb{Z}/2)[\\alpha]/(\\alpha^{n+1})$, $\\deg\\alpha=2$"
+  ],
+  "why": "With $\\mathbb{Z}/2$ coefficients $H^*(\\mathbb{RP}^n)$ is a truncated polynomial ring on a degree-$1$ class, $\\alpha^{n+1}=0$.",
+  "subj": "cohomology",
+  "diff": 4
  },
  {
   "space": "the torus $T^2$",
-  "q": "In $H^*(T^2;\\mathbb{Z})$, if $\\alpha,\\beta\\in H^1$ are dual to the two circle factors, what is $\\alpha\\cup\\beta$?",
-  "a": "A generator of $H^2(T^2)\\cong\\mathbb{Z}$, and $\\beta\\cup\\alpha=-\\alpha\\cup\\beta$",
+  "q": "In $H^*(T^2;\\mathbb{Z})$ with $\\alpha,\\beta\\in H^1$ generators, what is $\\alpha\\cup\\beta$?",
+  "a": "A generator of $H^2(T^2)$, with $\\beta\\cup\\alpha=-\\alpha\\cup\\beta$",
   "d": [
-   "$0$",
-   "$\\alpha+\\beta$",
-   "$\\alpha\\cup\\beta=\\beta\\cup\\alpha$ (they commute as elements, no sign)"
+   "Zero",
+   "A generator, with $\\beta\\cup\\alpha=\\alpha\\cup\\beta$",
+   "The class $\\alpha+\\beta$ in $H^1$"
   ],
-  "why": "Cup product on $H^1$ classes anticommutes (graded commutativity with degree-1 classes), and $\\alpha\\cup\\beta$ is the standard generator of top cohomology, matching $H^*(T^2)\\cong \\Lambda^*(\\mathbb{Z}^2)$.",
+  "why": "Degree-$1$ classes anticommute, and $\\alpha\\cup\\beta$ generates the top group, so $H^*(T^2)\\cong\\Lambda(\\mathbb{Z}^2)$.",
   "subj": "cohomology",
   "diff": 4
- },
- {
-  "space": "$\\mathbb{RP}^2$",
-  "q": "What is $H^*(\\mathbb{RP}^2;\\mathbb{Z}/2)$ as a ring?",
-  "a": "$(\\mathbb{Z}/2)[\\alpha]/(\\alpha^3)$ with $\\deg\\alpha=1$",
-  "d": [
-   "$(\\mathbb{Z}/2)[\\alpha]/(\\alpha^2)$ with $\\deg\\alpha=1$",
-   "Exterior algebra on one degree-1 generator",
-   "$(\\mathbb{Z}/2)[\\alpha]/(\\alpha^3)$ with $\\deg\\alpha=2$"
-  ],
-  "why": "With $\\mathbb{Z}/2$ coefficients, $H^*(\\mathbb{RP}^n;\\mathbb{Z}/2)$ is the truncated polynomial ring on a degree-1 class, here truncated at $\\alpha^3=0$ since $\\dim=2$.",
-  "subj": "cohomology",
-  "diff": 4
- },
- {
-  "space": "a space $X$ with $H^k(X;mathbb{Z})$ finitely generated",
-  "q": "Universal coefficients relates $H^k(X;\\mathbb{Z})$ to which homology groups?",
-  "a": "$H_k(X;\\mathbb{Z})$ and $H_{k-1}(X;\\mathbb{Z})$ (via a free part and a torsion/Ext term)",
-  "d": [
-   "Only $H_k(X;\\mathbb{Z})$",
-   "Only $H_{k+1}(X;\\mathbb{Z})$",
-   "$H_k(X;\\mathbb{Q})$ only"
-  ],
-  "why": "The Universal Coefficient Theorem gives a short exact sequence $0\\to \\mathrm{Ext}(H_{k-1}(X),\\mathbb{Z})\\to H^k(X;\\mathbb{Z})\\to \\mathrm{Hom}(H_k(X),\\mathbb{Z})\\to 0$.",
-  "subj": "cohomology",
-  "diff": 3
  },
  {
   "space": "a closed orientable $n$-manifold $M$",
-  "q": "Poincaré duality gives an isomorphism between which groups?",
-  "a": "$H^k(M;\\mathbb{Z})\\cong H_{n-k}(M;\\mathbb{Z})$",
+  "q": "Poincar\\u00e9 duality gives an isomorphism between $H^k(M;\\mathbb{Z})$ and which group?",
+  "a": "$H_{n-k}(M;\\mathbb{Z})$",
   "d": [
-   "$H^k(M;\\mathbb{Z})\\cong H_k(M;\\mathbb{Z})$ always",
-   "$H^k(M)\\cong H^{n-k}(M)$ with no homology involved",
-   "$H_k(M)\\cong H_{k}(M;\\mathbb{Z}/2)$"
+   "$H_{k}(M;\\mathbb{Z})$",
+   "$H^{n-k}(M;\\mathbb{Z})$",
+   "$H_{n-k}(M;\\mathbb{Z}/2)$"
   ],
-  "why": "Poincaré duality states $H^k(M;\\mathbb{Z})\\cong H_{n-k}(M;\\mathbb{Z})$ via cap product with the fundamental class, for $M$ a closed oriented $n$-manifold.",
+  "why": "Cap product with the fundamental class gives $H^k(M)\\cong H_{n-k}(M)$ for a closed oriented $n$-manifold.",
   "subj": "cohomology",
   "diff": 2
  },
  {
-  "space": "$S^n$",
-  "q": "What is $H^*(S^n;\\mathbb{Z})$ as a graded ring (cup product structure)?",
-  "a": "$\\mathbb{Z}$ in degrees $0,n$, trivial cup products since $\\alpha^2=0$ for the degree-$n$ generator when $n\\geq1$",
+  "space": "the universal coefficient theorem",
+  "q": "The UCT expresses $H^n(X;\\mathbb{Z})$ via a $\\mathrm{Hom}$ term and which derived term?",
+  "a": "$\\mathrm{Ext}(H_{n-1}(X),\\mathbb{Z})$",
   "d": [
-   "A polynomial ring on a degree-$n$ generator",
-   "$\\mathbb{Z}$ only in degree $0$",
-   "Exterior algebra on two generators"
+   "$\\mathrm{Ext}(H_{n}(X),\\mathbb{Z})$",
+   "$\\mathrm{Tor}(H_{n-1}(X),\\mathbb{Z})$",
+   "$\\mathrm{Tor}(H_{n+1}(X),\\mathbb{Z})$"
   ],
-  "why": "The cup product of the degree-$n$ generator with itself lands in degree $2n>n$ for $n\\geq1$, which is $0$ unless $n=0$; so the ring structure is trivial beyond degree $0$ and $n$.",
+  "why": "The UCT short exact sequence is $0\\to\\mathrm{Ext}(H_{n-1}(X),\\mathbb{Z})\\to H^n(X;\\mathbb{Z})\\to\\mathrm{Hom}(H_n(X),\\mathbb{Z})\\to0$.",
   "subj": "cohomology",
   "diff": 3
  },
  {
-  "space": "two spaces $X,Y$",
-  "q": "The Künneth theorem (field coefficients) computes $H^*(X\\times Y)$ as what?",
-  "a": "$H^*(X)\\otimes H^*(Y)$",
+  "space": "$H^*(S^n;mathbb{Z})$ as a ring",
+  "q": "For $n\\geq1$, what is the square of the degree-$n$ generator of $H^*(S^n;\\mathbb{Z})$?",
+  "a": "Zero",
   "d": [
-   "$H^*(X)\\oplus H^*(Y)$",
-   "$H^*(X)*H^*(Y)$ (free product)",
-   "$\\mathrm{Hom}(H^*(X),H^*(Y))$"
+   "A generator of $H^{2n}$",
+   "The degree-$n$ generator again",
+   "Twice the generator"
   ],
-  "why": "Over a field, the Künneth formula gives a ring isomorphism $H^*(X\\times Y;k)\\cong H^*(X;k)\\otimes H^*(Y;k)$.",
+  "why": "The square lands in $H^{2n}(S^n)=0$ for $n\\geq1$, so the cup product structure is trivial beyond degree $0$.",
   "subj": "cohomology",
   "diff": 3
  },
  {
-  "space": "a wedge $X\\vee Y$ of well-pointed spaces",
-  "q": "What is $\\tilde H^k(X\\vee Y)$?",
-  "a": "$\\tilde H^k(X)\\oplus \\tilde H^k(Y)$",
+  "space": "the Künneth theorem (field coefficients)",
+  "q": "Over a field, $H^*(X\\times Y)$ is which construction on $H^*(X)$ and $H^*(Y)$?",
+  "a": "The tensor product",
+  "d": [
+   "The direct sum",
+   "The free product",
+   "The $\\mathrm{Hom}$ group"
+  ],
+  "why": "Over a field the K\\u00fcnneth formula gives a ring isomorphism $H^*(X\\times Y)\\cong H^*(X)\\otimes H^*(Y)$.",
+  "subj": "cohomology",
+  "diff": 3
+ },
+ {
+  "space": "reduced cohomology of a wedge",
+  "q": "What is $\\tilde H^k(X\\vee Y)$ for well-pointed spaces?",
+  "a": "$\\tilde H^k(X)\\oplus\\tilde H^k(Y)$",
   "d": [
    "$\\tilde H^k(X)\\otimes\\tilde H^k(Y)$",
    "$\\tilde H^k(X\\times Y)$",
-   "$0$ always"
+   "$\\tilde H^k(X)\\oplus\\tilde H^{k-1}(Y)$"
   ],
-  "why": "Reduced cohomology, like reduced homology, turns a wedge into a direct sum.",
+  "why": "Reduced cohomology turns a wedge into a direct sum, just as for reduced homology.",
   "subj": "cohomology",
   "diff": 2
  },
  {
-  "space": "de Rham cohomology of a smooth manifold $M$",
+  "space": "de Rham cohomology",
   "q": "De Rham's theorem identifies $H^k_{dR}(M)$ with which cohomology?",
-  "a": "$H^k(M;\\mathbb{R})$, singular/Čech cohomology with real coefficients",
+  "a": "$H^k(M;\\mathbb{R})$",
   "d": [
    "$H^k(M;\\mathbb{Z})$",
    "$H_k(M;\\mathbb{R})$",
-   "$\\pi_k(M)\\otimes\\mathbb{R}$"
+   "$H^k(M;\\mathbb{Q})$"
   ],
-  "why": "De Rham's theorem is a ring isomorphism between de Rham cohomology (closed forms mod exact forms) and singular cohomology with real coefficients.",
+  "why": "De Rham's theorem is a ring isomorphism between de Rham cohomology and singular cohomology with real coefficients.",
   "subj": "cohomology",
   "diff": 3
  },
  {
+  "space": "the cup product structure of $H^*(\\mathbb{RP}^\\infty;\\mathbb{Z}/2)$",
+  "q": "What is $H^*(\\mathbb{RP}^\\infty;\\mathbb{Z}/2)$ as a ring?",
+  "a": "$(\\mathbb{Z}/2)[\\alpha]$, $\\deg\\alpha=1$",
+  "d": [
+   "$(\\mathbb{Z}/2)[\\alpha]/(\\alpha^2)$",
+   "$\\Lambda[\\alpha]$, $\\deg\\alpha=1$",
+   "$(\\mathbb{Z}/2)[\\alpha]$, $\\deg\\alpha=2$"
+  ],
+  "why": "$\\mathbb{RP}^\\infty=K(\\mathbb{Z}/2,1)$ has mod-$2$ cohomology the full polynomial ring on a degree-$1$ generator (no truncation, since it is infinite-dimensional).",
+  "subj": "cohomology",
+  "diff": 4
+ },
+ {
+  "space": "the cohomology ring of $H^*(\\mathbb{CP}^\\infty;\\mathbb{Z})$",
+  "q": "What is $H^*(\\mathbb{CP}^\\infty;\\mathbb{Z})$ as a ring?",
+  "a": "$\\mathbb{Z}[\\alpha]$, $\\deg\\alpha=2$",
+  "d": [
+   "$\\mathbb{Z}[\\alpha]/(\\alpha^2)$, $\\deg\\alpha=2$",
+   "$\\Lambda[\\alpha]$, $\\deg\\alpha=2$",
+   "$\\mathbb{Z}[\\alpha]$, $\\deg\\alpha=1$"
+  ],
+  "why": "$\\mathbb{CP}^\\infty=K(\\mathbb{Z},2)$ has cohomology the full polynomial ring on a degree-$2$ generator, the universal first Chern class.",
+  "subj": "cohomology",
+  "diff": 4
+ },
+ {
   "space": "the circle $S^1$",
-  "q": "The map $\\mathbb{R}\\to S^1$, $t\\mapsto e^{2\\pi i t}$, is an example of what?",
-  "a": "The universal covering of $S^1$",
+  "q": "The map $\\mathbb{R}\\to S^1$, $t\\mapsto e^{2\\pi i t}$, is which kind of map?",
+  "a": "The universal cover of $S^1$",
   "d": [
    "A homeomorphism",
-   "A double cover",
-   "A nontrivial fiber bundle with disconnected fiber and finite group"
+   "A degree-$2$ cover",
+   "A fiber bundle with finite fiber"
   ],
-  "why": "$\\mathbb{R}$ is simply connected and the map is a covering map, so it is *the* universal cover of $S^1$, with deck group $\\mathbb{Z}$.",
+  "why": "$\\mathbb{R}$ is simply connected and the map is a covering, so it is the universal cover, with deck group $\\mathbb{Z}$.",
   "subj": "covering-spaces",
   "diff": 2
  },
  {
-  "space": "$S^n$ for $n\\geq 2$",
-  "q": "What is the universal cover of $\\mathbb{RP}^n$ for $n\\geq 2$?",
+  "space": "$\\mathbb{RP}^n$ for $n\\geq2$",
+  "q": "What is the universal cover of $\\mathbb{RP}^n$ for $n\\geq2$?",
   "a": "$S^n$",
   "d": [
    "$\\mathbb{R}^n$",
-   "$\\mathbb{RP}^n$ itself",
-   "$S^{n-1}$"
+   "$S^{n-1}$",
+   "$\\mathbb{RP}^n$ itself"
   ],
-  "why": "The antipodal quotient $S^n\\to\\mathbb{RP}^n$ is a 2-fold cover with $S^n$ simply connected for $n\\geq2$, hence universal.",
+  "why": "The double cover $S^n\\to\\mathbb{RP}^n$ has simply connected total space for $n\\geq2$, hence is universal.",
   "subj": "covering-spaces",
   "diff": 2
  },
  {
-  "space": "a connected covering space $\\tilde X\\to X$",
-  "q": "The number of sheets of a finite connected covering $\\tilde X\\to X$ equals what, in terms of $\\pi_1$?",
+  "space": "a finite connected cover $\\tilde X\\to X$",
+  "q": "The number of sheets equals which quantity?",
   "a": "The index $[\\pi_1(X):p_*\\pi_1(\\tilde X)]$",
   "d": [
    "The order of $\\pi_1(X)$",
-   "Always $2$",
-   "The rank of $\\pi_1(\\tilde X)$"
+   "The order of $\\pi_1(\\tilde X)$",
+   "The Euler characteristic of $X$"
   ],
-  "why": "This is the basic correspondence theorem for covering spaces: sheets correspond to cosets of the subgroup $p_*\\pi_1(\\tilde X)\\leq \\pi_1(X)$.",
+  "why": "Sheets correspond to cosets of the subgroup $p_*\\pi_1(\\tilde X)$ in $\\pi_1(X)$, so the count is the index.",
   "subj": "covering-spaces",
   "diff": 3
  },
  {
-  "space": "covering spaces of $S^1\\vee S^1$",
+  "space": "connected double covers of $S^1\\vee S^1$",
   "q": "How many connected double covers does $S^1\\vee S^1$ have, up to based isomorphism?",
   "a": "Exactly $3$",
   "d": [
    "Exactly $1$",
    "Exactly $2$",
-   "Infinitely many"
+   "Exactly $4$"
   ],
-  "why": "Based connected double covers correspond to index-2 subgroups of $F_2=\\pi_1(S^1\\vee S^1)$, equivalently nontrivial homomorphisms $F_2\\to\\mathbb{Z}/2$; there are $2^2-1=3$ such homomorphisms (send each generator to $0$ or $1$ in $\\mathbb{Z}/2$, excluding the trivial one).",
+  "why": "Based double covers correspond to nontrivial homomorphisms $F_2\\to\\mathbb{Z}/2$, of which there are $2^2-1=3$.",
   "subj": "covering-spaces",
   "diff": 4
  },
  {
-  "space": "the torus $T^2$",
-  "q": "Connected covering spaces of $T^2$ correspond to which kind of subgroups of $\\mathbb{Z}^2$?",
-  "a": "All subgroups of $\\mathbb{Z}^2$ (finite-index ones give finite covers)",
+  "space": "covers of the torus $T^2$",
+  "q": "Connected covers of $T^2$ correspond to which subgroups?",
+  "a": "Subgroups of $\\mathbb{Z}^2$",
   "d": [
-   "Only subgroups of index 2",
-   "Only normal subgroups of infinite index",
-   "There are no nontrivial covers since $T^2$ is already simply connected"
+   "Index-$2$ subgroups of $\\mathbb{Z}^2$",
+   "Normal subgroups of $F_2$",
+   "Subgroups of $\\mathbb{Z}$"
   ],
-  "why": "By the Galois correspondence for covers, connected covers of $T^2$ correspond bijectively to subgroups of $\\pi_1(T^2)=\\mathbb{Z}^2$.",
+  "why": "By the Galois correspondence, connected covers of $T^2$ correspond to subgroups of $\\pi_1(T^2)=\\mathbb{Z}^2$.",
   "subj": "covering-spaces",
   "diff": 3
  },
  {
-  "space": "a path-connected, locally path-connected, semi-locally simply connected space $X$",
-  "q": "What hypothesis on $X$ guarantees existence of a universal cover?",
-  "a": "$X$ is path-connected, locally path-connected, and semi-locally simply connected",
+  "space": "existence of a universal cover",
+  "q": "Which condition on $X$ guarantees a universal cover exists?",
+  "a": "Path-connected, locally path-connected, semilocally simply connected",
   "d": [
-   "$X$ is compact",
-   "$X$ is a CW complex",
-   "$\\pi_1(X)$ is finite"
+   "Compact and Hausdorff",
+   "A finite CW complex",
+   "Having finite fundamental group"
   ],
-  "why": "This is precisely the standard existence theorem for universal covers in covering space theory.",
+  "why": "These three local/global connectivity conditions are exactly what the standard existence theorem requires.",
   "subj": "covering-spaces",
   "diff": 3
  },
  {
-  "space": "a degree-$n$ covering map $p:\\tilde X\\to X$ of finite CW complexes",
-  "q": "How does the Euler characteristic of $\\tilde X$ relate to that of $X$?",
-  "a": "$\\chi(\\tilde X)=n\\cdot\\chi(X)$",
+  "space": "a degree-$n$ cover of finite CW complexes",
+  "q": "How does $\\chi(\\tilde X)$ relate to $\\chi(X)$ for a degree-$n$ cover?",
+  "a": "$\\chi(\\tilde X)=n\\,\\chi(X)$",
   "d": [
    "$\\chi(\\tilde X)=\\chi(X)$",
-   "$\\chi(\\tilde X) = \\chi(X)/n$",
+   "$\\chi(\\tilde X)=\\chi(X)/n$",
    "$\\chi(\\tilde X)=\\chi(X)+n$"
   ],
-  "why": "A degree-$n$ cover multiplies the number of cells in each dimension by $n$, hence multiplies $\\chi$ by $n$.",
+  "why": "A degree-$n$ cover multiplies the cell count in each dimension by $n$, hence multiplies $\\chi$ by $n$.",
   "subj": "covering-spaces",
   "diff": 2
  },
  {
-  "space": "deck transformations of a covering $\\tilde X\\to X$",
-  "q": "If $p:\\tilde X\\to X$ is the universal cover, the deck transformation group is isomorphic to what?",
+  "space": "deck transformations of the universal cover",
+  "q": "The deck group of the universal cover $\\tilde X\\to X$ is isomorphic to what?",
   "a": "$\\pi_1(X)$",
   "d": [
    "$\\pi_1(\\tilde X)$",
-   "Trivial group always",
-   "$\\pi_0(X)$"
+   "$H_1(X)$",
+   "the trivial group"
   ],
-  "why": "For the universal cover, $\\mathrm{Deck}(\\tilde X/X)\\cong \\pi_1(X)$ acting freely and transitively on each fiber.",
+  "why": "For the universal cover the deck transformation group is $\\pi_1(X)$, acting freely and transitively on each fiber.",
   "subj": "covering-spaces",
   "diff": 2
+ },
+ {
+  "space": "regular (normal) covers",
+  "q": "A connected cover $\\tilde X\\to X$ is regular iff $p_*\\pi_1(\\tilde X)$ is which kind of subgroup?",
+  "a": "A normal subgroup of $\\pi_1(X)$",
+  "d": [
+   "A finite-index subgroup",
+   "A maximal subgroup",
+   "The trivial subgroup"
+  ],
+  "why": "Regular covers correspond exactly to normal subgroups of $\\pi_1(X)$, for which the deck group acts transitively on fibers.",
+  "subj": "covering-spaces",
+  "diff": 4
+ },
+ {
+  "space": "the lift of a loop",
+  "q": "A loop in $X$ lifts to a loop in a cover $\\tilde X$ (based) iff its class lies in which subgroup?",
+  "a": "$p_*\\pi_1(\\tilde X)$",
+  "d": [
+   "The commutator subgroup of $\\pi_1(X)$",
+   "The center of $\\pi_1(X)$",
+   "All of $\\pi_1(X)$"
+  ],
+  "why": "A based loop lifts to a based loop exactly when its homotopy class lies in the image subgroup $p_*\\pi_1(\\tilde X,\\tilde x_0)$.",
+  "subj": "covering-spaces",
+  "diff": 4
+ },
+ {
+  "space": "covers of a graph",
+  "q": "Every connected cover of a graph (1-complex) is which kind of space?",
+  "a": "A graph",
+  "d": [
+   "A surface",
+   "A wedge of circles always",
+   "A tree always"
+  ],
+  "why": "Covers of a $1$-complex are themselves $1$-complexes; the universal cover specifically is a tree, but general connected covers are just graphs.",
+  "subj": "covering-spaces",
+  "diff": 3
  },
  {
   "space": "$S^2$",
@@ -355,7 +472,7 @@ const BANK = [
    "$1$",
    "$-2$"
   ],
-  "why": "$\\chi(S^2)=2$, the classical result for the sphere (e.g. from a CW structure with 1 vertex, 0 edges... or more simply $\\chi=b_0-b_1+b_2=1-0+1=2$).",
+  "why": "$\\chi(S^2)=b_0-b_1+b_2=1-0+1=2$.",
   "subj": "euler-characteristic",
   "diff": 1
  },
@@ -368,20 +485,20 @@ const BANK = [
    "$-2$",
    "$1$"
   ],
-  "why": "$\\chi(T^2)=b_0-b_1+b_2=1-2+1=0$.",
+  "why": "$\\chi(T^2)=1-2+1=0$.",
   "subj": "euler-characteristic",
   "diff": 1
  },
  {
-  "space": "a genus-$g$ closed orientable surface $\\Sigma_g$",
-  "q": "What is $\\chi(\\Sigma_g)$ in terms of $g$?",
+  "space": "a genus-$g$ orientable surface",
+  "q": "What is $\\chi(\\Sigma_g)$?",
   "a": "$2-2g$",
   "d": [
    "$2g-2$",
    "$1-g$",
    "$2-g$"
   ],
-  "why": "$\\chi(\\Sigma_g)=b_0-b_1+b_2=1-2g+1=2-2g$, using $H_1(\\Sigma_g)=\\mathbb{Z}^{2g}$.",
+  "why": "$\\chi(\\Sigma_g)=b_0-b_1+b_2=1-2g+1=2-2g$.",
   "subj": "euler-characteristic",
   "diff": 2
  },
@@ -394,12 +511,12 @@ const BANK = [
    "$2$",
    "$-1$"
   ],
-  "why": "$\\mathbb{RP}^2$ has a CW structure with $1$ vertex, $1$ edge, $1$ face: $\\chi=1-1+1=1$.",
+  "why": "A CW structure with one cell in each dimension $0,1,2$ gives $\\chi=1-1+1=1$.",
   "subj": "euler-characteristic",
   "diff": 1
  },
  {
-  "space": "the Klein bottle $K$",
+  "space": "the Klein bottle",
   "q": "What is $\\chi(K)$?",
   "a": "$0$",
   "d": [
@@ -407,191 +524,282 @@ const BANK = [
    "$2$",
    "$-1$"
   ],
-  "why": "The Klein bottle has the same CW structure shape as the torus (1 vertex, 2 edges, 1 face), giving $\\chi=1-2+1=0$.",
+  "why": "Like the torus, the Klein bottle has $\\chi=1-2+1=0$.",
   "subj": "euler-characteristic",
   "diff": 2
  },
  {
-  "space": "a non-orientable closed surface $N_k$ with $k$ crosscaps",
-  "q": "What is $\\chi(N_k)$ in terms of $k$?",
+  "space": "a non-orientable surface $N_k$ with $k$ crosscaps",
+  "q": "What is $\\chi(N_k)$?",
   "a": "$2-k$",
   "d": [
    "$1-k$",
    "$2-2k$",
    "$k-2$"
   ],
-  "why": "The connected sum of $k$ copies of $\\mathbb{RP}^2$ has $\\chi(N_k)=2-k$, matching $\\chi(\\mathbb{RP}^2)=2-1=1$ for $k=1$.",
+  "why": "The connected sum of $k$ projective planes has $\\chi=2-k$, matching $\\chi(\\mathbb{RP}^2)=1$ at $k=1$.",
   "subj": "euler-characteristic",
   "diff": 3
  },
  {
-  "space": "a finite CW complex $X$",
-  "q": "The Euler characteristic $\\chi(X)$ can be computed from the alternating sum of what?",
-  "a": "The number of cells in each dimension, $\\sum_k (-1)^k c_k$",
-  "d": [
-   "The ranks of homotopy groups",
-   "Only the number of vertices",
-   "The fundamental group order"
-  ],
-  "why": "This is the definition / basic computation of $\\chi$ via a CW or simplicial structure, independent of the choice of structure.",
-  "subj": "euler-characteristic",
-  "diff": 1
- },
- {
-  "space": "product spaces $X\\times Y$",
+  "space": "a product space $X\\times Y$",
   "q": "How does $\\chi(X\\times Y)$ relate to $\\chi(X)$ and $\\chi(Y)$?",
-  "a": "$\\chi(X\\times Y)=\\chi(X)\\cdot\\chi(Y)$",
+  "a": "$\\chi(X)\\cdot\\chi(Y)$",
   "d": [
-   "$\\chi(X\\times Y)=\\chi(X)+\\chi(Y)$",
-   "$\\chi(X\\times Y)=\\chi(X)-\\chi(Y)$",
-   "No general formula"
+   "$\\chi(X)+\\chi(Y)$",
+   "$\\chi(X)-\\chi(Y)$",
+   "$\\chi(X)^{\\chi(Y)}$"
   ],
-  "why": "Euler characteristic is multiplicative under products, by the Künneth formula or direct CW-cell counting.",
+  "why": "Euler characteristic is multiplicative under products, by K\\u00fcnneth or cell counting.",
   "subj": "euler-characteristic",
   "diff": 2
  },
  {
-  "space": "a connected sum $\\Sigma_g\\#\\Sigma_h$ of orientable surfaces",
-  "q": "How does $\\chi(\\Sigma_g\\#\\Sigma_h)$ relate to $\\chi(\\Sigma_g)$ and $\\chi(\\Sigma_h)$?",
-  "a": "$\\chi(\\Sigma_g\\#\\Sigma_h)=\\chi(\\Sigma_g)+\\chi(\\Sigma_h)-2$",
+  "space": "a connected sum of closed surfaces",
+  "q": "How does $\\chi(\\Sigma\\#\\Sigma')$ relate to $\\chi(\\Sigma)$ and $\\chi(\\Sigma')$?",
+  "a": "$\\chi(\\Sigma)+\\chi(\\Sigma')-2$",
   "d": [
-   "$\\chi(\\Sigma_g\\#\\Sigma_h)=\\chi(\\Sigma_g)+\\chi(\\Sigma_h)$",
-   "$\\chi(\\Sigma_g\\#\\Sigma_h)=\\chi(\\Sigma_g)\\cdot\\chi(\\Sigma_h)$",
-   "$\\chi(\\Sigma_g\\#\\Sigma_h)=\\chi(\\Sigma_g)-\\chi(\\Sigma_h)$"
+   "$\\chi(\\Sigma)+\\chi(\\Sigma')$",
+   "$\\chi(\\Sigma)\\cdot\\chi(\\Sigma')$",
+   "$\\chi(\\Sigma)+\\chi(\\Sigma')-1$"
   ],
-  "why": "Connect sum removes an open disk (Euler characteristic $1$) from each summand and glues along the resulting circle boundary, so $\\chi(\\Sigma_g\\#\\Sigma_h)=(\\chi(\\Sigma_g)-1)+(\\chi(\\Sigma_h)-1)=\\chi(\\Sigma_g)+\\chi(\\Sigma_h)-2$, consistent with $\\chi(\\Sigma_{g+h})=2-2(g+h)$.",
+  "why": "Connected sum removes a disk ($\\chi=1$) from each and glues along a circle ($\\chi=0$), so $\\chi$ drops by $2$.",
   "subj": "euler-characteristic",
   "diff": 4
  },
  {
   "space": "the Gauss–Bonnet theorem",
-  "q": "Gauss–Bonnet relates $\\chi$ of a closed surface to the integral of what?",
-  "a": "Gaussian curvature: $\\int_M K\\,dA = 2\\pi\\chi(M)$",
+  "q": "Gauss\\u2013Bonnet equates $2\\pi\\chi(M)$ to the integral of which quantity?",
+  "a": "The Gaussian curvature",
   "d": [
-   "Mean curvature",
-   "The volume of $M$",
-   "The first Betti number directly, with no integral"
+   "The mean curvature",
+   "The geodesic curvature",
+   "The scalar volume"
   ],
-  "why": "This is the global Gauss–Bonnet theorem, linking differential geometry (curvature) to the topological invariant $\\chi$.",
+  "why": "The global Gauss\\u2013Bonnet theorem states $\\int_M K\\,dA=2\\pi\\chi(M)$ for a closed surface.",
   "subj": "euler-characteristic",
   "diff": 3
  },
  {
-  "space": "a finite graph (1-complex) $G$",
-  "q": "What is $\\chi(G)$ for a connected graph with $V$ vertices and $E$ edges?",
+  "space": "a connected graph",
+  "q": "For a connected graph with $V$ vertices and $E$ edges, what is $\\chi$?",
   "a": "$V-E$",
   "d": [
    "$V+E$",
    "$E-V$",
    "$V\\cdot E$"
   ],
-  "why": "$\\chi=c_0-c_1=V-E$ directly from the CW cell count.",
+  "why": "$\\chi=c_0-c_1=V-E$ from the cell count.",
   "subj": "euler-characteristic",
   "diff": 1
  },
  {
-  "space": "the Hopf fibration",
-  "q": "The Hopf fibration $S^1\\to S^3\\to S^2$ has which fiber, base, and total space (in that order)?",
-  "a": "Fiber $S^1$, total space $S^3$, base $S^2$",
+  "space": "$\\mathbb{CP}^n$",
+  "q": "What is $\\chi(\\mathbb{CP}^n)$?",
+  "a": "$n+1$",
   "d": [
-   "Fiber $S^3$, total space $S^1$, base $S^2$",
-   "Fiber $S^2$, total space $S^3$, base $S^1$",
-   "Fiber $S^1$, total space $S^2$, base $S^3$"
+   "$n$",
+   "$2n$",
+   "$2n+1$"
   ],
-  "why": "The Hopf map $S^3\\to S^2$ has fiber $S^1$ (the circle action via complex scalar multiplication on $\\mathbb{C}^2\\supset S^3$).",
+  "why": "$\\mathbb{CP}^n$ has one cell in each even dimension $0,2,\\dots,2n$, so $\\chi=n+1$.",
+  "subj": "euler-characteristic",
+  "diff": 2
+ },
+ {
+  "space": "an odd-dimensional closed manifold",
+  "q": "What is $\\chi(M)$ for any closed odd-dimensional manifold?",
+  "a": "$0$",
+  "d": [
+   "$1$",
+   "$2$",
+   "depends on $M$"
+  ],
+  "why": "Poincar\\u00e9 duality forces $\\chi=0$ for any closed odd-dimensional manifold.",
+  "subj": "euler-characteristic",
+  "diff": 4
+ },
+ {
+  "space": "the wedge $X\\vee Y$",
+  "q": "How does $\\chi(X\\vee Y)$ relate to $\\chi(X)$ and $\\chi(Y)$?",
+  "a": "$\\chi(X)+\\chi(Y)-1$",
+  "d": [
+   "$\\chi(X)+\\chi(Y)$",
+   "$\\chi(X)\\cdot\\chi(Y)$",
+   "$\\chi(X)+\\chi(Y)+1$"
+  ],
+  "why": "Wedging identifies one point from each, so $\\chi(X\\vee Y)=\\chi(X)+\\chi(Y)-1$.",
+  "subj": "euler-characteristic",
+  "diff": 3
+ },
+ {
+  "space": "the Hopf fibration",
+  "q": "What is the fiber of the Hopf fibration $S^3\\to S^2$?",
+  "a": "$S^1$",
+  "d": [
+   "$S^2$",
+   "$S^3$",
+   "$S^0$"
+  ],
+  "why": "The Hopf map $S^3\\to S^2$ comes from the circle action of unit complex scalars on $S^3\\subset\\mathbb{C}^2$, so each fiber is $S^1$.",
   "subj": "fiber-bundles",
   "diff": 2
  },
  {
-  "space": "the tangent bundle of $S^2$",
-  "q": "What is the structure group of the tangent bundle of an orientable surface?",
-  "a": "$SO(2)$ (or equivalently $GL_2^+(\\mathbb{R})$, reducible to $SO(2)$)",
+  "space": "the Hopf fibration",
+  "q": "What is the total space of the Hopf fibration with base $S^2$ and fiber $S^1$?",
+  "a": "$S^3$",
   "d": [
-   "$O(2)$",
-   "$GL_2(\\mathbb{R})$ with no reduction possible",
-   "$U(1)$ acting trivially"
+   "$S^2\\times S^1$",
+   "$\\mathbb{RP}^3$",
+   "$T^2$"
   ],
-  "why": "For an orientable surface, the tangent bundle's structure group reduces from $GL_2(\\mathbb{R})$ to $SO(2)$ via a choice of orientation and Riemannian metric.",
+  "why": "The Hopf fibration is $S^1\\to S^3\\to S^2$; the total space is $S^3$, which is not the trivial product $S^2\\times S^1$.",
   "subj": "fiber-bundles",
   "diff": 3
  },
  {
-  "space": "vector bundles over a contractible base",
-  "q": "Every vector bundle over a contractible CW base is what?",
-  "a": "Trivial (isomorphic to a product bundle)",
+  "space": "the tangent bundle of an orientable surface",
+  "q": "To which group does the structure group of $T\\Sigma$ reduce for $\\Sigma$ orientable with a metric?",
+  "a": "$SO(2)$",
   "d": [
-   "Never trivial unless rank $1$",
-   "Trivial only if the base is compact",
-   "Determined uniquely by the fiber dimension and nothing else, but still possibly nontrivial"
+   "$O(2)$",
+   "$GL_2(\\mathbb{R})$",
+   "$U(2)$"
   ],
-  "why": "Vector bundles are classified by homotopy classes of maps to a classifying space, and any such map from a contractible space is homotopic to a constant, giving the trivial bundle.",
+  "why": "A metric reduces $GL_2(\\mathbb{R})$ to $O(2)$, and an orientation further reduces it to $SO(2)$.",
+  "subj": "fiber-bundles",
+  "diff": 3
+ },
+ {
+  "space": "vector bundles over a contractible CW base",
+  "q": "Every vector bundle over a contractible CW complex is which kind of bundle?",
+  "a": "Trivial",
+  "d": [
+   "Nontrivial of rank $\\geq2$",
+   "A nontrivial line bundle",
+   "Stably nontrivial"
+  ],
+  "why": "Bundles are classified by homotopy classes of maps to a classifying space; from a contractible base every such map is nullhomotopic, giving the trivial bundle.",
   "subj": "fiber-bundles",
   "diff": 3
  },
  {
   "space": "classifying spaces",
-  "q": "Real rank-$n$ vector bundles over a CW complex $X$ are classified by homotopy classes of maps into which space?",
+  "q": "Rank-$n$ real vector bundles over $X$ are classified by homotopy classes of maps into which space?",
   "a": "$BO(n)$",
   "d": [
-   "$O(n)$ itself",
    "$BU(n)$",
-   "$\\mathbb{RP}^n$"
+   "$BSO(n)$",
+   "$O(n)$"
   ],
-  "why": "Isomorphism classes of rank-$n$ real vector bundles over $X$ correspond bijectively to $[X,BO(n)]$, by the universal property of the classifying space.",
+  "why": "Isomorphism classes of rank-$n$ real bundles over $X$ are in bijection with $[X,BO(n)]$, the homotopy classes of maps to the classifying space of $O(n)$.",
   "subj": "fiber-bundles",
   "diff": 3
  },
  {
-  "space": "the Möbius bundle over $S^1$",
-  "q": "Is the Möbius line bundle over $S^1$ (real rank 1) trivial?",
-  "a": "No",
+  "space": "the Möbius line bundle over $S^1$",
+  "q": "The M\\u00f6bius line bundle over $S^1$ is which type of bundle?",
+  "a": "A nontrivial real line bundle",
   "d": [
-   "Yes",
-   "Trivial only as a topological bundle but not smooth",
-   "Depends on the basepoint"
+   "A trivial real line bundle",
+   "A nontrivial complex line bundle",
+   "A rank-2 real bundle"
   ],
-  "why": "The Möbius bundle is the canonical nontrivial real line bundle over $S^1$, classified by the nontrivial element of $H^1(S^1;\\mathbb{Z}/2)$ (first Stiefel–Whitney class).",
+  "why": "The M\\u00f6bius bundle is the canonical nontrivial real line bundle over $S^1$, detected by the nonzero class $w_1\\in H^1(S^1;\\mathbb{Z}/2)$.",
   "subj": "fiber-bundles",
   "diff": 2
  },
  {
-  "space": "the long exact sequence of a fiber bundle $F\\to E\\to B$",
-  "q": "If $F$ and $B$ are both simply connected with known homotopy groups, what tool typically computes $\\pi_*(E)$?",
-  "a": "The long exact sequence in homotopy groups of the fibration",
+  "space": "a principal $G$-bundle $P\to B$",
+  "q": "How does the structure group $G$ act on each fiber of a principal $G$-bundle?",
+  "a": "Freely and transitively",
   "d": [
-   "The Mayer–Vietoris sequence only",
-   "There is no general tool",
-   "The Euler class alone determines all of $\\pi_*(E)$"
+   "Trivially on each fiber",
+   "Freely but not transitively",
+   "Transitively but not freely"
   ],
-  "why": "The long exact homotopy sequence of a fibration is the standard tool relating $\\pi_*(F),\\pi_*(E),\\pi_*(B)$.",
-  "subj": "fiber-bundles",
-  "diff": 2
- },
- {
-  "space": "principal $G$-bundles",
-  "q": "A principal $G$-bundle $P\\to B$ has fiber isomorphic to what, with $G$ acting how?",
-  "a": "Fiber $\\cong G$, with $G$ acting freely and transitively (simply transitively) on each fiber",
-  "d": [
-   "Fiber is a point, with $G$ acting trivially",
-   "Fiber is $B$ itself",
-   "Fiber is $G/H$ for an arbitrary subgroup $H$ in all cases"
-  ],
-  "why": "This is the defining property of a principal bundle: fibers are $G$-torsors, i.e. $G$ acts freely and transitively.",
+  "why": "Fibers of a principal bundle are $G$-torsors, so $G$ acts simply transitively (both freely and transitively).",
   "subj": "fiber-bundles",
   "diff": 3
  },
  {
-  "space": "associated bundles",
-  "q": "Given a principal $G$-bundle $P$ and a representation $G\\to GL(V)$, the associated vector bundle is constructed as what?",
-  "a": "$P\\times_G V$ (a quotient of $P\\times V$ by the diagonal $G$-action)",
+  "space": "an associated bundle",
+  "q": "Given a principal $G$-bundle $P$ and a representation on $V$, the associated bundle is which quotient?",
+  "a": "$P\\times_G V$",
   "d": [
-   "$P\\times V$ with no quotient",
-   "$\\mathrm{Hom}(P,V)$",
-   "$V$ itself, independent of $P$"
+   "$P\\times V$, no quotient",
+   "$P\\oplus V$",
+   "$\\mathrm{Hom}(P,V)$"
   ],
-  "why": "The associated bundle construction $P\\times_G V$ is the standard way to build vector bundles from principal bundles and representations.",
+  "why": "The associated bundle $P\\times_G V$ is the quotient of $P\\times V$ by the diagonal $G$-action $(p,v)\\sim(pg,g^{-1}v)$.",
   "subj": "fiber-bundles",
   "diff": 4
+ },
+ {
+  "space": "complex line bundles over $X$",
+  "q": "Complex line bundles over $X$ are classified by which cohomology group?",
+  "a": "$H^2(X;\\mathbb{Z})$",
+  "d": [
+   "$H^1(X;\\mathbb{Z})$",
+   "$H^1(X;\\mathbb{Z}/2)$",
+   "$H^2(X;\\mathbb{Z}/2)$"
+  ],
+  "why": "Complex line bundles correspond to $[X,\\mathbb{CP}^\\infty]\\cong H^2(X;\\mathbb{Z})$, the bijection given by the first Chern class.",
+  "subj": "fiber-bundles",
+  "diff": 3
+ },
+ {
+  "space": "the clutching construction over $S^n$",
+  "q": "Rank-$k$ vector bundles over $S^n$ are classified by homotopy classes of clutching functions valued in which group's homotopy?",
+  "a": "$\\pi_{n-1}(GL_k)$",
+  "d": [
+   "$\\pi_n(GL_k)$",
+   "$\\pi_{n-1}(O(n))$",
+   "$\\pi_{n}(S^{k-1})$"
+  ],
+  "why": "Gluing two trivial bundles over the hemispheres along the equator $S^{n-1}$ gives a clutching function $S^{n-1}\\to GL_k$, so bundles correspond to $\\pi_{n-1}(GL_k)$.",
+  "subj": "fiber-bundles",
+  "diff": 5
+ },
+ {
+  "space": "a fibration $F\to E\to B$ with $B$ contractible",
+  "q": "Over a contractible base, the fibration is fiber-homotopy equivalent to which bundle?",
+  "a": "The trivial bundle $F\\times B$",
+  "d": [
+   "A nontrivial bundle with fiber $F$",
+   "The bundle $E\\times B$",
+   "A bundle with fiber $\\Omega F$"
+  ],
+  "why": "A fibration over a contractible base is fiber-homotopy trivial, so $E\\simeq F\\times B\\simeq F$.",
+  "subj": "fiber-bundles",
+  "diff": 4
+ },
+ {
+  "space": "the unit tangent bundle of $S^2$",
+  "q": "The unit tangent bundle of $S^2$ is homeomorphic to which space?",
+  "a": "$\\mathbb{RP}^3$",
+  "d": [
+   "$S^2\\times S^1$",
+   "$S^3$",
+   "$T^3$"
+  ],
+  "why": "The unit tangent bundle of $S^2$ is $SO(3)\\cong\\mathbb{RP}^3$; it is nontrivial precisely because $S^2$ admits no nonvanishing vector field.",
+  "subj": "fiber-bundles",
+  "diff": 5
+ },
+ {
+  "space": "the Euler class of an oriented rank-$2$ bundle",
+  "q": "The Euler class of an oriented rank-$2$ real bundle lives in which group?",
+  "a": "$H^2(B;\\mathbb{Z})$",
+  "d": [
+   "$H^1(B;\\mathbb{Z})$",
+   "$H^2(B;\\mathbb{Z}/2)$",
+   "$H^4(B;\\mathbb{Z})$"
+  ],
+  "why": "The Euler class of an oriented rank-$n$ bundle lies in $H^n(B;\\mathbb{Z})$; for $n=2$ that is $H^2(B;\\mathbb{Z})$.",
+  "subj": "fiber-bundles",
+  "diff": 3
  },
  {
   "space": "the circle $S^1$",
@@ -602,12 +810,12 @@ const BANK = [
    "$\\mathbb{Z}/2$",
    "$\\mathbb{Z}\\times\\mathbb{Z}$"
   ],
-  "why": "$S^1$ is a $K(\\mathbb{Z},1)$; its universal cover is $\\mathbb{R}$ with $\\mathbb{Z}$ acting by translation.",
+  "why": "$S^1$ is a $K(\\mathbb{Z},1)$; its universal cover $\\mathbb{R}$ has $\\mathbb{Z}$ acting by translation.",
   "subj": "fundamental-group",
   "diff": 1
  },
  {
-  "space": "the torus $T^2 = S^1\\times S^1$",
+  "space": "the torus $T^2$",
   "q": "What is $\\pi_1(T^2)$?",
   "a": "$\\mathbb{Z}\\times\\mathbb{Z}$",
   "d": [
@@ -615,25 +823,25 @@ const BANK = [
    "$\\mathbb{Z}*\\mathbb{Z}$",
    "$0$"
   ],
-  "why": "$\\pi_1$ of a product is the product of $\\pi_1$'s: $\\pi_1(S^1\\times S^1)=\\mathbb{Z}\\times\\mathbb{Z}$.",
+  "why": "$\\pi_1$ of a product is the product of $\\pi_1$'s, giving $\\mathbb{Z}\\times\\mathbb{Z}$.",
   "subj": "fundamental-group",
   "diff": 1
  },
  {
-  "space": "the figure-eight space $S^1\\vee S^1$",
+  "space": "the figure-eight $S^1\\vee S^1$",
   "q": "What is $\\pi_1(S^1\\vee S^1)$?",
-  "a": "$\\mathbb{Z}*\\mathbb{Z}$ (free group of rank 2)",
+  "a": "$\\mathbb{Z}*\\mathbb{Z}$",
   "d": [
    "$\\mathbb{Z}\\times\\mathbb{Z}$",
    "$\\mathbb{Z}$",
    "$\\mathbb{Z}/2*\\mathbb{Z}/2$"
   ],
-  "why": "By the Seifert–van Kampen theorem, $\\pi_1$ of a wedge of circles is the free group on that many generators.",
+  "why": "By van Kampen, $\\pi_1$ of a wedge of two circles is the free group of rank $2$.",
   "subj": "fundamental-group",
   "diff": 2
  },
  {
-  "space": "real projective plane $\\mathbb{RP}^2$",
+  "space": "the projective plane $\\mathbb{RP}^2$",
   "q": "What is $\\pi_1(\\mathbb{RP}^2)$?",
   "a": "$\\mathbb{Z}/2$",
   "d": [
@@ -641,111 +849,72 @@ const BANK = [
    "$0$",
    "$\\mathbb{Z}/4$"
   ],
-  "why": "$S^2\\to\\mathbb{RP}^2$ is the universal double cover, so $\\pi_1(\\mathbb{RP}^2)\\cong\\mathbb{Z}/2$.",
+  "why": "$S^2\\to\\mathbb{RP}^2$ is the universal double cover, so $\\pi_1=\\mathbb{Z}/2$.",
   "subj": "fundamental-group",
   "diff": 1
  },
  {
   "space": "the Klein bottle $K$",
-  "q": "What is $\\pi_1(K)$?",
-  "a": "$\\langle a,b \\mid abab^{-1}\\rangle$",
+  "q": "Which presentation gives $\\pi_1(K)$?",
+  "a": "$\\langle a,b\\mid abab^{-1}\\rangle$",
   "d": [
    "$\\langle a,b\\mid aba^{-1}b^{-1}\\rangle$",
-   "$\\mathbb{Z}\\times\\mathbb{Z}/2$",
-   "$\\mathbb{Z}*\\mathbb{Z}/2$"
+   "$\\langle a,b\\mid a^2b^2\\rangle$",
+   "$\\langle a,b\\mid a^2=b^2\\rangle$"
   ],
-  "why": "The standard CW structure on the Klein bottle has one relator $abab^{-1}$, giving this non-abelian presentation (the torus relator $aba^{-1}b^{-1}$ would give $\\mathbb{Z}^2$ instead).",
+  "why": "The Klein bottle's relator is $abab^{-1}$; the commutator relator would instead give $\\mathbb{Z}^2$.",
   "subj": "fundamental-group",
   "diff": 3
  },
  {
-  "space": "a genus-2 closed orientable surface $\\Sigma_2$",
-  "q": "What is the standard presentation of $\\pi_1(\\Sigma_2)$?",
-  "a": "$\\langle a_1,b_1,a_2,b_2 \\mid [a_1,b_1][a_2,b_2]\\rangle$",
+  "space": "a genus-$2$ surface $\\Sigma_2$",
+  "q": "Which presentation gives $\\pi_1(\\Sigma_2)$?",
+  "a": "$\\langle a_1,b_1,a_2,b_2\\mid[a_1,b_1][a_2,b_2]\\rangle$",
   "d": [
    "$\\langle a_1,b_1,a_2,b_2\\mid a_1b_1a_2b_2\\rangle$",
-   "$\\mathbb{Z}^4$",
-   "free group of rank 4"
+   "$\\langle a_1,b_1,a_2,b_2\\mid[a_1,a_2][b_1,b_2]\\rangle$",
+   "$\\mathbb{Z}^4$"
   ],
-  "why": "A genus-$g$ surface has presentation with $2g$ generators and one relator, the product of $g$ commutators.",
+  "why": "A genus-$g$ surface has $2g$ generators and one relator, the product of $g$ commutators.",
   "subj": "fundamental-group",
   "diff": 3
  },
  {
   "space": "$S^2$",
   "q": "What is $\\pi_1(S^2)$?",
-  "a": "$0$ (trivial group)",
+  "a": "$0$",
   "d": [
    "$\\mathbb{Z}$",
    "$\\mathbb{Z}/2$",
    "$\\mathbb{Z}\\times\\mathbb{Z}$"
   ],
-  "why": "$S^2$ is simply connected: any loop can be homotoped off a point and contracted, since $n\\geq 2$ spheres are simply connected.",
+  "why": "Spheres $S^n$ with $n\\geq2$ are simply connected.",
   "subj": "fundamental-group",
   "diff": 1
  },
  {
-  "space": "$\\mathbb{R}^n$ for $n\\geq 1$",
-  "q": "What is $\\pi_1(\\mathbb{R}^n)$?",
-  "a": "$0$",
-  "d": [
-   "$\\mathbb{Z}$",
-   "depends on $n$",
-   "undefined"
-  ],
-  "why": "$\\mathbb{R}^n$ is convex, hence contractible, hence simply connected for every $n$.",
-  "subj": "fundamental-group",
-  "diff": 1
- },
- {
-  "space": "the complement $\\mathbb{R}^3\\setminus(\\text{unknot})$",
-  "q": "What is $\\pi_1$ of the complement of an unknotted circle in $\\mathbb{R}^3$?",
+  "space": "the unknot complement",
+  "q": "What is $\\pi_1$ of the complement of an unknot in $\\mathbb{R}^3$?",
   "a": "$\\mathbb{Z}$",
   "d": [
    "$0$",
    "$\\mathbb{Z}*\\mathbb{Z}$",
    "$\\mathbb{Z}\\times\\mathbb{Z}$"
   ],
-  "why": "The complement of an unknot deformation retracts to a circle linking it, by an explicit Seifert-surface argument (it is homotopy equivalent to $S^1$).",
+  "why": "The unknot complement deformation retracts onto a linking circle, so $\\pi_1=\\mathbb{Z}$.",
   "subj": "fundamental-group",
   "diff": 3
  },
  {
-  "space": "the trefoil knot complement",
-  "q": "Is $\\pi_1$ of the trefoil complement abelian?",
-  "a": "No — it has presentation $\\langle a,b\\mid a^2=b^3\\rangle$",
+  "space": "the trefoil complement",
+  "q": "Which presentation gives $\\pi_1$ of the trefoil complement?",
+  "a": "$\\langle a,b\\mid a^2=b^3\\rangle$",
   "d": [
-   "Yes, it is $\\mathbb{Z}$",
-   "Yes, it is $\\mathbb{Z}\\times\\mathbb{Z}$",
-   "No — it is finite"
+   "$\\langle a,b\\mid a^3=b^2=1\\rangle$",
+   "$\\mathbb{Z}\\times\\mathbb{Z}$",
+   "$\\mathbb{Z}$"
   ],
-  "why": "The trefoil group is the well-known torus-knot group $\\langle a,b\\mid a^2=b^3\\rangle$, nonabelian and infinite (it surjects onto the symmetric group $S_3$, distinguishing it from the unknot).",
-  "subj": "fundamental-group",
-  "diff": 4
- },
- {
-  "space": "$\\mathbb{C}^*=\\mathbb{C}\\setminus\\{0\\}$",
-  "q": "What is $\\pi_1(\\mathbb{C}^*)$?",
-  "a": "$\\mathbb{Z}$",
-  "d": [
-   "$0$",
-   "$\\mathbb{Z}/2$",
-   "$\\mathbb{Z}\\times\\mathbb{Z}$"
-  ],
-  "why": "$\\mathbb{C}^*$ deformation retracts onto the unit circle $S^1$.",
-  "subj": "fundamental-group",
-  "diff": 1
- },
- {
-  "space": "a connected sum $\\Sigma_2 \\# \\Sigma_3$",
-  "q": "The fundamental group of a connect sum of two closed surfaces with nontrivial $\\pi_1$ is computed via which theorem?",
-  "a": "Seifert–van Kampen, giving an amalgamated free product over $\\mathbb{Z}$",
-  "d": [
-   "Mayer–Vietoris, giving a direct sum",
-   "The Hurewicz theorem",
-   "Poincaré duality"
-  ],
-  "why": "Removing a disk from each and gluing along the resulting circle boundary realizes $\\pi_1(\\Sigma_g\\#\\Sigma_h)$ as $\\pi_1(\\Sigma_g)*_{\\mathbb{Z}}\\pi_1(\\Sigma_h)$ via van Kampen.",
+  "why": "The trefoil is the $(2,3)$-torus knot, with group $\\langle a,b\\mid a^2=b^3\\rangle$, nonabelian and infinite.",
   "subj": "fundamental-group",
   "diff": 4
  },
@@ -758,38 +927,77 @@ const BANK = [
    "$\\mathbb{Z}$",
    "$\\mathbb{Z}/3$"
   ],
-  "why": "$SO(3)\\cong \\mathbb{RP}^3$ topologically, and the universal double cover is $SU(2)\\cong S^3$, giving $\\pi_1(SO(3))=\\mathbb{Z}/2$ — this is the famous \"belt trick\" / spin phenomenon.",
+  "why": "$SO(3)\\cong\\mathbb{RP}^3$ with universal double cover $SU(2)\\cong S^3$, so $\\pi_1=\\mathbb{Z}/2$.",
   "subj": "fundamental-group",
   "diff": 3
  },
  {
   "space": "the lens space $L(p,q)$",
-  "q": "What is $\\pi_1(L(p,q))$ for the lens space?",
+  "q": "What is $\\pi_1(L(p,q))$?",
   "a": "$\\mathbb{Z}/p$",
   "d": [
    "$\\mathbb{Z}/q$",
    "$\\mathbb{Z}$",
    "$\\mathbb{Z}/p\\times\\mathbb{Z}/q$"
   ],
-  "why": "$L(p,q)=S^3/(\\mathbb{Z}/p)$ where $\\mathbb{Z}/p$ acts freely, so $S^3$ is the universal cover and $\\pi_1(L(p,q))=\\mathbb{Z}/p$ regardless of $q$.",
+  "why": "$L(p,q)=S^3/(\\mathbb{Z}/p)$ with $S^3$ as universal cover, so $\\pi_1=\\mathbb{Z}/p$ independent of $q$.",
   "subj": "fundamental-group",
   "diff": 4
  },
  {
-  "space": "a wedge $\\mathbb{RP}^2\\vee \\mathbb{RP}^2$",
+  "space": "$\\mathbb{RP}^2\\vee\\mathbb{RP}^2$",
   "q": "What is $\\pi_1(\\mathbb{RP}^2\\vee\\mathbb{RP}^2)$?",
-  "a": "$\\mathbb{Z}/2 * \\mathbb{Z}/2$",
+  "a": "$\\mathbb{Z}/2*\\mathbb{Z}/2$",
   "d": [
    "$\\mathbb{Z}/2\\times\\mathbb{Z}/2$",
    "$\\mathbb{Z}/4$",
    "$\\mathbb{Z}*\\mathbb{Z}$"
   ],
-  "why": "Van Kampen applied to a wedge gives the free product of the individual $\\pi_1$'s, here $\\mathbb{Z}/2*\\mathbb{Z}/2$ (infinite dihedral).",
+  "why": "Van Kampen gives the free product of the factors' groups, here $\\mathbb{Z}/2*\\mathbb{Z}/2$, the infinite dihedral group.",
   "subj": "fundamental-group",
   "diff": 3
  },
  {
-  "space": "$S^n$ for $n\\geq 1$",
+  "space": "$\\mathbb{C}\\setminus\\{0\\}$",
+  "q": "What is $\\pi_1(\\mathbb{C}\\setminus\\{0\\})$?",
+  "a": "$\\mathbb{Z}$",
+  "d": [
+   "$0$",
+   "$\\mathbb{Z}/2$",
+   "$\\mathbb{Z}\\times\\mathbb{Z}$"
+  ],
+  "why": "$\\mathbb{C}^\\times$ deformation retracts onto the unit circle, so $\\pi_1=\\mathbb{Z}$.",
+  "subj": "fundamental-group",
+  "diff": 1
+ },
+ {
+  "space": "a path-connected topological group",
+  "q": "The fundamental group of a topological group is always which kind of group?",
+  "a": "Abelian",
+  "d": [
+   "Free",
+   "Finite",
+   "Trivial"
+  ],
+  "why": "The group multiplication makes $\\pi_1$ of an H-space abelian (Eckmann\\u2013Hilton), so $\\pi_1$ of a topological group is abelian.",
+  "subj": "fundamental-group",
+  "diff": 4
+ },
+ {
+  "space": "$\\mathbb{R}^n$",
+  "q": "What is $\\pi_1(\\mathbb{R}^n)$?",
+  "a": "$0$",
+  "d": [
+   "$\\mathbb{Z}$",
+   "$\\mathbb{Z}^n$",
+   "depends on $n$"
+  ],
+  "why": "$\\mathbb{R}^n$ is convex, hence contractible, hence simply connected.",
+  "subj": "fundamental-group",
+  "diff": 1
+ },
+ {
+  "space": "$S^n$ in middle degrees",
   "q": "What is $H_k(S^n;\\mathbb{Z})$ for $0<k<n$?",
   "a": "$0$",
   "d": [
@@ -797,12 +1005,12 @@ const BANK = [
    "$\\mathbb{Z}/2$",
    "$\\mathbb{Z}^k$"
   ],
-  "why": "The reduced homology of $S^n$ is concentrated in degrees $0$ and $n$; all intermediate groups vanish.",
+  "why": "Reduced homology of $S^n$ is concentrated in degree $n$; intermediate groups vanish.",
   "subj": "homology",
   "diff": 1
  },
  {
-  "space": "$S^n$ for $n\\geq 1$",
+  "space": "$S^n$ in top degree",
   "q": "What is $H_n(S^n;\\mathbb{Z})$?",
   "a": "$\\mathbb{Z}$",
   "d": [
@@ -810,7 +1018,7 @@ const BANK = [
    "$\\mathbb{Z}/2$",
    "$\\mathbb{Z}\\oplus\\mathbb{Z}$"
   ],
-  "why": "$S^n$ has a CW structure with one $0$-cell and one $n$-cell, so $H_n(S^n)=\\mathbb{Z}$, generated by the fundamental class.",
+  "why": "$S^n$ has one $n$-cell, giving $H_n=\\mathbb{Z}$, the fundamental class.",
   "subj": "homology",
   "diff": 1
  },
@@ -823,12 +1031,12 @@ const BANK = [
    "$0$",
    "$\\mathbb{Z}/2\\oplus\\mathbb{Z}/2$"
   ],
-  "why": "$H_1(T^2)$ is the abelianization of $\\pi_1(T^2)=\\mathbb{Z}^2$, which is already abelian, giving $\\mathbb{Z}^2$.",
+  "why": "$H_1$ is the abelianization of $\\pi_1(T^2)=\\mathbb{Z}^2$, already abelian.",
   "subj": "homology",
   "diff": 2
  },
  {
-  "space": "$\\mathbb{RP}^2$",
+  "space": "$\\mathbb{RP}^2$ in degree $1$",
   "q": "What is $H_1(\\mathbb{RP}^2;\\mathbb{Z})$?",
   "a": "$\\mathbb{Z}/2$",
   "d": [
@@ -836,12 +1044,12 @@ const BANK = [
    "$\\mathbb{Z}$",
    "$\\mathbb{Z}/4$"
   ],
-  "why": "$H_1(\\mathbb{RP}^2)$ is the abelianization of $\\pi_1(\\mathbb{RP}^2)=\\mathbb{Z}/2$, which is already $\\mathbb{Z}/2$.",
+  "why": "$H_1=\\pi_1^{ab}=\\mathbb{Z}/2$.",
   "subj": "homology",
   "diff": 2
  },
  {
-  "space": "$\\mathbb{RP}^2$",
+  "space": "$\\mathbb{RP}^2$ in degree $2$",
   "q": "What is $H_2(\\mathbb{RP}^2;\\mathbb{Z})$?",
   "a": "$0$",
   "d": [
@@ -849,12 +1057,12 @@ const BANK = [
    "$\\mathbb{Z}/2$",
    "$\\mathbb{Z}\\oplus\\mathbb{Z}/2$"
   ],
-  "why": "$\\mathbb{RP}^2$ is nonorientable, so its top homology with $\\mathbb{Z}$-coefficients vanishes (no fundamental class over $\\mathbb{Z}$).",
+  "why": "$\\mathbb{RP}^2$ is non-orientable, so its top integral homology vanishes.",
   "subj": "homology",
   "diff": 2
  },
  {
-  "space": "$\\mathbb{RP}^3$",
+  "space": "$\\mathbb{RP}^3$ in top degree",
   "q": "What is $H_3(\\mathbb{RP}^3;\\mathbb{Z})$?",
   "a": "$\\mathbb{Z}$",
   "d": [
@@ -862,25 +1070,25 @@ const BANK = [
    "$\\mathbb{Z}/2$",
    "$\\mathbb{Z}\\oplus\\mathbb{Z}/2$"
   ],
-  "why": "$\\mathbb{RP}^3$ is orientable (odd-dimensional real projective spaces are orientable), so it has a $\\mathbb{Z}$ fundamental class in top degree.",
+  "why": "$\\mathbb{RP}^3$ is orientable (odd projective spaces are), so it has a $\\mathbb{Z}$ fundamental class.",
   "subj": "homology",
   "diff": 3
  },
  {
-  "space": "$\\mathbb{RP}^n$ real projective space",
-  "q": "For $0<k<n$, what is $H_k(\\mathbb{RP}^n;\\mathbb{Z})$ when $k$ is odd?",
+  "space": "$\\mathbb{RP}^n$ in odd middle degree",
+  "q": "For $0<k<n$ odd, what is $H_k(\\mathbb{RP}^n;\\mathbb{Z})$?",
   "a": "$\\mathbb{Z}/2$",
   "d": [
    "$0$",
    "$\\mathbb{Z}$",
    "$\\mathbb{Z}\\oplus\\mathbb{Z}/2$"
   ],
-  "why": "The integral homology of $\\mathbb{RP}^n$ alternates with $k$: $H_k(\\mathbb{RP}^n;\\mathbb{Z})=\\mathbb{Z}/2$ for $k$ odd with $0<k<n$, and $0$ for $k$ even with $0<k<n$, computed from the standard cellular chain complex with boundary maps alternating between $0$ and multiplication by $2$.",
+  "why": "Integral homology of $\\mathbb{RP}^n$ is $\\mathbb{Z}/2$ in odd degrees $0<k<n$ and $0$ in even ones.",
   "subj": "homology",
   "diff": 4
  },
  {
-  "space": "the Klein bottle $K$",
+  "space": "the Klein bottle in degree $1$",
   "q": "What is $H_1(K;\\mathbb{Z})$ for the Klein bottle?",
   "a": "$\\mathbb{Z}\\oplus\\mathbb{Z}/2$",
   "d": [
@@ -888,38 +1096,38 @@ const BANK = [
    "$\\mathbb{Z}/2\\oplus\\mathbb{Z}/2$",
    "$\\mathbb{Z}$"
   ],
-  "why": "Abelianizing $\\langle a,b\\mid abab^{-1}\\rangle$ gives relation $2a=0$ in additive notation, so $H_1(K)=\\mathbb{Z}\\langle b\\rangle \\oplus \\mathbb{Z}/2\\langle a\\rangle$.",
+  "why": "Abelianizing $\\langle a,b\\mid abab^{-1}\\rangle$ gives $2a=0$, so $H_1=\\mathbb{Z}\\oplus\\mathbb{Z}/2$.",
   "subj": "homology",
   "diff": 3
  },
  {
-  "space": "the Klein bottle $K$",
-  "q": "What is $H_2(K;\\mathbb{Z})$ for the Klein bottle?",
+  "space": "the Klein bottle in degree $2$",
+  "q": "What is $H_2(K;\\mathbb{Z})$?",
   "a": "$0$",
   "d": [
    "$\\mathbb{Z}$",
    "$\\mathbb{Z}/2$",
    "$\\mathbb{Z}\\oplus\\mathbb{Z}/2$"
   ],
-  "why": "$K$ is a nonorientable closed surface, so its top integral homology vanishes, matching $H_2(K;\\mathbb{Z})=0$.",
+  "why": "The Klein bottle is non-orientable, so top integral homology vanishes.",
   "subj": "homology",
   "diff": 3
  },
  {
-  "space": "a genus-$g$ orientable surface $\\Sigma_g$",
+  "space": "a genus-$g$ surface",
   "q": "What is $H_1(\\Sigma_g;\\mathbb{Z})$?",
   "a": "$\\mathbb{Z}^{2g}$",
   "d": [
    "$\\mathbb{Z}^{g}$",
    "$\\mathbb{Z}^{2g}\\oplus\\mathbb{Z}/2$",
-   "$\\mathbb{Z}^{g}\\oplus \\mathbb{Z}/2^g$"
+   "$\\mathbb{Z}^{g}\\oplus\\mathbb{Z}/2$"
   ],
-  "why": "Abelianizing the surface group $\\langle a_i,b_i\\mid \\prod[a_i,b_i]\\rangle$ kills the single commutator relator, leaving the free abelian group on the $2g$ generators.",
+  "why": "Abelianizing the surface group kills the single commutator relator, leaving $\\mathbb{Z}^{2g}$.",
   "subj": "homology",
   "diff": 3
  },
  {
-  "space": "complex projective space $\\mathbb{CP}^n$",
+  "space": "$\\mathbb{CP}^n$ in even degree",
   "q": "What is $H_{2k}(\\mathbb{CP}^n;\\mathbb{Z})$ for $0\\leq k\\leq n$?",
   "a": "$\\mathbb{Z}$",
   "d": [
@@ -927,20 +1135,20 @@ const BANK = [
    "$\\mathbb{Z}/2$",
    "$\\mathbb{Z}\\oplus\\mathbb{Z}$"
   ],
-  "why": "$\\mathbb{CP}^n$ has a CW structure with exactly one cell in each even dimension $0,2,4,\\dots,2n$ and none in odd dimensions, so $H_{2k}=\\mathbb{Z}$ and $H_{2k+1}=0$.",
+  "why": "$\\mathbb{CP}^n$ has one cell in each even dimension, so $H_{2k}=\\mathbb{Z}$.",
   "subj": "homology",
   "diff": 2
  },
  {
-  "space": "complex projective space $\\mathbb{CP}^n$",
-  "q": "What is $H_{odd}(\\mathbb{CP}^n;\\mathbb{Z})$, i.e. homology in odd degree?",
+  "space": "$\\mathbb{CP}^n$ in odd degree",
+  "q": "What is $H_{\\mathrm{odd}}(\\mathbb{CP}^n;\\mathbb{Z})$?",
   "a": "$0$",
   "d": [
    "$\\mathbb{Z}$",
    "$\\mathbb{Z}/2$",
-   "Depends on $n$"
+   "depends on $n$"
   ],
-  "why": "The CW structure of $\\mathbb{CP}^n$ has cells only in even dimensions, forcing all odd-degree homology to vanish.",
+  "why": "$\\mathbb{CP}^n$ has no odd-dimensional cells, so odd homology vanishes.",
   "subj": "homology",
   "diff": 2
  },
@@ -953,25 +1161,12 @@ const BANK = [
    "$\\mathbb{Z}\\oplus\\mathbb{Z}$",
    "$\\mathbb{Z}/2$"
   ],
-  "why": "Reduced homology of a wedge is the direct sum of reduced homologies: $\\tilde H_2(S^1\\vee S^2)=\\tilde H_2(S^1)\\oplus\\tilde H_2(S^2)=0\\oplus\\mathbb{Z}=\\mathbb{Z}$.",
+  "why": "Reduced homology of a wedge is the direct sum: $\\tilde H_2=0\\oplus\\mathbb{Z}=\\mathbb{Z}$.",
   "subj": "homology",
   "diff": 2
  },
  {
-  "space": "a Moore space $M(\\mathbb{Z}/2,1)$",
-  "q": "What is $H_1(M(\\mathbb{Z}/2,1);\\mathbb{Z})$ by definition of a Moore space?",
-  "a": "$\\mathbb{Z}/2$",
-  "d": [
-   "$0$",
-   "$\\mathbb{Z}$",
-   "$\\mathbb{Z}/2\\oplus\\mathbb{Z}/2$"
-  ],
-  "why": "A Moore space $M(G,n)$ is defined to have $\\tilde H_n = G$ and all other reduced homology trivial; $M(\\mathbb{Z}/2,1)$ can be realized as $\\mathbb{RP}^2$.",
-  "subj": "homology",
-  "diff": 3
- },
- {
-  "space": "the lens space $L(p,1)=S^3/(\\mathbb{Z}/p)$",
+  "space": "the lens space $L(p,1)$",
   "q": "What is $H_1(L(p,1);\\mathbb{Z})$?",
   "a": "$\\mathbb{Z}/p$",
   "d": [
@@ -979,345 +1174,306 @@ const BANK = [
    "$0$",
    "$\\mathbb{Z}/p\\oplus\\mathbb{Z}/p$"
   ],
-  "why": "$H_1=\\pi_1^{ab}=(\\mathbb{Z}/p)^{ab}=\\mathbb{Z}/p$ since $\\pi_1(L(p,1))=\\mathbb{Z}/p$ is already abelian.",
+  "why": "$H_1=\\pi_1^{ab}=\\mathbb{Z}/p$ since $\\pi_1=\\mathbb{Z}/p$ is abelian.",
   "subj": "homology",
   "diff": 4
  },
  {
-  "space": "a finite CW complex $X$",
-  "q": "The rank of $H_n(X;\\mathbb{Z})$ (mod torsion) is called what?",
+  "space": "a finite CW complex",
+  "q": "The rank of the free part of $H_n(X;\\mathbb{Z})$ is called what?",
   "a": "The $n$-th Betti number",
   "d": [
    "The Euler characteristic",
-   "The genus",
+   "The $n$-th torsion coefficient",
    "The fundamental class"
   ],
-  "why": "By definition, the $n$-th Betti number $b_n$ is the rank of the free part of $H_n(X;\\mathbb{Z})$, equivalently $\\dim_\\mathbb{Q} H_n(X;\\mathbb{Q})$.",
+  "why": "The $n$-th Betti number is $\\mathrm{rank}\\,H_n(X;\\mathbb{Z})=\\dim_\\mathbb{Q}H_n(X;\\mathbb{Q})$.",
   "subj": "homology",
   "diff": 2
  },
  {
   "space": "a short exact sequence of chain complexes",
-  "q": "A short exact sequence of chain complexes induces what on homology?",
-  "a": "A long exact sequence in homology",
+  "q": "A short exact sequence of chain complexes induces which structure on homology?",
+  "a": "A long exact sequence",
   "d": [
-   "A short exact sequence in homology, always",
-   "No relation in general",
-   "An isomorphism on homology"
+   "A short exact sequence",
+   "An isomorphism",
+   "A split direct sum"
   ],
-  "why": "This is the long exact sequence of homology (zig-zag lemma), connecting the homologies via connecting homomorphisms.",
+  "why": "The zig-zag lemma yields a long exact sequence with connecting homomorphisms.",
   "subj": "homology",
   "diff": 3
  },
  {
-  "space": "$S^n$ for $k<n$",
-  "q": "What is $\\pi_k(S^n)$ for $k<n$?",
+  "space": "the degree of a map $S^n\\to S^n$",
+  "q": "The degree of a map $f:S^n\\to S^n$ is the integer by which $f_*$ acts on which group?",
+  "a": "$H_n(S^n;\\mathbb{Z})=\\mathbb{Z}$",
+  "d": [
+   "$H_0(S^n;\\mathbb{Z})$",
+   "$\\pi_1(S^n)$",
+   "$H^0(S^n;\\mathbb{Z})$"
+  ],
+  "why": "The degree is the integer $f_*$ acts by on $H_n(S^n)=\\mathbb{Z}$.",
+  "subj": "homology",
+  "diff": 3
+ },
+ {
+  "space": "$S^n$ in low degrees",
+  "q": "What is $\\pi_k(S^n)$ for $0<k<n$?",
   "a": "$0$",
   "d": [
    "$\\mathbb{Z}$",
    "$\\mathbb{Z}/2$",
-   "Depends on $k$ and $n$ in general"
+   "$\\mathbb{Z}^k$"
   ],
-  "why": "By cellular approximation, any map $S^k\\to S^n$ with $k<n$ is homotopic to a non-surjective map, hence to a constant map (since $S^n$ minus a point is contractible).",
+  "why": "By cellular approximation any map $S^k\\to S^n$ with $k<n$ is nullhomotopic.",
   "subj": "homotopy-groups",
   "diff": 2
  },
  {
-  "space": "$S^n$",
+  "space": "$S^n$ in degree $n$",
   "q": "What is $\\pi_n(S^n)$ for $n\\geq1$?",
-  "a": "$\\mathbb{Z}$",
-  "d": [
-   "$0$",
-   "$\\mathbb{Z}/2$",
-   "$\\mathbb{Z}\\times\\mathbb{Z}$"
-  ],
-  "why": "$\\pi_n(S^n)\\cong\\mathbb{Z}$, generated by the identity map, by Hurewicz / degree theory.",
-  "subj": "homotopy-groups",
-  "diff": 1
- },
- {
-  "space": "$S^2$",
-  "q": "What is $\\pi_3(S^2)$?",
   "a": "$\\mathbb{Z}$",
   "d": [
    "$0$",
    "$\\mathbb{Z}/2$",
    "$\\mathbb{Z}\\oplus\\mathbb{Z}$"
   ],
-  "why": "$\\pi_3(S^2)\\cong\\mathbb{Z}$, generated by the Hopf map $S^3\\to S^2$ — a classical and famous \"unstable\" phenomenon showing $\\pi_k(S^n)$ need not vanish for $k>n$.",
+  "why": "$\\pi_n(S^n)\\cong\\mathbb{Z}$, generated by the identity, detected by degree.",
+  "subj": "homotopy-groups",
+  "diff": 1
+ },
+ {
+  "space": "$\\pi_3(S^2)$",
+  "q": "What is $\\pi_3(S^2)$?",
+  "a": "$\\mathbb{Z}$",
+  "d": [
+   "$0$",
+   "$\\mathbb{Z}/2$",
+   "$\\mathbb{Z}/12$"
+  ],
+  "why": "$\\pi_3(S^2)\\cong\\mathbb{Z}$, generated by the Hopf map $S^3\\to S^2$.",
   "subj": "homotopy-groups",
   "diff": 3
  },
  {
-  "space": "$S^3$",
+  "space": "$\\pi_4(S^3)$",
   "q": "What is $\\pi_4(S^3)$?",
   "a": "$\\mathbb{Z}/2$",
   "d": [
    "$\\mathbb{Z}$",
    "$0$",
-   "$\\mathbb{Z}/4$"
+   "$\\mathbb{Z}/12$"
   ],
-  "why": "$\\pi_4(S^3)\\cong\\mathbb{Z}/2$; this is part of the stable homotopy groups of spheres pattern, where $\\pi_{n+1}(S^n)=\\mathbb{Z}/2$ for $n\\geq3$.",
+  "why": "$\\pi_4(S^3)\\cong\\mathbb{Z}/2$, generated by the suspension of the Hopf map $\\eta$.",
   "subj": "homotopy-groups",
   "diff": 4
  },
  {
-  "space": "general spheres",
-  "q": "The groups $\\pi_k(S^n)$ for $k>n$ are generally what, in contrast to $\\pi_n(S^n)=\\mathbb{Z}$?",
-  "a": "Finite (for $k>n$, except the case $n$ even and $k=2n-1$)",
+  "space": "loop space homotopy",
+  "q": "How does $\\pi_k(\\Omega X)$ relate to the homotopy of $X$?",
+  "a": "$\\pi_k(\\Omega X)\\cong\\pi_{k+1}(X)$",
   "d": [
-   "Always infinite cyclic",
-   "Always trivial",
-   "Always isomorphic to $\\pi_n(S^n)$"
+   "$\\pi_k(\\Omega X)\\cong\\pi_{k-1}(X)$",
+   "$\\pi_k(\\Omega X)\\cong\\pi_{k}(X)$",
+   "$\\pi_k(\\Omega X)\\cong\\pi_{2k}(X)$"
   ],
-  "why": "By a theorem of Serre, $\\pi_k(S^n)$ is finite for $k>n$ except when $n$ is even and $k=2n-1$, where there is a $\\mathbb{Z}$ summand related to the Hopf invariant / Euler class.",
-  "subj": "homotopy-groups",
-  "diff": 5
- },
- {
-  "space": "$\\Omega S^n$, the loop space",
-  "q": "What relation does $\\pi_k(\\Omega X)$ have to $\\pi_{k+1}(X)$?",
-  "a": "$\\pi_k(\\Omega X)\\cong \\pi_{k+1}(X)$",
-  "d": [
-   "$\\pi_k(\\Omega X)\\cong \\pi_{k-1}(X)$",
-   "$\\pi_k(\\Omega X)\\cong \\pi_k(X)$",
-   "No general relation"
-  ],
-  "why": "This is the standard loop space adjunction fact: $\\pi_k(\\Omega X)\\cong \\pi_{k+1}(X)$ for all $k\\geq 0$.",
+  "why": "The loop-space relation $\\pi_k(\\Omega X)\\cong\\pi_{k+1}(X)$ holds for all $k\\geq0$.",
   "subj": "homotopy-groups",
   "diff": 2
  },
  {
-  "space": "a simply connected CW complex $X$",
-  "q": "The Hurewicz theorem says the first nonvanishing $\\pi_n(X)$ (for $n\\geq2$, $X$ simply connected) is isomorphic to what?",
-  "a": "$H_n(X;\\mathbb{Z})$, the first nonvanishing homology group",
+  "space": "the Hurewicz theorem",
+  "q": "For an $(n-1)$-connected space ($n\\geq2$), the first nonzero $\\pi_n$ is isomorphic to what?",
+  "a": "$H_n(X;\\mathbb{Z})$",
   "d": [
-   "$H_1(X;\\mathbb{Z})$ always",
-   "$\\pi_1(X)$",
-   "$H_n(X;\\mathbb{Z}/2)$"
+   "$H_1(X;\\mathbb{Z})$",
+   "$H_{n-1}(X;\\mathbb{Z})$",
+   "$H^n(X;\\mathbb{Z})$"
   ],
-  "why": "The Hurewicz theorem: if $X$ is $(n-1)$-connected ($n\\geq2$), then $\\pi_n(X)\\cong H_n(X;\\mathbb{Z})$ via the Hurewicz map.",
+  "why": "The Hurewicz map gives $\\pi_n(X)\\cong H_n(X;\\mathbb{Z})$ for an $(n-1)$-connected space with $n\\geq2$.",
   "subj": "homotopy-groups",
   "diff": 3
  },
  {
-  "space": "$\\mathbb{RP}^n$ for $n\\geq2$",
-  "q": "What is $\\pi_k(\\mathbb{RP}^n)$ for $2\\leq k\\leq n$, compared to $\\pi_k(S^n)$?",
-  "a": "$\\pi_k(\\mathbb{RP}^n)\\cong\\pi_k(S^n)$ for $k\\geq2$",
+  "space": "higher homotopy of $\\mathbb{RP}^n$",
+  "q": "How does $\\pi_k(\\mathbb{RP}^n)$ compare to $\\pi_k(S^n)$ for $k\\geq2$?",
+  "a": "They are isomorphic",
   "d": [
-   "Always $0$",
-   "Always $\\mathbb{Z}/2$",
-   "No relation to $\\pi_k(S^n)$"
+   "$\\pi_k(\\mathbb{RP}^n)=0$",
+   "$\\pi_k(\\mathbb{RP}^n)=\\mathbb{Z}/2$",
+   "They differ by a factor of $\\mathbb{Z}$"
   ],
-  "why": "Since $S^n\\to\\mathbb{RP}^n$ is a covering map, it induces isomorphisms on all higher homotopy groups $\\pi_k$ for $k\\geq2$.",
+  "why": "The covering $S^n\\to\\mathbb{RP}^n$ induces isomorphisms on $\\pi_k$ for all $k\\geq2$.",
   "subj": "homotopy-groups",
   "diff": 3
  },
  {
-  "space": "the long exact sequence of a fibration $F\\to E\\to B$",
-  "q": "The long exact homotopy sequence of a fibration relates which groups?",
-  "a": "$\\cdots\\to\\pi_k(F)\\to\\pi_k(E)\\to\\pi_k(B)\\to\\pi_{k-1}(F)\\to\\cdots$",
+  "space": "the fibration long exact sequence",
+  "q": "The long exact sequence of a fibration $F\\to E\\to B$ connects $\\pi_k(B)$ to which group?",
+  "a": "$\\pi_{k-1}(F)$",
   "d": [
-   "$\\cdots\\to\\pi_k(B)\\to\\pi_k(E)\\to\\pi_k(F)\\to\\cdots$ with no connecting map",
-   "It only relates $\\pi_1$ groups",
-   "It computes $H_k(E)$ instead"
+   "$\\pi_{k+1}(F)$",
+   "$\\pi_{k}(F)$",
+   "$\\pi_{k-1}(E)$"
   ],
-  "why": "This is the standard long exact sequence in homotopy groups associated to a Serre fibration.",
+  "why": "The connecting map sends $\\pi_k(B)\\to\\pi_{k-1}(F)$ in the long exact homotopy sequence.",
   "subj": "homotopy-groups",
   "diff": 3
  },
  {
-  "space": "stable homotopy groups of spheres $\\pi_k^s$",
-  "q": "What is the first stable homotopy group of spheres $\\pi_0^s$?",
-  "a": "$\\mathbb{Z}$",
-  "d": [
-   "$0$",
-   "$\\mathbb{Z}/2$",
-   "$\\mathbb{Z}/24$"
-  ],
-  "why": "$\\pi_0^s=\\mathbb{Z}$, generated by the identity map (degree), matching $\\pi_n(S^n)=\\mathbb{Z}$ stably.",
-  "subj": "homotopy-groups",
-  "diff": 4
- },
- {
-  "space": "stable homotopy groups of spheres $\\pi_k^s$",
-  "q": "What is $\\pi_1^s$, the first stable stem?",
+  "space": "the first stable stem",
+  "q": "What is the stable homotopy group $\\pi_1^s$?",
   "a": "$\\mathbb{Z}/2$",
   "d": [
    "$\\mathbb{Z}$",
    "$0$",
    "$\\mathbb{Z}/24$"
   ],
-  "why": "$\\pi_1^s\\cong\\mathbb{Z}/2$, generated by the (stable) Hopf map $\\eta$.",
+  "why": "$\\pi_1^s\\cong\\mathbb{Z}/2$, generated by the stable Hopf map $\\eta$.",
   "subj": "homotopy-groups",
   "diff": 5
  },
  {
-  "space": "stable homotopy groups of spheres $\\pi_k^s$",
-  "q": "What is $\\pi_3^s$, the third stable stem?",
+  "space": "the third stable stem",
+  "q": "What is the stable homotopy group $\\pi_3^s$?",
   "a": "$\\mathbb{Z}/24$",
   "d": [
    "$\\mathbb{Z}/2$",
-   "$\\mathbb{Z}$",
+   "$\\mathbb{Z}/12$",
    "$0$"
   ],
-  "why": "$\\pi_3^s\\cong\\mathbb{Z}/24$, generated by $\\nu$, with the order $24$ famously linked to the order of the image of the J-homomorphism and to exotic framings.",
+  "why": "$\\pi_3^s\\cong\\mathbb{Z}/24$, generated by $\\nu$, the order $24$ tied to the image of $J$.",
   "subj": "homotopy-groups",
   "diff": 5
  },
  {
   "space": "Whitehead's theorem",
-  "q": "Whitehead's theorem states that a map inducing isomorphisms on all $\\pi_k$ between which kind of spaces is a homotopy equivalence?",
+  "q": "A map between which spaces, inducing isomorphisms on all $\\pi_k$, is a homotopy equivalence?",
   "a": "CW complexes",
   "d": [
-   "Any topological spaces",
-   "Only simply connected spaces",
-   "Only compact manifolds"
+   "arbitrary spaces",
+   "simply connected spaces",
+   "compact manifolds"
   ],
-  "why": "Whitehead's theorem requires the domain and codomain to have the homotopy type of CW complexes; it fails for general spaces (e.g. the Warsaw circle is a classical counterexample).",
+  "why": "Whitehead's theorem needs the CW hypothesis; it fails for general spaces such as the Warsaw circle.",
   "subj": "homotopy-groups",
   "diff": 3
  },
  {
-  "space": "the cone $CX$ on any space $X$",
-  "q": "What is the homotopy type of $CX$, the cone on $X$?",
-  "a": "Contractible, for any $X$",
+  "space": "$\\pi_2$ of a Lie group",
+  "q": "What is $\\pi_2(G)$ for any Lie group $G$?",
+  "a": "$0$",
+  "d": [
+   "$\\mathbb{Z}$",
+   "$\\mathbb{Z}/2$",
+   "depends on $G$"
+  ],
+  "why": "Every Lie group has $\\pi_2(G)=0$, a classical fact (true for all compact connected Lie groups and beyond).",
+  "subj": "homotopy-groups",
+  "diff": 4
+ },
+ {
+  "space": "Serre finiteness",
+  "q": "For $k>n$, the groups $\\pi_k(S^n)$ are which, apart from one infinite exception?",
+  "a": "Finite",
+  "d": [
+   "Always infinite cyclic",
+   "Always trivial",
+   "Always $2$-torsion"
+  ],
+  "why": "Serre proved $\\pi_k(S^n)$ is finite for $k>n$, except $n$ even and $k=2n-1$, where a $\\mathbb{Z}$ appears.",
+  "subj": "homotopy-groups",
+  "diff": 5
+ },
+ {
+  "space": "the cone $CX$",
+  "q": "What is the homotopy type of the cone $CX$?",
+  "a": "Contractible",
   "d": [
    "Homotopy equivalent to $X$",
    "Homotopy equivalent to $\\Sigma X$",
-   "Depends on whether $X$ is connected"
+   "Homotopy equivalent to $\\Omega X$"
   ],
-  "why": "The cone $CX=X\\times[0,1]/(X\\times\\{1\\})$ deformation retracts to the cone point, so it is always contractible.",
+  "why": "The cone deformation retracts to its apex, so $CX$ is contractible for any $X$.",
   "subj": "homotopy-theory",
   "diff": 1
  },
  {
   "space": "the suspension $\\Sigma S^n$",
-  "q": "What is $\\Sigma S^n$ homeomorphic/homotopy equivalent to?",
+  "q": "What is $\\Sigma S^n$?",
   "a": "$S^{n+1}$",
   "d": [
-   "$S^n\\times S^1$",
    "$S^{n-1}$",
+   "$S^n\\times S^1$",
    "$\\mathbb{RP}^{n+1}$"
   ],
-  "why": "The suspension of $S^n$ is $S^{n+1}$; this is a basic and frequently-used identity ($\\Sigma S^n\\cong S^{n+1}$).",
+  "why": "Suspension raises the sphere dimension by one: $\\Sigma S^n\\cong S^{n+1}$.",
   "subj": "homotopy-theory",
   "diff": 2
  },
  {
-  "space": "mapping cone $C_f$ of $f:X\\to Y$",
+  "space": "the mapping cone of $f:X\\to Y$",
   "q": "The mapping cone $C_f$ fits into which cofiber sequence?",
-  "a": "$X\\xrightarrow{f} Y\\to C_f$",
+  "a": "$X\\to Y\\to C_f$",
   "d": [
-   "$Y\\xrightarrow{f} X\\to C_f$",
+   "$Y\\to X\\to C_f$",
    "$C_f\\to X\\to Y$",
    "$X\\to C_f\\to Y$"
   ],
-  "why": "By definition $C_f = Y\\cup_f CX$, giving the cofiber sequence $X\\to Y\\to C_f$, extendable to the Puppe sequence.",
+  "why": "By definition $C_f=Y\\cup_f CX$, giving the cofiber sequence $X\\to Y\\to C_f$.",
   "subj": "homotopy-theory",
   "diff": 3
  },
  {
   "space": "the Puppe sequence",
-  "q": "Continuing a cofiber sequence $X\\to Y\\to C_f$, the next term is what?",
-  "a": "$\\Sigma X$ (i.e. $X\\to Y\\to C_f\\to \\Sigma X\\to \\Sigma Y\\to\\cdots$)",
+  "q": "Continuing $X\\to Y\\to C_f$, what is the next term in the Puppe sequence?",
+  "a": "$\\Sigma X$",
   "d": [
    "$\\Omega X$",
-   "$C_f$ again",
+   "$\\Sigma Y$",
    "$X\\times Y$"
   ],
-  "why": "The Puppe sequence continues with suspensions: $C_f\\to \\Sigma X\\to \\Sigma Y\\to \\Sigma C_f\\to\\cdots$.",
+  "why": "The Puppe sequence continues $C_f\\to\\Sigma X\\to\\Sigma Y\\to\\Sigma C_f\\to\\cdots$.",
   "subj": "homotopy-theory",
   "diff": 4
  },
  {
-  "space": "two homotopy equivalent CW complexes",
-  "q": "If $X\\simeq Y$ (homotopy equivalent), what can be said about $H_*(X)$ and $H_*(Y)$?",
-  "a": "They are isomorphic in every degree",
+  "space": "homotopy equivalence and homology",
+  "q": "If $X\\simeq Y$ are homotopy equivalent, how do their homology groups compare?",
+  "a": "Isomorphic in every degree",
   "d": [
-   "They may differ",
-   "Only $H_0$ must agree",
-   "They are isomorphic only if $X,Y$ are simply connected"
+   "Equal only in degree $0$",
+   "Possibly different",
+   "Isomorphic only if simply connected"
   ],
-  "why": "Homology is a homotopy invariant: homotopy equivalences induce isomorphisms on all homology groups.",
-  "subj": "homotopy-theory",
-  "diff": 1
- },
- {
-  "space": "a contractible space $X$",
-  "q": "What are all the homotopy/homology groups of a contractible space (beyond $\\pi_0,H_0$)?",
-  "a": "All trivial: $\\pi_k=0$ for $k\\geq1$ and $\\tilde H_k=0$ for all $k$",
-  "d": [
-   "$\\pi_1$ can be nontrivial",
-   "$H_1$ is always $\\mathbb{Z}$",
-   "Depends on the specific contractible space"
-  ],
-  "why": "Contractibility means homotopy equivalence to a point, so all higher homotopy and reduced homology groups vanish, by homotopy invariance.",
+  "why": "Homology is a homotopy invariant, so a homotopy equivalence induces isomorphisms in all degrees.",
   "subj": "homotopy-theory",
   "diff": 1
  },
  {
   "space": "CW approximation",
-  "q": "CW approximation theorem says every space is weakly homotopy equivalent to what?",
+  "q": "Every space is weakly homotopy equivalent to which kind of space?",
   "a": "A CW complex",
   "d": [
-   "A manifold",
-   "A simplicial complex with the same number of simplices",
-   "Itself, trivially"
+   "A smooth manifold",
+   "A simplicial complex of the same dimension",
+   "A compact space"
   ],
-  "why": "Every topological space admits a CW approximation: a CW complex $Z$ with a map $Z\\to X$ inducing isomorphisms on all homotopy groups.",
+  "why": "CW approximation provides, for any space, a CW complex and a map inducing isomorphisms on all homotopy groups.",
   "subj": "homotopy-theory",
   "diff": 2
  },
  {
-  "space": "a homotopy equivalence $f:X\\to Y$",
-  "q": "Does a homotopy equivalence need to be a bijection on points?",
-  "a": "No",
-  "d": [
-   "Yes, always",
-   "Only if $X,Y$ are compact",
-   "Only if $X,Y$ are manifolds"
-  ],
-  "why": "E.g. $\\mathbb{R}^n\\to \\{0\\}$ is a homotopy equivalence (both are contractible) but certainly not a bijection.",
-  "subj": "homotopy-theory",
-  "diff": 1
- },
- {
-  "space": "the mapping torus of the identity on $X$",
-  "q": "The mapping torus of $\\mathrm{id}_X:X\\to X$ is homotopy equivalent / homeomorphic to what?",
-  "a": "$X\\times S^1$",
-  "d": [
-   "$\\Sigma X$",
-   "$X$ itself",
-   "$X\\vee S^1$"
-  ],
-  "why": "The mapping torus $M_f=X\\times[0,1]/(x,0)\\sim(f(x),1)$ for $f=\\mathrm{id}$ is exactly $X\\times S^1$.",
-  "subj": "homotopy-theory",
-  "diff": 3
- },
- {
-  "space": "a fibration with contractible base",
-  "q": "If $F\\to E\\to B$ is a fibration with $B$ contractible, what is the relation between $E$ and $F$?",
-  "a": "$E\\simeq F$ (homotopy equivalent)",
-  "d": [
-   "$E$ is always contractible",
-   "$E\\simeq B$",
-   "No relation in general"
-  ],
-  "why": "A fibration over a contractible base is fiber homotopy equivalent to the trivial fibration $F\\times B\\to B$, hence $E\\simeq F\\times B\\simeq F$.",
-  "subj": "homotopy-theory",
-  "diff": 4
- },
- {
-  "space": "Eilenberg-MacLane spaces $K(G,n)$",
+  "space": "Eilenberg–MacLane spaces",
   "q": "A space $K(G,n)$ is characterized by which homotopy groups?",
-  "a": "$\\pi_n=G$ and $\\pi_k=0$ for $k\\neq n$",
+  "a": "$\\pi_n=G$, all others zero",
   "d": [
    "$\\pi_k=G$ for all $k$",
-   "$\\pi_1=G$ regardless of $n$",
-   "$H_n=G$ but homotopy groups unspecified"
+   "$\\pi_1=G$, all others zero",
+   "$\\pi_n=G$ and $\\pi_{n+1}=G$"
   ],
-  "why": "By definition, $K(G,n)$ has a single nonzero homotopy group $\\pi_n\\cong G$ (with $G$ abelian if $n\\geq2$).",
+  "why": "By definition $K(G,n)$ has a single nonzero homotopy group $\\pi_n\\cong G$.",
   "subj": "homotopy-theory",
   "diff": 2
  },
@@ -1327,12 +1483,77 @@ const BANK = [
   "a": "$S^1$",
   "d": [
    "$S^2$",
-   "$\\mathbb{R}$",
+   "$\\mathbb{RP}^\\infty$",
    "$T^2$"
   ],
-  "why": "$S^1$ has $\\pi_1=\\mathbb{Z}$ and universal cover $\\mathbb{R}$ contractible, so all higher $\\pi_k=0$, making it a $K(\\mathbb{Z},1)$.",
+  "why": "$S^1$ has $\\pi_1=\\mathbb{Z}$ and contractible universal cover $\\mathbb{R}$, so all higher $\\pi_k$ vanish.",
   "subj": "homotopy-theory",
   "diff": 2
+ },
+ {
+  "space": "$K(\\mathbb{Z}/2,1)$",
+  "q": "Which space is a $K(\\mathbb{Z}/2,1)$?",
+  "a": "$\\mathbb{RP}^\\infty$",
+  "d": [
+   "$\\mathbb{RP}^2$",
+   "$S^1$",
+   "$\\mathbb{CP}^\\infty$"
+  ],
+  "why": "$\\mathbb{RP}^\\infty=S^\\infty/(\\mathbb{Z}/2)$ has $\\pi_1=\\mathbb{Z}/2$ and contractible universal cover $S^\\infty$, so it is a $K(\\mathbb{Z}/2,1)$.",
+  "subj": "homotopy-theory",
+  "diff": 3
+ },
+ {
+  "space": "the mapping torus of $\\mathrm{id}_X$",
+  "q": "The mapping torus of the identity map on $X$ is which space?",
+  "a": "$X\\times S^1$",
+  "d": [
+   "$\\Sigma X$",
+   "$X$ itself",
+   "$X\\vee S^1$"
+  ],
+  "why": "The mapping torus of $\\mathrm{id}_X$ glues $X\\times[0,1]$ end to end without twisting, giving $X\\times S^1$.",
+  "subj": "homotopy-theory",
+  "diff": 3
+ },
+ {
+  "space": "Whitehead's theorem",
+  "q": "Whitehead's theorem upgrades a weak equivalence to a homotopy equivalence between which spaces?",
+  "a": "CW complexes",
+  "d": [
+   "Arbitrary topological spaces",
+   "Simply connected spaces",
+   "Compact manifolds"
+  ],
+  "why": "A map of CW complexes inducing isomorphisms on all $\\pi_k$ is a homotopy equivalence; the CW hypothesis is essential.",
+  "subj": "homotopy-theory",
+  "diff": 3
+ },
+ {
+  "space": "loop space and suspension adjunction",
+  "q": "The functors $\\Sigma$ and $\\Omega$ form an adjunction in which order?",
+  "a": "$\\Sigma$ is left adjoint to $\\Omega$",
+  "d": [
+   "$\\Omega$ is left adjoint to $\\Sigma$",
+   "They are inverse equivalences",
+   "Neither is adjoint to the other"
+  ],
+  "why": "There is a natural bijection $[\\Sigma X,Y]\\cong[X,\\Omega Y]$, so $\\Sigma\\dashv\\Omega$.",
+  "subj": "homotopy-theory",
+  "diff": 4
+ },
+ {
+  "space": "a fibration with contractible total space",
+  "q": "If $F\\to E\\to B$ is a fibration with $E$ contractible, then $\\Omega B$ is weakly equivalent to what?",
+  "a": "$F$",
+  "d": [
+   "$B$",
+   "$\\Sigma F$",
+   "a point"
+  ],
+  "why": "The long exact sequence gives $\\pi_k(F)\\cong\\pi_{k+1}(B)\\cong\\pi_k(\\Omega B)$, so $F\\simeq\\Omega B$ when $E$ is contractible (the path-loop fibration).",
+  "subj": "homotopy-theory",
+  "diff": 5
  },
  {
   "space": "$K^0$ of a point",
@@ -1343,85 +1564,85 @@ const BANK = [
    "$\\mathbb{Z}/2$",
    "$\\mathbb{Z}\\oplus\\mathbb{Z}$"
   ],
-  "why": "$K^0(\\mathrm{pt})$ is the Grothendieck group of vector bundles over a point, i.e. of finite-dim vector spaces, which is $\\mathbb{Z}$ (rank).",
+  "why": "$K^0(\\mathrm{pt})$ is the Grothendieck group of vector spaces over a point, classified by dimension, giving $\\mathbb{Z}$.",
   "subj": "k-theory",
   "diff": 2
  },
  {
-  "space": "Bott periodicity (complex)",
-  "q": "Complex topological K-theory is periodic with what period?",
-  "a": "$2$: $KU^n\\cong KU^{n+2}$",
+  "space": "complex Bott periodicity",
+  "q": "Complex topological K-theory $KU$ is periodic with which period?",
+  "a": "$2$",
   "d": [
    "$8$",
-   "$1$",
-   "Not periodic"
+   "$4$",
+   "$1$"
   ],
-  "why": "Bott periodicity for complex K-theory gives period $2$, reflecting $\\Omega^2 U\\simeq U$ (or $BU\\times\\mathbb{Z}\\simeq \\Omega U$ shifted).",
+  "why": "Bott periodicity gives $KU^n\\cong KU^{n+2}$, period $2$, reflecting $\\Omega^2(\\mathbb{Z}\\times BU)\\simeq\\mathbb{Z}\\times BU$.",
   "subj": "k-theory",
   "diff": 3
  },
  {
-  "space": "Bott periodicity (real)",
-  "q": "Real topological K-theory $KO$ is periodic with what period?",
+  "space": "real Bott periodicity",
+  "q": "Real topological K-theory $KO$ is periodic with which period?",
   "a": "$8$",
   "d": [
    "$2$",
    "$4$",
    "$1$"
   ],
-  "why": "Real K-theory has period $8$ (the famous Bott song / Clifford algebra periodicity), reflected in the 8-fold pattern of $\\pi_i(O)$.",
+  "why": "Real K-theory has period $8$, the Clifford-algebra periodicity reflected in $\\pi_i(O)$.",
   "subj": "k-theory",
   "diff": 4
  },
  {
-  "space": "$\\tilde K^0(S^n)$",
-  "q": "What is $\\tilde K^0(S^{2n})$ (reduced complex K-theory of an even sphere)?",
+  "space": "reduced K-theory of even spheres",
+  "q": "What is $\\tilde K^0(S^{2n})$?",
   "a": "$\\mathbb{Z}$",
   "d": [
    "$0$",
    "$\\mathbb{Z}/2$",
    "$\\mathbb{Z}^n$"
   ],
-  "why": "$\\tilde K^0(S^{2n})\\cong\\mathbb{Z}$, generated by a Bott class; this follows from the Atiyah–Hirzebruch spectral sequence collapsing for spheres.",
+  "why": "$\\tilde K^0(S^{2n})\\cong\\mathbb{Z}$, generated by the $n$-fold product of the Bott class $(H-1)$.",
   "subj": "k-theory",
   "diff": 4
  },
  {
-  "space": "$\\tilde K^0(S^n)$ odd case",
-  "q": "What is $\\tilde K^0(S^{2n+1})$ (reduced complex K-theory of an odd sphere)?",
+  "space": "reduced K-theory of odd spheres",
+  "q": "What is $\\tilde K^0(S^{2n+1})$?",
   "a": "$0$",
   "d": [
    "$\\mathbb{Z}$",
    "$\\mathbb{Z}/2$",
    "$\\mathbb{Z}/(2n+1)$"
   ],
-  "why": "Every complex vector bundle over an odd sphere is stably trivial, since $S^{2n+1}\\wedge S^1\\simeq S^{2n+2}$ reduces the computation to $\\tilde K^0(S^1)=0$ (no nontrivial complex bundles over $S^1$), and Bott periodicity propagates this vanishing to all odd spheres.",
+  "why": "Every complex bundle over an odd sphere is stably trivial; Bott periodicity reduces this to $\\tilde K^0(S^1)=0$.",
   "subj": "k-theory",
   "diff": 4
  },
  {
   "space": "the Chern character",
-  "q": "The Chern character provides a natural map from K-theory to which cohomology theory (rationally)?",
-  "a": "Ordinary (rational) cohomology $H^*(-;\\mathbb{Q})$",
+  "q": "The Chern character maps K-theory isomorphically (rationally) onto which theory?",
+  "a": "Rational cohomology $H^{even}(X;\\mathbb{Q})$",
   "d": [
-   "Integral cohomology, with no need to rationalize",
-   "de Rham cohomology of a different manifold",
-   "Stable homotopy groups of spheres"
+   "Integral cohomology $H^{even}(X;\\mathbb{Z})$",
+   "Rational homology $H_{even}(X;\\mathbb{Q})$",
+   "Stable cohomotopy of $X$"
   ],
-  "why": "The Chern character $\\mathrm{ch}:K^0(X)\\to H^{even}(X;\\mathbb{Q})$ is a ring isomorphism after tensoring K-theory with $\\mathbb{Q}$ (for finite CW $X$).",
+  "why": "The Chern character $\\mathrm{ch}:K^0(X)\\otimes\\mathbb{Q}\\to H^{even}(X;\\mathbb{Q})$ is a ring isomorphism for finite CW complexes.",
   "subj": "k-theory",
   "diff": 3
  },
  {
-  "space": "algebraic K-theory $K_0$ of a ring",
-  "q": "$K_0(R)$ for a ring $R$ is the Grothendieck group of which category?",
-  "a": "Finitely generated projective $R$-modules",
+  "space": "algebraic $K_0$ of a ring",
+  "q": "$K_0(R)$ is the Grothendieck group of which class of modules?",
+  "a": "Finitely generated projective modules",
   "d": [
-   "All $R$-modules",
-   "Finitely generated free $R$-modules only, with no group completion",
-   "Ideals of $R$"
+   "All finitely generated modules",
+   "Finitely generated free modules",
+   "Simple modules"
   ],
-  "why": "$K_0(R)$ is defined as the group completion of the monoid of isomorphism classes of finitely generated projective modules under direct sum.",
+  "why": "$K_0(R)$ group-completes the monoid of f.g. projective modules under direct sum.",
   "subj": "k-theory",
   "diff": 3
  },
@@ -1431,197 +1652,262 @@ const BANK = [
   "a": "$\\mathbb{Z}$",
   "d": [
    "$0$",
-   "$F^*$",
-   "Depends on $F$"
+   "$F^\\times$",
+   "$\\mathbb{Z}\\oplus F^\\times$"
   ],
-  "why": "Every finitely generated projective module over a field is free, classified by dimension, so $K_0(F)=\\mathbb{Z}$ for any field $F$.",
+  "why": "Every f.g. projective module over a field is free, classified by dimension, so $K_0(F)=\\mathbb{Z}$.",
   "subj": "k-theory",
   "diff": 2
  },
  {
-  "space": "the Atiyah–Hirzebruch spectral sequence",
-  "q": "The AHSS computes generalized cohomology $E^*(X)$ starting from which input?",
-  "a": "Ordinary cohomology $H^*(X;E^*(\\mathrm{pt}))$, converging to $E^*(X)$",
+  "space": "the Atiyah–Hirzebruch SS in K-theory",
+  "q": "For computing $K^*(X)$, the AHSS has $E_2$ page equal to what?",
+  "a": "$H^p(X;K^q(\\mathrm{pt}))$",
   "d": [
-   "Only $\\pi_*(X)$",
-   "Only the Euler characteristic of $X$",
-   "Directly $E^*(X)$, with no spectral sequence needed"
+   "$K^p(X;H^q(\\mathrm{pt}))$",
+   "$H^p(X;H^q(\\mathrm{pt}))$",
+   "$K^p(\\mathrm{pt};H^q(X))$"
   ],
-  "why": "The AHSS has $E_2$-page built from ordinary cohomology of $X$ with coefficients in the coefficient groups of the generalized theory $E$, converging to $E^*(X)$.",
+  "why": "The AHSS for $K$-theory has $E_2^{p,q}=H^p(X;K^q(\\mathrm{pt}))$, with $K^q(\\mathrm{pt})=\\mathbb{Z}$ for $q$ even and $0$ for $q$ odd.",
   "subj": "k-theory",
   "diff": 4
  },
  {
-  "space": "the Adams operations $\\psi^k$",
-  "q": "Adams operations $\\psi^k$ on $K^0(X)$ satisfy which composition law?",
+  "space": "Adams operations $\\psi^k$",
+  "q": "Adams operations satisfy which composition law on $K^0(X)$?",
   "a": "$\\psi^k\\circ\\psi^l=\\psi^{kl}$",
   "d": [
    "$\\psi^k\\circ\\psi^l=\\psi^{k+l}$",
-   "$\\psi^k\\circ\\psi^l=\\psi^k+\\psi^l$",
-   "No general composition law"
+   "$\\psi^k\\circ\\psi^l=\\psi^{k}+\\psi^{l}$",
+   "$\\psi^k\\circ\\psi^l=\\psi^{\\gcd(k,l)}$"
   ],
-  "why": "Adams operations form a commutative family of ring endomorphisms with $\\psi^k\\psi^l=\\psi^{kl}$, derived from the $\\lambda$-ring structure via Newton's identities.",
+  "why": "Adams operations form a commuting family of ring endomorphisms with $\\psi^k\\psi^l=\\psi^{kl}$, from the $\\lambda$-ring structure.",
   "subj": "k-theory",
   "diff": 4
  },
  {
+  "space": "$K_1$ of a field",
+  "q": "What is $K_1(F)$ for a field $F$?",
+  "a": "$F^\\times$",
+  "d": [
+   "$\\mathbb{Z}$",
+   "$0$",
+   "$F$ additively"
+  ],
+  "why": "$K_1(F)=GL(F)^{ab}=F^\\times$ by the determinant, since elementary matrices generate $SL$.",
+  "subj": "k-theory",
+  "diff": 5
+ },
+ {
+  "space": "the $J$-homomorphism",
+  "q": "The image of the $J$-homomorphism in $\\pi_3^s=\\mathbb{Z}/24$ has which order?",
+  "a": "$24$",
+  "d": [
+   "$2$",
+   "$12$",
+   "$1$"
+  ],
+  "why": "In stem $3$ the $J$-homomorphism is surjective onto $\\pi_3^s=\\mathbb{Z}/24$, so its image has order $24$; the denominators of $B_{2k}/4k$ govern these orders.",
+  "subj": "k-theory",
+  "diff": 5
+ },
+ {
   "space": "the unknot",
-  "q": "What is the genus of the unknot (minimal genus of a Seifert surface)?",
+  "q": "What is the Seifert genus of the unknot?",
   "a": "$0$",
   "d": [
    "$1$",
-   "Undefined",
-   "Depends on the diagram"
+   "$2$",
+   "$3$"
   ],
-  "why": "The unknot bounds a disk, which has genus $0$, and this is the minimal possible Seifert surface genus.",
+  "why": "The unknot bounds a disk, a genus-$0$ Seifert surface, and this is minimal.",
   "subj": "knot-theory",
   "diff": 2
  },
  {
   "space": "the trefoil knot",
-  "q": "What is the crossing number of the trefoil knot?",
+  "q": "What is the crossing number of the trefoil?",
   "a": "$3$",
   "d": [
    "$1$",
    "$4$",
-   "$0$"
+   "$5$"
   ],
-  "why": "The trefoil is the simplest nontrivial knot, with minimal crossing number $3$ (it cannot be drawn with fewer crossings without becoming the unknot).",
+  "why": "The trefoil is the simplest nontrivial knot, with minimal crossing number $3$.",
   "subj": "knot-theory",
   "diff": 1
  },
  {
-  "space": "the Alexander polynomial",
-  "q": "The Alexander polynomial of the unknot is what?",
+  "space": "the Alexander polynomial of the unknot",
+  "q": "What is the Alexander polynomial of the unknot?",
   "a": "$1$",
   "d": [
    "$0$",
    "$t-1$",
-   "$t^2+1$"
+   "$t+1$"
   ],
-  "why": "By convention/normalization, the unknot has trivial Alexander polynomial $\\Delta(t)=1$.",
+  "why": "By the standard normalization the unknot has Alexander polynomial $\\Delta(t)=1$.",
   "subj": "knot-theory",
   "diff": 3
  },
  {
-  "space": "the Jones polynomial",
-  "q": "The Jones polynomial can distinguish the trefoil from its mirror image, illustrating that the Jones polynomial detects what?",
-  "a": "Chirality (the trefoil is not amphichiral)",
+  "space": "the trefoil and its mirror",
+  "q": "The Jones polynomial distinguishes the trefoil from its mirror, showing the trefoil has which property?",
+  "a": "It is chiral",
   "d": [
-   "Nothing beyond the Alexander polynomial",
-   "Only the crossing number",
-   "Only whether the knot is the unknot"
+   "It is amphichiral",
+   "It is the unknot",
+   "It is a torus link"
   ],
-  "why": "Unlike the Alexander polynomial (which cannot distinguish a knot from its mirror), the Jones polynomial of the trefoil differs from that of its mirror image, showing the trefoil is chiral.",
+  "why": "The Jones polynomial of the trefoil differs from its mirror's, so the trefoil is not equivalent to its mirror image (chiral).",
   "subj": "knot-theory",
   "diff": 4
  },
  {
   "space": "connected sum of knots",
-  "q": "Is the connected sum operation on knots commutative?",
-  "a": "Yes",
+  "q": "Which algebraic structure do knots form under connected sum?",
+  "a": "A commutative monoid",
   "d": [
-   "No",
-   "Only for the unknot",
-   "Only for prime knots"
+   "A group",
+   "A non-commutative monoid",
+   "A field"
   ],
-  "why": "Knot connected sum is both commutative and associative, making the set of knots under $\\#$ a commutative monoid with the unknot as identity.",
+  "why": "Connected sum is commutative and associative with the unknot as identity, but knots have no inverses, so it is a commutative monoid.",
   "subj": "knot-theory",
   "diff": 2
  },
  {
   "space": "prime knots",
-  "q": "A knot is called prime if it cannot be expressed as what?",
-  "a": "A nontrivial connected sum of two knots",
+  "q": "A knot is prime if it is not a connected sum of which kind?",
+  "a": "Two nontrivial knots",
   "d": [
-   "A connected sum with the unknot",
-   "A link with more than one component",
-   "Any sum at all, including with the unknot"
+   "A knot with the unknot",
+   "A knot with itself",
+   "Two links"
   ],
-  "why": "Prime knots are the \"irreducible\" building blocks under connected sum, analogous to prime numbers under multiplication.",
+  "why": "Prime knots are those not expressible as a connected sum of two nontrivial knots, analogous to prime numbers.",
   "subj": "knot-theory",
   "diff": 2
  },
  {
   "space": "the figure-eight knot",
-  "q": "Is the figure-eight knot amphichiral (equivalent to its mirror image)?",
-  "a": "Yes",
+  "q": "Which property does the figure-eight knot have?",
+  "a": "It is amphichiral",
   "d": [
-   "No",
-   "This is unknown/open",
-   "Only up to concordance, not isotopy"
+   "It is chiral",
+   "It is a torus knot",
+   "It has crossing number $3$"
   ],
-  "why": "The figure-eight knot is a classical example of an amphichiral knot — it is isotopic to its own mirror image.",
+  "why": "The figure-eight knot is the simplest amphichiral knot, equivalent to its mirror image; its crossing number is $4$.",
   "subj": "knot-theory",
   "diff": 4
  },
  {
-  "space": "linking number",
-  "q": "The linking number of two disjoint unknotted, unlinked circles in $\\mathbb{R}^3$ is what?",
+  "space": "two unlinked circles",
+  "q": "What is the linking number of two unknotted, unlinked circles?",
   "a": "$0$",
   "d": [
    "$1$",
-   "Undefined",
-   "Depends on orientation only, never $0$"
+   "$2$",
+   "$-1$"
   ],
-  "why": "Unlinked circles bound disjoint disks, giving signed crossing count $0$ for the linking number.",
+  "why": "Unlinked circles bound disjoint disks, so their signed crossing count, the linking number, is $0$.",
   "subj": "knot-theory",
   "diff": 2
  },
  {
-  "space": "knot complements and the Gordon–Luecke theorem",
-  "q": "The Gordon–Luecke theorem states that knots are determined (up to mirror image) by what?",
-  "a": "Their complements in $S^3$",
+  "space": "the Gordon–Luecke theorem",
+  "q": "Knots in $S^3$ are determined (up to mirror image) by which data?",
+  "a": "Their complement",
   "d": [
    "Their Alexander polynomial",
    "Their crossing number",
-   "Their genus alone"
+   "Their genus"
   ],
-  "why": "Gordon–Luecke (1989) proved that two knots in $S^3$ with homeomorphic complements are equivalent (up to taking mirror images) — knots are determined by their complements.",
+  "why": "Gordon\\u2013Luecke proved that two knots with homeomorphic complements are equivalent up to mirror image.",
   "subj": "knot-theory",
   "diff": 5
  },
  {
+  "space": "torus knots",
+  "q": "The $(p,q)$-torus knot is nontrivial precisely when both $p,q$ satisfy what?",
+  "a": "$|p|,|q|\\geq2$ and coprime",
+  "d": [
+   "$p=q$",
+   "$p,q$ both even",
+   "$pq$ is prime"
+  ],
+  "why": "A $(p,q)$ curve on the torus is a nontrivial knot exactly when $p,q$ are coprime with $|p|,|q|\\geq2$ (otherwise it is an unknot).",
+  "subj": "knot-theory",
+  "diff": 4
+ },
+ {
+  "space": "the genus of a connected sum",
+  "q": "How does Seifert genus behave under connected sum of knots?",
+  "a": "It is additive",
+  "d": [
+   "It is multiplicative",
+   "It is the maximum",
+   "It can decrease"
+  ],
+  "why": "Seifert genus is additive: $g(K_1\\#K_2)=g(K_1)+g(K_2)$, a theorem of Schubert.",
+  "subj": "knot-theory",
+  "diff": 5
+ },
+ {
+  "space": "the bridge number of the unknot",
+  "q": "What is the bridge number of the unknot?",
+  "a": "$1$",
+  "d": [
+   "$0$",
+   "$2$",
+   "$3$"
+  ],
+  "why": "The unknot has bridge number $1$; bridge number $1$ knots are exactly the unknot.",
+  "subj": "knot-theory",
+  "diff": 3
+ },
+ {
   "space": "$U(1)$",
-  "q": "What familiar space is the Lie group $U(1)$?",
+  "q": "The Lie group $U(1)$ is homeomorphic to which space?",
   "a": "$S^1$",
   "d": [
    "$\\mathbb{R}$",
    "$S^3$",
-   "A point"
+   "$S^2$"
   ],
-  "why": "$U(1)$ consists of unit complex numbers, which as a topological space is exactly the circle $S^1$.",
+  "why": "$U(1)$ is the unit complex numbers, i.e. the circle $S^1$.",
   "subj": "lie-groups",
   "diff": 1
  },
  {
   "space": "$SU(2)$",
-  "q": "What familiar space is the Lie group $SU(2)$?",
+  "q": "The Lie group $SU(2)$ is homeomorphic to which space?",
   "a": "$S^3$",
   "d": [
    "$S^2$",
    "$\\mathbb{RP}^3$",
    "$T^3$"
   ],
-  "why": "$SU(2)$ consists of unit quaternions, identifying it with $S^3\\subset\\mathbb{H}$.",
+  "why": "$SU(2)$ is the unit quaternions, identified with $S^3\\subset\\mathbb{H}$.",
   "subj": "lie-groups",
   "diff": 2
  },
  {
-  "space": "$SO(3)$ vs $SU(2)$",
-  "q": "What is the relationship between $SO(3)$ and $SU(2)$?",
-  "a": "$SU(2)$ is the universal double cover of $SO(3)$",
+  "space": "$SU(2)$ and $SO(3)$",
+  "q": "What is the relationship between $SU(2)$ and $SO(3)$?",
+  "a": "$SU(2)$ double covers $SO(3)$",
   "d": [
-   "They are isomorphic as Lie groups",
    "$SO(3)$ double covers $SU(2)$",
-   "They have no relation"
+   "They are isomorphic",
+   "They are unrelated"
   ],
-  "why": "There is a surjective 2-to-1 homomorphism $SU(2)\\to SO(3)$ with kernel $\\{\\pm I\\}$, and since $SU(2)\\cong S^3$ is simply connected, it is the universal cover.",
+  "why": "There is a $2$-to-$1$ homomorphism $SU(2)\\to SO(3)$ with kernel $\\{\\pm I\\}$, and $SU(2)\\cong S^3$ is the universal cover.",
   "subj": "lie-groups",
   "diff": 3
  },
  {
-  "space": "$\\pi_1$ of compact Lie groups",
+  "space": "$SO(n)$ for $n\\geq3$",
   "q": "What is $\\pi_1(SO(n))$ for $n\\geq3$?",
   "a": "$\\mathbb{Z}/2$",
   "d": [
@@ -1629,298 +1915,467 @@ const BANK = [
    "$\\mathbb{Z}$",
    "$\\mathbb{Z}/n$"
   ],
-  "why": "For $n\\geq3$, $SO(n)$ has fundamental group $\\mathbb{Z}/2$, with universal cover the spin group $\\mathrm{Spin}(n)$.",
+  "why": "For $n\\geq3$, $SO(n)$ has fundamental group $\\mathbb{Z}/2$, with universal cover $\\mathrm{Spin}(n)$.",
   "subj": "lie-groups",
   "diff": 3
  },
  {
-  "space": "the maximal torus",
-  "q": "Every compact connected Lie group $G$ has which key structural feature used in representation theory?",
-  "a": "A maximal torus $T\\subset G$, unique up to conjugation",
+  "space": "compact connected Lie groups",
+  "q": "Every compact connected Lie group contains a maximal torus that is unique up to what?",
+  "a": "Conjugation",
   "d": [
-   "A unique minimal torus",
-   "No subgroup isomorphic to a torus in general",
-   "A unique normal abelian subgroup equal to $G$ itself"
+   "Isomorphism only",
+   "Translation",
+   "Nothing; it is literally unique"
   ],
-  "why": "The maximal torus theorem states every compact connected Lie group has a maximal torus, and all maximal tori are conjugate.",
+  "why": "The maximal torus theorem: maximal tori exist and any two are conjugate.",
   "subj": "lie-groups",
   "diff": 3
  },
  {
-  "space": "$\\pi_3$ of compact simple Lie groups",
-  "q": "For any compact simple Lie group $G$, what is $\\pi_3(G)$?",
+  "space": "compact simple Lie groups",
+  "q": "What is $\\pi_3(G)$ for any compact simple Lie group $G$?",
   "a": "$\\mathbb{Z}$",
   "d": [
    "$0$",
    "$\\mathbb{Z}/2$",
-   "Depends heavily on $G$, with no uniform answer"
+   "$\\mathbb{Z}\\oplus\\mathbb{Z}$"
   ],
-  "why": "A standard fact: $\\pi_3(G)\\cong\\mathbb{Z}$ for every compact simple Lie group, related to the generator detected by the Killing form / level in WZW models.",
+  "why": "Every compact simple Lie group has $\\pi_3(G)\\cong\\mathbb{Z}$, the level detected by the Killing form.",
   "subj": "lie-groups",
   "diff": 4
  },
  {
-  "space": "$\\pi_2$ of compact Lie groups",
+  "space": "any Lie group",
   "q": "What is $\\pi_2(G)$ for any Lie group $G$?",
   "a": "$0$",
   "d": [
    "$\\mathbb{Z}$",
-   "Depends on $G$",
-   "$\\mathbb{Z}/2$"
+   "$\\mathbb{Z}/2$",
+   "depends on $G$"
   ],
-  "why": "A theorem (using that $G$ is an H-space, hence its universal cover is too, plus Lie group structure) shows $\\pi_2(G)=0$ for every Lie group $G$.",
+  "why": "$\\pi_2$ of any Lie group vanishes, a classical theorem.",
   "subj": "lie-groups",
   "diff": 4
  },
  {
-  "space": "$SO(n)$ vs $O(n)$",
-  "q": "How many connected components does $O(n)$ have, for $n\\geq1$?",
+  "space": "$O(n)$",
+  "q": "How many connected components does $O(n)$ have?",
   "a": "$2$",
   "d": [
    "$1$",
    "$n$",
-   "Infinitely many"
+   "infinitely many"
   ],
-  "why": "$O(n)$ has exactly two components distinguished by determinant $\\pm1$; $SO(n)$ is the identity component.",
+  "why": "$O(n)$ splits by determinant $\\pm1$ into two components; $SO(n)$ is the identity component.",
   "subj": "lie-groups",
   "diff": 1
  },
  {
-  "space": "the Lie algebra of a Lie group",
-  "q": "The tangent space at the identity of a Lie group $G$ carries which extra structure?",
-  "a": "A Lie bracket, making it the Lie algebra $\\mathfrak{g}$",
+  "space": "the Lie algebra of $G$",
+  "q": "The tangent space at the identity of a Lie group carries which structure?",
+  "a": "A Lie bracket",
   "d": [
-   "A ring structure with no bracket",
-   "Nothing beyond a vector space structure",
-   "A metric uniquely determined by $G$"
+   "An associative product",
+   "A field structure",
+   "Only a vector space structure"
   ],
-  "why": "$T_eG$ inherits a Lie bracket from the commutator structure of $G$ (via left-invariant vector fields), defining the Lie algebra.",
+  "why": "$T_eG$ inherits the Lie bracket from commutators of left-invariant vector fields, forming the Lie algebra.",
   "subj": "lie-groups",
   "diff": 2
  },
  {
-  "space": "the tangent bundle of $S^n$",
-  "q": "For which $n$ is $TS^n$ trivial (i.e. $S^n$ parallelizable)?",
-  "a": "$n=1,3,7$ only",
+  "space": "$U(n)$",
+  "q": "What is $\\pi_1(U(n))$ for $n\\geq1$?",
+  "a": "$\\mathbb{Z}$",
   "d": [
-   "Only $n=1$",
-   "All odd $n$",
-   "All $n$"
+   "$0$",
+   "$\\mathbb{Z}/2$",
+   "$\\mathbb{Z}^n$"
   ],
-  "why": "By a famous theorem (related to division algebras $\\mathbb{C},\\mathbb{H},\\mathbb{O}$), $S^n$ is parallelizable exactly for $n=1,3,7$.",
+  "why": "The determinant $U(n)\\to U(1)=S^1$ induces an isomorphism on $\\pi_1$, giving $\\pi_1(U(n))=\\mathbb{Z}$.",
+  "subj": "lie-groups",
+  "diff": 4
+ },
+ {
+  "space": "$SU(n)$",
+  "q": "What is $\\pi_1(SU(n))$ for $n\\geq2$?",
+  "a": "$0$",
+  "d": [
+   "$\\mathbb{Z}$",
+   "$\\mathbb{Z}/2$",
+   "$\\mathbb{Z}/n$"
+  ],
+  "why": "$SU(n)$ is simply connected for all $n\\geq2$.",
+  "subj": "lie-groups",
+  "diff": 3
+ },
+ {
+  "space": "the exponential map",
+  "q": "For a compact connected Lie group, the exponential map $\\mathfrak{g}\\to G$ is which kind of map?",
+  "a": "Surjective",
+  "d": [
+   "Injective",
+   "A diffeomorphism",
+   "Never surjective"
+  ],
+  "why": "For compact connected Lie groups the exponential map is surjective, though generally neither injective nor a global diffeomorphism.",
+  "subj": "lie-groups",
+  "diff": 5
+ },
+ {
+  "space": "parallelizable spheres",
+  "q": "For which $n$ is $S^n$ parallelizable (tangent bundle trivial)?",
+  "a": "$n=1,3,7$",
+  "d": [
+   "all odd $n$",
+   "only $n=1$",
+   "all $n$"
+  ],
+  "why": "By the Hopf-invariant-one / division-algebra theorem, $S^n$ is parallelizable exactly for $n=1,3,7$, tied to $\\mathbb{C},\\mathbb{H},\\mathbb{O}$.",
   "subj": "manifolds",
   "diff": 5
  },
  {
-  "space": "the hairy ball theorem",
-  "q": "For which even-dimensional spheres does a nonvanishing continuous vector field exist?",
-  "a": "None: every even sphere $S^{2n}$ has no nonvanishing vector field",
+  "space": "vector fields on spheres",
+  "q": "On which spheres does a nowhere-vanishing continuous vector field exist?",
+  "a": "Exactly the odd-dimensional spheres",
   "d": [
-   "All even spheres admit one",
-   "Only $S^2$ fails to admit one",
-   "It depends on the embedding"
+   "Exactly the even-dimensional spheres",
+   "All spheres of dimension $\\geq2$",
+   "Only $S^1$ and $S^3$"
   ],
-  "why": "This generalizes the classical hairy ball theorem ($S^2$): $\\chi(S^{2n})=2\\neq0$ obstructs existence of a nonvanishing vector field via Poincaré–Hopf.",
+  "why": "$\\chi(S^n)=0$ iff $n$ is odd; by Poincar\\u00e9\\u2013Hopf a nowhere-zero field exists exactly when $\\chi=0$, i.e. on odd spheres.",
   "subj": "manifolds",
   "diff": 3
  },
  {
-  "space": "Poincaré–Hopf theorem",
-  "q": "The Poincaré–Hopf theorem relates the sum of indices of a vector field's zeros to what?",
-  "a": "The Euler characteristic of the manifold",
+  "space": "the Poincaré–Hopf theorem",
+  "q": "The sum of indices of a vector field's zeros on a closed manifold equals which invariant?",
+  "a": "The Euler characteristic",
   "d": [
-   "The genus of the manifold",
-   "The fundamental group order",
-   "The dimension of the manifold"
+   "The signature",
+   "The Betti number $b_1$",
+   "The dimension"
   ],
-  "why": "Poincaré–Hopf: for a vector field with isolated zeros on a closed manifold $M$, the sum of indices equals $\\chi(M)$.",
+  "why": "Poincar\\u00e9\\u2013Hopf: for a vector field with isolated zeros on a closed manifold, the signed index sum equals $\\chi(M)$.",
   "subj": "manifolds",
   "diff": 3
  },
  {
   "space": "smooth structures on $S^7$",
-  "q": "How many distinct smooth structures (up to orientation-preserving diffeomorphism) does Milnor's work show exist on the topological $7$-sphere?",
-  "a": "More than one (28 oriented smooth structures total, by Milnor and Kervaire–Milnor)",
+  "q": "How many oriented smooth structures does the topological $7$-sphere carry?",
+  "a": "$28$",
   "d": [
-   "Exactly one",
-   "Infinitely many",
-   "The question is open"
+   "$1$",
+   "$7$",
+   "infinitely many"
   ],
-  "why": "Milnor's discovery of exotic 7-spheres showed $S^7$ admits multiple non-diffeomorphic smooth structures; Kervaire–Milnor later computed there are exactly 28 (15 up to orientation-reversing diffeomorphism, but 28 oriented ones).",
+  "why": "Kervaire\\u2013Milnor showed the group of homotopy $7$-spheres is $\\mathbb{Z}/28$, so $S^7$ has $28$ oriented smooth structures, the first exotic spheres found by Milnor.",
   "subj": "manifolds",
   "diff": 5
  },
  {
   "space": "the Whitney embedding theorem",
-  "q": "The (strong) Whitney embedding theorem says every smooth $n$-manifold embeds in $\\mathbb{R}^N$ for which $N$?",
-  "a": "$N=2n$",
+  "q": "The strong Whitney theorem embeds every smooth $n$-manifold into which Euclidean space?",
+  "a": "$\\mathbb{R}^{2n}$",
   "d": [
-   "$N=n+1$",
-   "$N=2n+1$",
-   "$N=n^2$"
+   "$\\mathbb{R}^{2n+1}$",
+   "$\\mathbb{R}^{n+1}$",
+   "$\\mathbb{R}^{n^2}$"
   ],
-  "why": "Whitney's strong embedding theorem gives embeddings into $\\mathbb{R}^{2n}$ for $n>1$ (the easy/weak version gives $\\mathbb{R}^{2n+1}$).",
+  "why": "The strong Whitney embedding theorem gives an embedding into $\\mathbb{R}^{2n}$ for $n>0$; the easy version gives $\\mathbb{R}^{2n+1}$.",
   "subj": "manifolds",
   "diff": 4
  },
  {
-  "space": "orientability and $H^n$",
-  "q": "A closed connected $n$-manifold $M$ is orientable iff what about $H_n(M;\\mathbb{Z})$?",
-  "a": "$H_n(M;\\mathbb{Z})\\cong\\mathbb{Z}$ (rather than $0$)",
+  "space": "orientability via homology",
+  "q": "A closed connected $n$-manifold is orientable iff $H_n(M;\\mathbb{Z})$ equals what?",
+  "a": "$\\mathbb{Z}$",
   "d": [
-   "$H_n(M;\\mathbb{Z})=0$",
-   "$H_n(M;\\mathbb{Z})\\cong\\mathbb{Z}/2$",
-   "Always true regardless of orientability"
+   "$0$",
+   "$\\mathbb{Z}/2$",
+   "$\\mathbb{Z}\\oplus\\mathbb{Z}$"
   ],
-  "why": "For a closed connected $n$-manifold, $H_n(M;\\mathbb{Z})\\cong\\mathbb{Z}$ if orientable and $0$ if not — this characterizes orientability homologically.",
+  "why": "For a closed connected $n$-manifold $H_n(M;\\mathbb{Z})$ is $\\mathbb{Z}$ when orientable and $0$ when not, so it detects orientability.",
   "subj": "manifolds",
   "diff": 3
  },
  {
   "space": "the $h$-cobordism theorem",
-  "q": "The $h$-cobordism theorem (Smale) requires the manifolds involved to have dimension at least what, for the standard proof (Whitney trick) to apply?",
+  "q": "The $h$-cobordism theorem (Smale) holds for manifolds of dimension at least what?",
   "a": "$5$",
   "d": [
    "$3$",
    "$4$",
    "$7$"
   ],
-  "why": "Smale's $h$-cobordism theorem requires dimension $\\geq5$, because the Whitney trick for removing intersections needs enough room (codimension considerations fail in dimensions 3 and 4).",
+  "why": "The Whitney trick needs dimension $\\geq5$ to remove intersections, so Smale's $h$-cobordism theorem applies for $\\dim\\geq5$ (and fails in dimension $4$).",
   "subj": "manifolds",
   "diff": 5
  },
  {
-  "space": "connected sums and dimension",
-  "q": "Connected sum $M\\#N$ of two $n$-manifolds is performed by removing a disk from each and gluing along what?",
-  "a": "The boundary sphere $S^{n-1}$",
+  "space": "connected sum of $n$-manifolds",
+  "q": "Connected sum glues two $n$-manifolds along which submanifold?",
+  "a": "A sphere $S^{n-1}$",
   "d": [
+   "A disk $D^{n-1}$",
    "A point",
-   "The whole manifold boundary, if any",
-   "A disk $D^{n-1}$"
+   "A torus $T^{n-1}$"
   ],
-  "why": "Each removed open $n$-disk has boundary $S^{n-1}$; gluing two such boundaries via an orientation-reversing diffeomorphism defines the connected sum.",
+  "why": "Each removed open $n$-disk has boundary $S^{n-1}$; the two boundary spheres are glued by an orientation-reversing diffeomorphism.",
   "subj": "manifolds",
   "diff": 2
  },
  {
-  "space": "the Serre spectral sequence",
-  "q": "For a fibration $F\\to E\\to B$ with $B$ simply connected, the Serre spectral sequence has $E_2$ page given by what?",
-  "a": "$E_2^{p,q}=H^p(B;H^q(F))$",
+  "space": "a closed manifold bounding",
+  "q": "A closed $n$-manifold is null-cobordant iff all of which numbers vanish?",
+  "a": "Its Stiefel\\u2013Whitney numbers",
   "d": [
-   "$E_2^{p,q}=H^p(F;H^q(B))$",
-   "$E_2^{p,q}=H^{p+q}(E)$ directly",
-   "$E_2^{p,q}=H_p(B)\\otimes H_q(F)$ always, regardless of coefficients"
+   "Its Betti numbers",
+   "Its Pontryagin numbers alone",
+   "Its Euler characteristic only"
   ],
-  "why": "The Serre spectral sequence (cohomological version) has $E_2^{p,q}=H^p(B;H^q(F))$, converging to $H^{p+q}(E)$.",
-  "subj": "spectral-sequences",
-  "diff": 4
- },
- {
-  "space": "the Serre SS for the Hopf fibration $S^1\\to S^3\\to S^2$",
-  "q": "In the Serre SS for $S^1\\to S^3\\to S^2$, which differential must be nonzero to correctly compute $H^*(S^3)$?",
-  "a": "$d_2:E_2^{0,1}\\to E_2^{2,0}$",
-  "d": [
-   "$d_3:E_3^{0,1}\\to E_3^{3,0}$",
-   "No differentials are needed; the sequence already collapses",
-   "$d_2:E_2^{2,0}\\to E_2^{0,1}$ (wrong direction)"
-  ],
-  "why": "Since $H^*(S^3)$ vanishes in degree 2, the class in $E_2^{2,0}=H^2(S^2)$ must be killed by $d_2$ from $E_2^{0,1}=H^0(S^2;H^1(S^1))$, the only possible nonzero differential by bidegree.",
-  "subj": "spectral-sequences",
+  "why": "Thom's theorem: a closed manifold bounds (unoriented) iff all its Stiefel\\u2013Whitney numbers vanish.",
+  "subj": "manifolds",
   "diff": 5
  },
  {
-  "space": "the Atiyah-Hirzebruch spectral sequence (AHSS)",
-  "q": "What happens to the AHSS for computing $E^*(X)$ when $E=H\\mathbb{Z}$, ordinary cohomology itself?",
-  "a": "It degenerates trivially, since the $E_2$ page already equals $H^*(X)$",
+  "space": "the boundary of a manifold-with-boundary",
+  "q": "The boundary $\\partial M$ of a compact $n$-manifold-with-boundary is which kind of manifold?",
+  "a": "A closed $(n-1)$-manifold",
   "d": [
-   "It becomes the Serre spectral sequence instead",
-   "It still has many nontrivial higher differentials in general",
-   "It computes $K^*(X)$ instead"
+   "A closed $n$-manifold",
+   "An $(n-1)$-manifold with boundary",
+   "An open $(n-1)$-manifold"
   ],
-  "why": "The AHSS has $E_2^{p,q}=H^p(X;E^q(\\mathrm{pt}))$; for $E=H\\mathbb{Z}$ this is concentrated in $q=0$ and already equals $H^*(X;\\mathbb{Z})$, so there is nothing left for differentials to do.",
+  "why": "The boundary of a compact manifold-with-boundary is itself a closed (compact, boundaryless) manifold of dimension $n-1$.",
+  "subj": "manifolds",
+  "diff": 2
+ },
+ {
+  "space": "the signature of a $4k$-manifold",
+  "q": "The signature of a closed oriented $4k$-manifold is defined from the intersection form on which group?",
+  "a": "$H^{2k}(M;\\mathbb{R})$",
+  "d": [
+   "$H^{k}(M;\\mathbb{R})$",
+   "$H^{4k}(M;\\mathbb{R})$",
+   "$H_1(M;\\mathbb{R})$"
+  ],
+  "why": "The signature is the signature of the symmetric intersection pairing on middle cohomology $H^{2k}(M;\\mathbb{R})$.",
+  "subj": "manifolds",
+  "diff": 5
+ },
+ {
+  "space": "exotic $\\mathbb{R}^n$",
+  "q": "For which dimension $n$ does $\\mathbb{R}^n$ admit exotic smooth structures?",
+  "a": "$n=4$",
+  "d": [
+   "$n=3$",
+   "$n=7$",
+   "every $n\\geq4$"
+  ],
+  "why": "$\\mathbb{R}^n$ has a unique smooth structure for all $n\\neq4$; only $\\mathbb{R}^4$ admits exotic (indeed uncountably many) smooth structures.",
+  "subj": "manifolds",
+  "diff": 5
+ },
+ {
+  "space": "a simply connected closed $3$-manifold",
+  "q": "By the Poincar\\u00e9 conjecture, a simply connected closed $3$-manifold is homeomorphic to what?",
+  "a": "$S^3$",
+  "d": [
+   "$\\mathbb{RP}^3$",
+   "$S^2\\times S^1$",
+   "$T^3$"
+  ],
+  "why": "Perelman's proof of the Poincar\\u00e9 conjecture shows every simply connected closed $3$-manifold is homeomorphic to $S^3$.",
+  "subj": "manifolds",
+  "diff": 4
+ },
+ {
+  "space": "the Serre spectral sequence of $F\\to E\\to B$",
+  "q": "For $B$ simply connected, the $E_2$ page of the (cohomology) Serre SS is what?",
+  "a": "$E_2^{p,q}=H^p(B;H^q(F))$",
+  "d": [
+   "$E_2^{p,q}=H^p(F;H^q(B))$",
+   "$E_2^{p,q}=H^q(B;H^p(F))$",
+   "$E_2^{p,q}=H^p(E;H^q(F))$"
+  ],
+  "why": "The cohomology Serre SS has $E_2^{p,q}=H^p(B;H^q(F))$, converging to $H^{p+q}(E)$; the base contributes the $p$ index and the fiber the $q$ index.",
   "subj": "spectral-sequences",
   "diff": 4
  },
  {
-  "space": "the Mayer-Vietoris sequence",
-  "q": "Is the Mayer–Vietoris sequence a special case of a spectral sequence, or a separate tool?",
-  "a": "It can be derived as (or seen as a shadow of) a spectral sequence associated to a cover, but is most often used as a standalone long exact sequence",
+  "space": "the Serre SS",
+  "q": "The Serre spectral sequence of a fibration converges to which graded group?",
+  "a": "$H^{p+q}(E)$",
   "d": [
-   "It has no relation to spectral sequences whatsoever",
-   "It is literally the Serre spectral sequence",
-   "It only applies to simplicial complexes, unlike spectral sequences"
+   "$H^{p+q}(B)$",
+   "$H^{p+q}(F)$",
+   "$H^p(B)\\otimes H^q(F)$"
   ],
-  "why": "Mayer–Vietoris arises from a short exact sequence of chain complexes (from a cover), and can be subsumed by a spectral sequence for more general covers (e.g. the spectral sequence of a cover / Čech-to-derived-functor SS), though it's typically taught and used independently.",
+  "why": "The Serre SS computes the cohomology of the total space $E$ from that of the base and fiber.",
   "subj": "spectral-sequences",
   "diff": 3
  },
  {
-  "space": "convergence of a spectral sequence",
-  "q": "A spectral sequence $E_r^{p,q}$ \"converges\" to $H^n$ typically means what?",
-  "a": "The associated graded of a filtration on $H^n$ is given by $\\bigoplus_{p+q=n} E_\\infty^{p,q}$",
+  "space": "the Serre SS for $S^1\\to S^3\\to S^2$",
+  "q": "Which differential is nonzero in the Serre SS computing $H^*(S^3)$ from this fibration?",
+  "a": "$d_2:E_2^{0,1}\\to E_2^{2,0}$",
   "d": [
-   "$E_r^{p,q}=H^n$ for all $r$",
-   "$E_\\infty^{p,q}=H^n$ for every fixed $(p,q)$",
-   "The spectral sequence has only finitely many nonzero terms, with no filtration involved"
+   "$d_2:E_2^{2,0}\\to E_2^{0,1}$",
+   "$d_3:E_3^{0,1}\\to E_3^{3,0}$",
+   "$d_2:E_2^{1,0}\\to E_2^{0,2}$"
   ],
-  "why": "Convergence means the $E_\\infty$ page recovers $H^n$ only up to associated graded of a filtration, not $H^n$ itself directly (extension problems can remain).",
+  "why": "A class in $E_2^{2,0}=H^2(S^2)$ would give $H^2(S^3)\\neq0$ unless killed; the only differential of correct bidegree is $d_2:E_2^{0,1}\\to E_2^{2,0}$, which must be an isomorphism.",
   "subj": "spectral-sequences",
   "diff": 5
  },
  {
-  "space": "the Leray-Hirsch theorem",
-  "q": "The Leray–Hirsch theorem gives a simple criterion for when the Serre SS collapses (no nontrivial differentials), based on what?",
-  "a": "Existence of classes in $H^*(E)$ restricting to a basis of $H^*(F)$ on each fiber",
+  "space": "a first-quadrant spectral sequence",
+  "q": "The differential $d_r$ on the $E_r$ page has which bidegree (cohomological convention)?",
+  "a": "$(r,1-r)$",
   "d": [
-   "The base $B$ being simply connected, with no further hypothesis",
-   "The fiber $F$ being a point",
-   "The total space $E$ being compact"
+   "$(1-r,r)$",
+   "$(r,r-1)$",
+   "$(r-1,r)$"
   ],
-  "why": "Leray–Hirsch requires the cohomology of the fiber to be \"generated by classes pulled back from the total space,\" ensuring the SS collapses and $H^*(E)\\cong H^*(B)\\otimes H^*(F)$ as modules.",
+  "why": "In the cohomological convention $d_r:E_r^{p,q}\\to E_r^{p+r,q-r+1}$, i.e. bidegree $(r,1-r)$, moving $r$ right and $r-1$ down.",
   "subj": "spectral-sequences",
   "diff": 5
  },
  {
-  "space": "the bar spectral sequence / Eilenberg-Moore",
-  "q": "The Eilenberg–Moore spectral sequence is typically used to compute the cohomology of what kind of space?",
-  "a": "A pullback / homotopy fiber product, e.g. the fiber of a map",
+  "space": "convergence of a spectral sequence to $H^n$",
+  "q": "What does the $E_\\infty$ page recover when a SS converges to $H^n$?",
+  "a": "The associated graded of a filtration on $H^n$",
   "d": [
-   "Only products $X\\times Y$, same as Künneth",
-   "Only quotient spaces $X/G$",
-   "Free loop spaces exclusively, with no other applications"
+   "The group $H^n$ itself, on the nose",
+   "A single summand equal to $H^n$",
+   "A canonical splitting of $H^n$"
   ],
-  "why": "The Eilenberg–Moore SS computes $H^*$ of a homotopy pullback (in particular fibers of maps) using $\\mathrm{Tor}$/$\\mathrm{Cotor}$ over the cohomology of the base.",
+  "why": "Convergence recovers $H^n$ only up to associated graded: $\\bigoplus_{p+q=n}E_\\infty^{p,q}$ is the graded of a filtration on $H^n$, leaving possible extension problems.",
   "subj": "spectral-sequences",
   "diff": 5
  },
  {
-  "space": "classification of closed surfaces",
+  "space": "the Atiyah–Hirzebruch SS for $E^*(X)$",
+  "q": "The $E_2$ page of the AHSS for a generalized theory $E^*$ is built from what?",
+  "a": "$H^p(X;E^q(\\mathrm{pt}))$",
+  "d": [
+   "$E^p(X;H^q(\\mathrm{pt}))$",
+   "$H^p(X;H^q(\\mathrm{pt}))$",
+   "$E^p(\\mathrm{pt};H^q(X))$"
+  ],
+  "why": "The AHSS has $E_2^{p,q}=H^p(X;E^q(\\mathrm{pt}))$, ordinary cohomology of $X$ with coefficients in the theory's coefficient groups, converging to $E^{p+q}(X)$.",
+  "subj": "spectral-sequences",
+  "diff": 4
+ },
+ {
+  "space": "the Leray–Hirsch theorem",
+  "q": "Leray\\u2013Hirsch gives $H^*(E)\\cong H^*(B)\\otimes H^*(F)$ as modules under which hypothesis?",
+  "a": "Global classes in $H^*(E)$ restrict to a fiber basis",
+  "d": [
+   "The base $B$ is simply connected",
+   "The fiber $F$ has finite cohomology",
+   "The total space $E$ is compact"
+  ],
+  "why": "Leray\\u2013Hirsch requires fiber cohomology to be spanned by classes pulled back from $E$; this forces the Serre SS to collapse at $E_2$.",
+  "subj": "spectral-sequences",
+  "diff": 5
+ },
+ {
+  "space": "the Eilenberg–Moore spectral sequence",
+  "q": "The Eilenberg\\u2013Moore SS computes the cohomology of which construction?",
+  "a": "A homotopy pullback (e.g. fiber of a map)",
+  "d": [
+   "A product $X\\times Y$ of spaces",
+   "A quotient $X/G$ by a group action",
+   "A mapping cone of a map"
+  ],
+  "why": "The Eilenberg\\u2013Moore SS computes $H^*$ of a homotopy pullback via $\\mathrm{Tor}$ over $H^*$ of the base, with the fiber of a map as the key case.",
+  "subj": "spectral-sequences",
+  "diff": 5
+ },
+ {
+  "space": "a spectral sequence collapsing at $E_2$",
+  "q": "\"Collapses at $E_2$\" means which condition on the differentials?",
+  "a": "All differentials $d_r$ vanish for $r\\geq2$",
+  "d": [
+   "All differentials $d_r$ vanish for $r\\geq3$",
+   "Only the differential $d_2$ is nonzero",
+   "The $E_2$ page lies in a single row"
+  ],
+  "why": "Collapse at $E_2$ means $E_2=E_\\infty$: every differential $d_r$ with $r\\geq2$ is zero, so $E_2$ already gives the associated graded.",
+  "subj": "spectral-sequences",
+  "diff": 4
+ },
+ {
+  "space": "the Künneth spectral sequence",
+  "q": "Over a general ring, the K\\u00fcnneth SS for $H_*(X\\times Y)$ has $E_2$ involving which functor?",
+  "a": "$\\mathrm{Tor}$ of $H_*(X)$ and $H_*(Y)$",
+  "d": [
+   "$\\mathrm{Ext}$ of $H_*(X)$ and $H_*(Y)$",
+   "$\\mathrm{Hom}$ of $H_*(X)$ and $H_*(Y)$",
+   "the tensor product, with no derived terms"
+  ],
+  "why": "Over a general ground ring the K\\u00fcnneth formula picks up $\\mathrm{Tor}$ corrections; the SS has $E_2^{p,q}$ given by $\\mathrm{Tor}_p(H_*(X),H_*(Y))$ in total degree $q$.",
+  "subj": "spectral-sequences",
+  "diff": 5
+ },
+ {
+  "space": "the transgression in the Serre SS",
+  "q": "Transgression relates a fiber class in degree $n$ to a base class in which degree?",
+  "a": "Degree $n+1$",
+  "d": [
+   "Degree $n-1$",
+   "Degree $n$",
+   "Degree $2n$"
+  ],
+  "why": "The transgression $d_{n+1}:E_{n+1}^{0,n}\\to E_{n+1}^{n+1,0}$ sends a degree-$n$ fiber class to a degree-$(n+1)$ base class.",
+  "subj": "spectral-sequences",
+  "diff": 5
+ },
+ {
+  "space": "the five-term exact sequence",
+  "q": "The five-term exact sequence of a first-quadrant SS features which differential?",
+  "a": "$d_2:E_2^{0,1}\\to E_2^{2,0}$",
+  "d": [
+   "$d_2:E_2^{2,0}\\to E_2^{0,1}$",
+   "$d_3:E_3^{0,2}\\to E_3^{3,0}$",
+   "$d_2:E_2^{1,1}\\to E_2^{3,0}$"
+  ],
+  "why": "The five-term sequence $0\\to E_2^{1,0}\\to H^1\\to E_2^{0,1}\\xrightarrow{d_2}E_2^{2,0}\\to H^2$ uses the transgression $d_2:E_2^{0,1}\\to E_2^{2,0}$.",
+  "subj": "spectral-sequences",
+  "diff": 5
+ },
+ {
+  "space": "closed orientable surfaces",
   "q": "Every closed connected orientable surface is homeomorphic to which model?",
-  "a": "A genus-$g$ surface $\\Sigma_g$ for some $g\\geq0$",
+  "a": "A genus-$g$ surface $\\Sigma_g$",
   "d": [
-   "Always $S^2$",
-   "A connected sum of $\\mathbb{RP}^2$'s only",
-   "A torus, always"
+   "A sphere $S^2$ only",
+   "A connected sum of $\\mathbb{RP}^2$'s",
+   "A torus $T^2$ only"
   ],
-  "why": "The classification theorem for closed surfaces: orientable ones are exactly the $\\Sigma_g$ (sphere with $g$ handles), distinguished by genus.",
+  "why": "The classification theorem: closed orientable surfaces are exactly the $\\Sigma_g$, a sphere with $g$ handles, classified by genus.",
   "subj": "surfaces",
   "diff": 2
  },
  {
-  "space": "classification of closed surfaces",
+  "space": "closed non-orientable surfaces",
   "q": "Every closed connected non-orientable surface is homeomorphic to which model?",
-  "a": "A connected sum of $k\\geq1$ copies of $\\mathbb{RP}^2$",
+  "a": "A connected sum of copies of $\\mathbb{RP}^2$",
   "d": [
-   "A genus-$g$ surface for some $g$",
-   "Always the Klein bottle",
-   "There are no closed non-orientable surfaces"
+   "A genus-$g$ surface $\\Sigma_g$",
+   "The Klein bottle only",
+   "A connected sum of tori"
   ],
-  "why": "The non-orientable closed surfaces are classified by the number of crosscaps $k\\geq1$, i.e. connected sums $\\mathbb{RP}^2\\#\\cdots\\#\\mathbb{RP}^2$.",
+  "why": "Non-orientable closed surfaces are classified by crosscap number $k\\geq1$: connected sums $\\mathbb{RP}^2\\#\\cdots\\#\\mathbb{RP}^2$.",
   "subj": "surfaces",
   "diff": 2
  },
  {
-  "space": "the Klein bottle as a connected sum",
+  "space": "the Klein bottle",
   "q": "The Klein bottle is homeomorphic to which connected sum?",
   "a": "$\\mathbb{RP}^2\\#\\mathbb{RP}^2$",
   "d": [
@@ -1928,74 +2383,113 @@ const BANK = [
    "$\\mathbb{RP}^2\\#T^2$",
    "$S^2\\#\\mathbb{RP}^2$"
   ],
-  "why": "This is a classical fact in surface classification: the Klein bottle equals the connected sum of two projective planes.",
+  "why": "A classical identity in surface classification: the Klein bottle equals the connected sum of two projective planes.",
   "subj": "surfaces",
   "diff": 3
  },
  {
-  "space": "a Möbius band",
-  "q": "Is the Möbius band orientable?",
-  "a": "No",
+  "space": "the Möbius band",
+  "q": "Which property does the M\\u00f6bius band have?",
+  "a": "It is non-orientable",
   "d": [
-   "Yes",
-   "Orientability is undefined for surfaces with boundary",
-   "It depends on the embedding in $\\mathbb{R}^3$"
+   "It is orientable",
+   "It is closed",
+   "It has two boundary circles"
   ],
-  "why": "The Möbius band is the standard example of a non-orientable surface (with boundary); traversing its core circle reverses orientation.",
+  "why": "The M\\u00f6bius band is the standard non-orientable surface-with-boundary; traversing its core circle reverses orientation, and it has a single boundary circle.",
   "subj": "surfaces",
   "diff": 1
  },
  {
-  "space": "a surface's orientation double cover",
-  "q": "Every non-orientable surface $N$ has what kind of orientable double cover?",
-  "a": "A connected orientable surface $\\tilde N\\to N$, the orientation double cover",
+  "space": "the orientation double cover",
+  "q": "The orientation double cover of a non-orientable surface is which kind of cover?",
+  "a": "A connected orientable double cover",
   "d": [
-   "A disconnected cover",
-   "No orientable double cover exists",
-   "A double cover that is also non-orientable"
+   "A disconnected double cover",
+   "A non-orientable double cover",
+   "A trivial double cover"
   ],
-  "why": "The orientation double cover construction always produces a connected orientable double cover for a connected non-orientable manifold.",
+  "why": "Every connected non-orientable manifold has a connected orientable double cover, its orientation cover.",
   "subj": "surfaces",
   "diff": 3
  },
  {
-  "space": "the classification theorem's invariant",
-  "q": "Which complete invariant distinguishes closed surfaces up to homeomorphism (besides orientability)?",
+  "space": "invariants of closed surfaces",
+  "q": "Together with orientability, which invariant classifies closed surfaces?",
   "a": "The Euler characteristic",
   "d": [
-   "The fundamental group alone, with no other data needed",
+   "The fundamental group's order",
    "The number of triangles in a triangulation",
-   "The first homology group with $\\mathbb{Z}/2$ coefficients"
+   "The first Betti number with $\\mathbb{Z}/2$ coefficients"
   ],
   "why": "Orientability plus $\\chi$ (equivalently genus or crosscap number) completely classifies closed surfaces up to homeomorphism.",
   "subj": "surfaces",
   "diff": 3
  },
  {
-  "space": "surfaces with boundary",
-  "q": "A connected compact surface with boundary deformation retracts onto what, if it is not closed?",
-  "a": "A wedge of circles (a graph), if it has nonempty boundary and is not a disk/sphere piece",
-  "d": [
-   "Always a single point",
-   "Always a torus",
-   "Always $S^2$"
-  ],
-  "why": "Removing one or more open disks from a closed surface (to create boundary) yields a space homotopy equivalent to a wedge of circles, since the resulting space deformation retracts onto its 1-skeleton.",
-  "subj": "surfaces",
-  "diff": 4
- },
- {
-  "space": "genus and crosscap relation",
-  "q": "A genus-$g$ orientable surface has the same $\\chi$ as a non-orientable surface with how many crosscaps?",
+  "space": "genus and crosscaps",
+  "q": "A genus-$g$ orientable surface has the same $\\chi$ as how many crosscaps?",
   "a": "$2g$ crosscaps",
   "d": [
    "$g$ crosscaps",
    "$g+1$ crosscaps",
    "$4g$ crosscaps"
   ],
-  "why": "$\\chi(\\Sigma_g)=2-2g$ and $\\chi(N_k)=2-k$; setting these equal gives $k=2g$.",
+  "why": "$\\chi(\\Sigma_g)=2-2g$ and $\\chi(N_k)=2-k$; equating gives $k=2g$.",
   "subj": "surfaces",
   "diff": 4
+ },
+ {
+  "space": "a once-punctured torus",
+  "q": "A torus with one open disk removed is homotopy equivalent to what?",
+  "a": "A wedge of two circles",
+  "d": [
+   "A single circle",
+   "A wedge of three circles",
+   "A torus"
+  ],
+  "why": "Removing a disk from $\\Sigma_1$ leaves a space that deformation retracts onto its $1$-skeleton, the wedge $S^1\\vee S^1$.",
+  "subj": "surfaces",
+  "diff": 4
+ },
+ {
+  "space": "triangulations of surfaces",
+  "q": "Does every compact surface admit a finite triangulation?",
+  "a": "Yes, every compact surface does",
+  "d": [
+   "No, only orientable ones do",
+   "No, only the sphere does",
+   "Only smooth surfaces do"
+  ],
+  "why": "Rad\\u00f3's theorem: every compact surface admits a finite triangulation (a fact that fails in higher dimensions).",
+  "subj": "surfaces",
+  "diff": 4
+ },
+ {
+  "space": "the sphere among surfaces",
+  "q": "Which closed surface is the unique one that is simply connected?",
+  "a": "The sphere $S^2$",
+  "d": [
+   "The torus $T^2$",
+   "The projective plane $\\mathbb{RP}^2$",
+   "The Klein bottle"
+  ],
+  "why": "Among closed surfaces only $S^2$ is simply connected; all others have nontrivial $\\pi_1$.",
+  "subj": "surfaces",
+  "diff": 2
+ },
+ {
+  "space": "the mapping class group of the torus",
+  "q": "The mapping class group of $T^2$ is isomorphic to which group?",
+  "a": "$SL_2(\\mathbb{Z})$",
+  "d": [
+   "$GL_2(\\mathbb{Z})$",
+   "$\\mathbb{Z}^2$",
+   "$S_3$"
+  ],
+  "why": "Orientation-preserving mapping classes of $T^2$ act on $H_1(T^2)=\\mathbb{Z}^2$ preserving the intersection form, giving $SL_2(\\mathbb{Z})$.",
+  "subj": "surfaces",
+  "diff": 5
  }
 ];
 
@@ -2010,7 +2504,7 @@ function genSpheres() {
       q: x`What is $H_{${n}}(S^{${n}};\mathbb{Z})$?`,
       a: x`$\mathbb{Z}$`,
       d: [x`$0$`, x`$\mathbb{Z}/2$`, x`$\mathbb{Z}\oplus\mathbb{Z}$`],
-      why: x`$S^{${n}}$ has a CW structure with one $0$-cell and one ${n}$-cell, giving $H_{${n}}(S^{${n}})=\mathbb{Z}$.`,
+      why: x`$S^{${n}}$ has a CW structure with one $0$-cell and one $${n}$-cell, giving $H_{${n}}(S^{${n}})=\mathbb{Z}$.`,
       subj: "homology", diff: n <= 2 ? 1 : 2, gen: "spheres"
     });
     // chi(S^n)
@@ -2021,7 +2515,7 @@ function genSpheres() {
       q: x`What is $\chi(S^{${n}})$?`,
       a: x`$${chi}$`,
       d: wrongChi.map(w => x`$${w}$`),
-      why: x`$\chi(S^n)=2$ for even $n$ and $0$ for odd $n$; here $n=${n}$ is ${n % 2 === 0 ? "even" : "odd"}$.`,
+      why: x`$\chi(S^n)=2$ for even $n$ and $0$ for odd $n$; here $n=${n}$ is ${n % 2 === 0 ? "even" : "odd"}.`,
       subj: "euler-characteristic", diff: 1, gen: "spheres"
     });
     // pi_k(S^n) = 0 for k < n
@@ -2061,7 +2555,7 @@ function genCPn() {
         q: x`What is $\chi(\mathbb{CP}^{${n}})$?`,
         a: x`$${ans}$`,
         d: distractors.map(v => x`$${v}$`),
-        why: x`$\mathbb{CP}^{${n}}$ has exactly one cell in each even dimension $0,2,\dots,2${n}$, i.e. $${ans}$ cells total, all contributing $+1$ to $\chi$.`,
+        why: x`$\mathbb{CP}^{${n}}$ has exactly one cell in each even dimension $0,2,\dots,2\cdot${n}$, i.e. $${ans}$ cells total, all contributing $+1$ to $\chi$.`,
         subj: "euler-characteristic", diff: 2, gen: "cpn"
       });
     }
@@ -2143,119 +2637,147 @@ const GENERATORS = [genSphereQuestion, genCPnQuestion, genWedgeQuestion];
 
 const HOM_POOL = [
  "$H^i(B;\\mathbb{Z}/2)$",
- "$w_1(E)=0$",
- "$w_1=0$ and $w_2=0$",
- "The first Chern class $c_1\\in H^2(X;\\mathbb{Z})$",
- "$e(E)=c_n(E)$, the top Chern class, when $E$ is a complex bundle of rank $n$ (viewed as real of rank $2n$)",
- "Even",
+ "$w_1$",
+ "$w_2$",
+ "$c_1\\in H^2(X;\\mathbb{Z})$",
+ "The top Chern class $c_n$",
+ "The Euler characteristic $\\chi(M)$",
  "$H^{4i}(B;\\mathbb{Z})$",
- "$w(E\\oplus F)=w(E)\\cup w(F)$",
- "$\\mathbb{Z}[\\alpha]/(\\alpha^{n+1})$ with $\\deg\\alpha=2$",
- "A generator of $H^2(T^2)\\cong\\mathbb{Z}$, and $\\beta\\cup\\alpha=-\\alpha\\cup\\beta$",
- "$(\\mathbb{Z}/2)[\\alpha]/(\\alpha^3)$ with $\\deg\\alpha=1$",
- "$H_k(X;\\mathbb{Z})$ and $H_{k-1}(X;\\mathbb{Z})$ (via a free part and a torsion/Ext term)",
- "$H^k(M;\\mathbb{Z})\\cong H_{n-k}(M;\\mathbb{Z})$",
- "$\\mathbb{Z}$ in degrees $0,n$, trivial cup products since $\\alpha^2=0$ for the degree-$n$ generator when $n\\geq1$",
- "$H^*(X)\\otimes H^*(Y)$",
- "$\\tilde H^k(X)\\oplus \\tilde H^k(Y)$",
- "$H^k(M;\\mathbb{R})$, singular/Čech cohomology with real coefficients",
- "The universal covering of $S^1$",
+ "$w(E)\\cup w(F)$",
+ "$H^{2i}(B;\\mathbb{Z})$",
+ "$(1+\\alpha)^{n+1}$",
+ "$c_1^2-2c_2$",
+ "$1$",
+ "$\\mathbb{Z}[\\alpha]/(\\alpha^{n+1})$, $\\deg\\alpha=2$",
+ "$(\\mathbb{Z}/2)[\\alpha]/(\\alpha^{n+1})$, $\\deg\\alpha=1$",
+ "A generator of $H^2(T^2)$, with $\\beta\\cup\\alpha=-\\alpha\\cup\\beta$",
+ "$H_{n-k}(M;\\mathbb{Z})$",
+ "$\\mathrm{Ext}(H_{n-1}(X),\\mathbb{Z})$",
+ "Zero",
+ "The tensor product",
+ "$\\tilde H^k(X)\\oplus\\tilde H^k(Y)$",
+ "$H^k(M;\\mathbb{R})$",
+ "$(\\mathbb{Z}/2)[\\alpha]$, $\\deg\\alpha=1$",
+ "$\\mathbb{Z}[\\alpha]$, $\\deg\\alpha=2$",
+ "The universal cover of $S^1$",
  "$S^n$",
  "The index $[\\pi_1(X):p_*\\pi_1(\\tilde X)]$",
  "Exactly $3$",
- "All subgroups of $\\mathbb{Z}^2$ (finite-index ones give finite covers)",
- "$X$ is path-connected, locally path-connected, and semi-locally simply connected",
- "$\\chi(\\tilde X)=n\\cdot\\chi(X)$",
+ "Subgroups of $\\mathbb{Z}^2$",
+ "Path-connected, locally path-connected, semilocally simply connected",
+ "$\\chi(\\tilde X)=n\\,\\chi(X)$",
  "$\\pi_1(X)$",
+ "A normal subgroup of $\\pi_1(X)$",
+ "$p_*\\pi_1(\\tilde X)$",
+ "A graph",
  "$2$",
  "$0$",
  "$2-2g$",
- "$1$",
  "$2-k$",
- "The number of cells in each dimension, $\\sum_k (-1)^k c_k$",
- "$\\chi(X\\times Y)=\\chi(X)\\cdot\\chi(Y)$",
- "$\\chi(\\Sigma_g\\#\\Sigma_h)=\\chi(\\Sigma_g)+\\chi(\\Sigma_h)-2$",
- "Gaussian curvature: $\\int_M K\\,dA = 2\\pi\\chi(M)$",
+ "$\\chi(X)\\cdot\\chi(Y)$",
+ "$\\chi(\\Sigma)+\\chi(\\Sigma')-2$",
+ "The Gaussian curvature",
  "$V-E$",
- "Fiber $S^1$, total space $S^3$, base $S^2$",
- "$SO(2)$ (or equivalently $GL_2^+(\\mathbb{R})$, reducible to $SO(2)$)",
- "Trivial (isomorphic to a product bundle)",
+ "$n+1$",
+ "$\\chi(X)+\\chi(Y)-1$",
+ "$S^1$",
+ "$S^3$",
+ "$SO(2)$",
+ "Trivial",
  "$BO(n)$",
- "No",
- "The long exact sequence in homotopy groups of the fibration",
- "Fiber $\\cong G$, with $G$ acting freely and transitively (simply transitively) on each fiber",
- "$P\\times_G V$ (a quotient of $P\\times V$ by the diagonal $G$-action)",
+ "A nontrivial real line bundle",
+ "Freely and transitively",
+ "$P\\times_G V$",
+ "$H^2(X;\\mathbb{Z})$",
+ "$\\pi_{n-1}(GL_k)$",
+ "The trivial bundle $F\\times B$",
+ "$\\mathbb{RP}^3$",
+ "$H^2(B;\\mathbb{Z})$",
  "$\\mathbb{Z}$",
  "$\\mathbb{Z}\\times\\mathbb{Z}$",
- "$\\mathbb{Z}*\\mathbb{Z}$ (free group of rank 2)",
+ "$\\mathbb{Z}*\\mathbb{Z}$",
  "$\\mathbb{Z}/2$",
- "$\\langle a,b \\mid abab^{-1}\\rangle$",
- "$\\langle a_1,b_1,a_2,b_2 \\mid [a_1,b_1][a_2,b_2]\\rangle$",
- "$0$ (trivial group)",
- "No — it has presentation $\\langle a,b\\mid a^2=b^3\\rangle$",
- "Seifert–van Kampen, giving an amalgamated free product over $\\mathbb{Z}$",
+ "$\\langle a,b\\mid abab^{-1}\\rangle$",
+ "$\\langle a_1,b_1,a_2,b_2\\mid[a_1,b_1][a_2,b_2]\\rangle$",
+ "$\\langle a,b\\mid a^2=b^3\\rangle$",
  "$\\mathbb{Z}/p$",
- "$\\mathbb{Z}/2 * \\mathbb{Z}/2$",
+ "$\\mathbb{Z}/2*\\mathbb{Z}/2$",
+ "Abelian",
  "$\\mathbb{Z}\\oplus\\mathbb{Z}$",
  "$\\mathbb{Z}\\oplus\\mathbb{Z}/2$",
  "$\\mathbb{Z}^{2g}$",
  "The $n$-th Betti number",
- "A long exact sequence in homology",
- "Finite (for $k>n$, except the case $n$ even and $k=2n-1$)",
- "$\\pi_k(\\Omega X)\\cong \\pi_{k+1}(X)$",
- "$H_n(X;\\mathbb{Z})$, the first nonvanishing homology group",
- "$\\pi_k(\\mathbb{RP}^n)\\cong\\pi_k(S^n)$ for $k\\geq2$",
- "$\\cdots\\to\\pi_k(F)\\to\\pi_k(E)\\to\\pi_k(B)\\to\\pi_{k-1}(F)\\to\\cdots$",
+ "A long exact sequence",
+ "$H_n(S^n;\\mathbb{Z})=\\mathbb{Z}$",
+ "$\\pi_k(\\Omega X)\\cong\\pi_{k+1}(X)$",
+ "$H_n(X;\\mathbb{Z})$",
+ "They are isomorphic",
+ "$\\pi_{k-1}(F)$",
  "$\\mathbb{Z}/24$",
  "CW complexes",
- "Contractible, for any $X$",
+ "Finite",
+ "Contractible",
  "$S^{n+1}$",
- "$X\\xrightarrow{f} Y\\to C_f$",
- "$\\Sigma X$ (i.e. $X\\to Y\\to C_f\\to \\Sigma X\\to \\Sigma Y\\to\\cdots$)",
- "They are isomorphic in every degree",
- "All trivial: $\\pi_k=0$ for $k\\geq1$ and $\\tilde H_k=0$ for all $k$",
+ "$X\\to Y\\to C_f$",
+ "$\\Sigma X$",
+ "Isomorphic in every degree",
  "A CW complex",
+ "$\\pi_n=G$, all others zero",
+ "$\\mathbb{RP}^\\infty$",
  "$X\\times S^1$",
- "$E\\simeq F$ (homotopy equivalent)",
- "$\\pi_n=G$ and $\\pi_k=0$ for $k\\neq n$",
- "$S^1$",
- "$2$: $KU^n\\cong KU^{n+2}$",
+ "$\\Sigma$ is left adjoint to $\\Omega$",
+ "$F$",
  "$8$",
- "Ordinary (rational) cohomology $H^*(-;\\mathbb{Q})$",
- "Finitely generated projective $R$-modules",
- "Ordinary cohomology $H^*(X;E^*(\\mathrm{pt}))$, converging to $E^*(X)$",
+ "Rational cohomology $H^{even}(X;\\mathbb{Q})$",
+ "Finitely generated projective modules",
+ "$H^p(X;K^q(\\mathrm{pt}))$",
  "$\\psi^k\\circ\\psi^l=\\psi^{kl}$",
+ "$F^\\times$",
+ "$24$",
  "$3$",
- "Chirality (the trefoil is not amphichiral)",
- "Yes",
- "A nontrivial connected sum of two knots",
- "Their complements in $S^3$",
- "$S^3$",
- "$SU(2)$ is the universal double cover of $SO(3)$",
- "A maximal torus $T\\subset G$, unique up to conjugation",
- "A Lie bracket, making it the Lie algebra $\\mathfrak{g}$",
- "$n=1,3,7$ only",
- "None: every even sphere $S^{2n}$ has no nonvanishing vector field",
- "The Euler characteristic of the manifold",
- "More than one (28 oriented smooth structures total, by Milnor and Kervaire–Milnor)",
- "$N=2n$",
- "$H_n(M;\\mathbb{Z})\\cong\\mathbb{Z}$ (rather than $0$)",
- "$5$",
- "The boundary sphere $S^{n-1}$",
- "$E_2^{p,q}=H^p(B;H^q(F))$",
- "$d_2:E_2^{0,1}\\to E_2^{2,0}$",
- "It degenerates trivially, since the $E_2$ page already equals $H^*(X)$",
- "It can be derived as (or seen as a shadow of) a spectral sequence associated to a cover, but is most often used as a standalone long exact sequence",
- "The associated graded of a filtration on $H^n$ is given by $\\bigoplus_{p+q=n} E_\\infty^{p,q}$",
- "Existence of classes in $H^*(E)$ restricting to a basis of $H^*(F)$ on each fiber",
- "A pullback / homotopy fiber product, e.g. the fiber of a map",
- "A genus-$g$ surface $\\Sigma_g$ for some $g\\geq0$",
- "A connected sum of $k\\geq1$ copies of $\\mathbb{RP}^2$",
- "$\\mathbb{RP}^2\\#\\mathbb{RP}^2$",
- "A connected orientable surface $\\tilde N\\to N$, the orientation double cover",
+ "It is chiral",
+ "A commutative monoid",
+ "Two nontrivial knots",
+ "It is amphichiral",
+ "Their complement",
+ "$|p|,|q|\\geq2$ and coprime",
+ "It is additive",
+ "$SU(2)$ double covers $SO(3)$",
+ "Conjugation",
+ "A Lie bracket",
+ "Surjective",
+ "$n=1,3,7$",
+ "Exactly the odd-dimensional spheres",
  "The Euler characteristic",
- "A wedge of circles (a graph), if it has nonempty boundary and is not a disk/sphere piece",
- "$2g$ crosscaps"
+ "$28$",
+ "$\\mathbb{R}^{2n}$",
+ "$5$",
+ "A sphere $S^{n-1}$",
+ "Its Stiefel\\u2013Whitney numbers",
+ "A closed $(n-1)$-manifold",
+ "$H^{2k}(M;\\mathbb{R})$",
+ "$n=4$",
+ "$E_2^{p,q}=H^p(B;H^q(F))$",
+ "$H^{p+q}(E)$",
+ "$d_2:E_2^{0,1}\\to E_2^{2,0}$",
+ "$(r,1-r)$",
+ "The associated graded of a filtration on $H^n$",
+ "$H^p(X;E^q(\\mathrm{pt}))$",
+ "Global classes in $H^*(E)$ restrict to a fiber basis",
+ "A homotopy pullback (e.g. fiber of a map)",
+ "All differentials $d_r$ vanish for $r\\geq2$",
+ "$\\mathrm{Tor}$ of $H_*(X)$ and $H_*(Y)$",
+ "Degree $n+1$",
+ "A genus-$g$ surface $\\Sigma_g$",
+ "A connected sum of copies of $\\mathbb{RP}^2$",
+ "$\\mathbb{RP}^2\\#\\mathbb{RP}^2$",
+ "It is non-orientable",
+ "A connected orientable double cover",
+ "$2g$ crosscaps",
+ "A wedge of two circles",
+ "Yes, every compact surface does",
+ "The sphere $S^2$",
+ "$SL_2(\\mathbb{Z})$"
 ];
 
 window.QUIZ = { BANK, GENERATORS, HOM_POOL, pick };
