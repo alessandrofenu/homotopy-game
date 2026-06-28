@@ -78,11 +78,12 @@
   .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:auto}
   .tile{
     position:relative;border:none;border-radius:var(--r);cursor:pointer;
-    min-height:84px;padding:14px 14px 14px 46px;
+    min-height:84px;min-width:0;padding:14px 14px 14px 46px;
     display:flex;align-items:center;text-align:left;
     font-family:var(--math);font-size:clamp(19px,5.4vw,26px);color:#fff;
     line-height:1.1;transition:transform .08s, filter .15s, opacity .2s;
     box-shadow:0 5px 0 0 var(--sh,#0006), 0 10px 22px -14px #000;
+    overflow-wrap:break-word;word-break:break-word;
   }
   .tile:active{transform:translateY(2px)}
   .tile .ico{position:absolute;left:14px;top:50%;transform:translateY(-50%);
@@ -179,14 +180,48 @@
     .space{font-size:clamp(22px,6.4vw,34px)} .ask{font-size:clamp(19px,5.4vw,27px)}
     .tile{min-height:74px}
   }
+
+  /* ---------- DESKTOP / WIDE LAYOUT ---------- */
+  @media (min-width:880px){
+    #app{
+      max-width:1080px;height:100vh;height:100dvh;
+      padding:40px 32px 32px;
+    }
+
+    /* in-game: question on the left, answers + reveal on the right */
+    .qwrap{flex-direction:row;align-items:stretch;gap:22px}
+    .card{flex:1 1 46%;justify-content:center;padding:34px 32px}
+    .space{font-size:clamp(30px,3.6vw,44px)}
+    .ask{font-size:clamp(24px,2.8vw,34px)}
+    .answers-col{flex:1 1 54%;display:flex;flex-direction:column;min-width:0}
+    .grid{flex:1;margin-top:0;align-content:center;gap:16px}
+    .tile{min-height:120px;padding:18px 18px 18px 54px;font-size:clamp(20px,2vw,26px)}
+    .tile .ico{font-size:21px}
+    .reveal{margin-top:16px}
+
+    /* start / game-over: two columns instead of one centered stack */
+    .center{
+      flex-direction:row;align-items:center;justify-content:space-between;
+      gap:48px;text-align:left;
+    }
+    .start-left{flex:1 1 50%;display:flex;flex-direction:column;gap:22px;max-width:520px}
+    .start-right{flex:1 1 40%;display:flex;flex-direction:column;gap:20px;max-width:360px}
+    .wordmark{font-size:clamp(56px,6vw,84px)}
+    .tag{max-width:46ch;font-size:17px}
+    .over-left{flex:1 1 40%}
+    .over-right{flex:1 1 50%;display:flex;flex-direction:column;gap:18px;max-width:420px}
+    .scoreline{flex-wrap:wrap}
+  }
+
   @media (prefers-reduced-motion:reduce){
     *{animation:none!important;transition:none!important}
   }
   /* ---- KaTeX integration ---- */
   .katex{font-size:1em}
   .space .katex{font-size:1.02em}
-  .tile .lab{display:inline-flex;align-items:center;min-width:0;overflow:hidden}
-  .tile .katex{white-space:nowrap}
+  .tile .lab{flex:1 1 auto;min-width:0;overflow-wrap:break-word;word-break:break-word}
+  .tile .katex{white-space:normal!important}
+  .tile .katex .base{white-space:normal!important}
   .ansline{font-family:var(--math);color:var(--chalk);font-size:17px}
   .ansline .katex{font-size:1.05em}
 </style>
@@ -198,25 +233,29 @@
   <!-- ============ START ============ -->
   <section id="start" class="screen">
     <div class="center">
-      <div class="brand">
-        <div class="wordmark">INVARI<span class="dim">A</span>NTS</div>
-        <div class="tag">An algebraic topology quiz. A space appears — read off the invariant before the chalk runs out.</div>
-      </div>
-      <div class="rules">
-        <div><span class="k">▸</span> π₁, Hₙ, χ, homotopy type — pick 1 of 4.</div>
-        <div><span class="k">▸</span> Faster answers score more (except in zen mode).</div>
-        <div><span class="k">▸</span> Three punctures <span class="k">●●●→○○○</span> and you're out.</div>
-      </div>
-      <div class="timecfg">
-        <div class="timecfg-row">
-          <span class="timecfg-lab">Time per question</span>
-          <span class="timecfg-val" id="timeVal">20s</span>
+      <div class="start-left">
+        <div class="brand">
+          <div class="wordmark">INVARI<span class="dim">A</span>NTS</div>
+          <div class="tag">An algebraic topology quiz. A space appears — read off the invariant before the chalk runs out.</div>
         </div>
-        <input type="range" id="timeSlider" class="timeslider" min="0" max="7" step="1" value="3" aria-label="Time per question">
-        <div class="timecfg-ticks"><span>5s</span><span>∞ zen</span></div>
+        <div class="rules">
+          <div><span class="k">▸</span> π₁, Hₙ, χ, homotopy type — pick 1 of 4.</div>
+          <div><span class="k">▸</span> Faster answers score more (except in zen mode).</div>
+          <div><span class="k">▸</span> Three punctures <span class="k">●●●→○○○</span> and you're out.</div>
+        </div>
       </div>
-      <button class="cta" id="startBtn">Start</button>
-      <div class="best">Best run: <b id="bestStart">—</b></div>
+      <div class="start-right">
+        <div class="timecfg">
+          <div class="timecfg-row">
+            <span class="timecfg-lab">Time per question</span>
+            <span class="timecfg-val" id="timeVal">20s</span>
+          </div>
+          <input type="range" id="timeSlider" class="timeslider" min="0" max="7" step="1" value="3" aria-label="Time per question">
+          <div class="timecfg-ticks"><span>5s</span><span>∞ zen</span></div>
+        </div>
+        <button class="cta" id="startBtn">Start</button>
+        <div class="best">Best run: <b id="bestStart">—</b></div>
+      </div>
     </div>
     <div class="footnote">conventions: integral coefficients · ℤ/n = ℤ/nℤ · Fₖ = free group</div>
   </section>
@@ -239,25 +278,29 @@
         <div class="ask" id="ask"></div>
       </div>
 
-      <div class="grid" id="grid" role="group" aria-label="answers"></div>
-      <div id="reveal"></div>
+      <div class="answers-col">
+        <div class="grid" id="grid" role="group" aria-label="answers"></div>
+        <div id="reveal"></div>
+      </div>
     </div>
   </section>
 
   <!-- ============ GAME OVER ============ -->
   <section id="over" class="screen hidden">
     <div class="center">
-      <div>
+      <div class="over-left">
         <div class="gobig">∂ ↛ 0</div>
         <div class="gosub" id="overMsg">The sequence didn't close.</div>
       </div>
-      <div class="scoreline">
-        <div class="chip"><div class="lab">Score</div><div class="val cy" id="finalScore">0</div></div>
-        <div class="chip"><div class="lab">Correct</div><div class="val" id="finalCorrect">0</div></div>
-        <div class="chip"><div class="lab">Best streak</div><div class="val" id="finalStreak">0</div></div>
+      <div class="over-right">
+        <div class="scoreline">
+          <div class="chip"><div class="lab">Score</div><div class="val cy" id="finalScore">0</div></div>
+          <div class="chip"><div class="lab">Correct</div><div class="val" id="finalCorrect">0</div></div>
+          <div class="chip"><div class="lab">Best streak</div><div class="val" id="finalStreak">0</div></div>
+        </div>
+        <div class="best">Best run: <b id="bestOver">—</b></div>
+        <button class="cta" id="againBtn">Play again</button>
       </div>
-      <div class="best">Best run: <b id="bestOver">—</b></div>
-      <button class="cta" id="againBtn">Play again</button>
     </div>
     <div class="footnote">typeset with KaTeX · questions in questions.js · MIT</div>
   </section>
