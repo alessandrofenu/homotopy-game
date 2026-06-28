@@ -2,6 +2,13 @@
 // 152 hand-curated questions + 3 procedural generators (spheres, CP^n, wedge sums),
 // across 15 subjects, difficulty 1-5. Every $...$ fragment KaTeX-validated (0 errors).
 //
+// Everything below is wrapped in an IIFE so it does NOT leak any top-level
+// const/let/function names into the global scope — index.html's own script
+// declares its own top-level BANK/GENERATORS/HOM_POOL/pick (assigned FROM
+// window.QUIZ), and classic <script> tags share one global lexical scope,
+// so colliding names here would throw "redeclaration" SyntaxErrors there.
+// Only window.QUIZ is exposed.
+//
 // Contract expected by index.html (window.QUIZ):
 //   BANK       : Array<Question>            — curated question bank
 //   GENERATORS : Array<() => Question>       — zero-arg fns, each returns ONE fresh question
@@ -10,6 +17,7 @@
 //
 // Question shape: { space, q, a, d:[d1,d2,d3], why, subj, diff }
 "use strict";
+(function(){
 const x = String.raw;
 
 const BANK = [
@@ -2251,3 +2259,4 @@ const HOM_POOL = [
 ];
 
 window.QUIZ = { BANK, GENERATORS, HOM_POOL, pick };
+})();
