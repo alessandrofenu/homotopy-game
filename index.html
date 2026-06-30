@@ -102,12 +102,26 @@
   .shake{animation:shake .4s}
 
   /* ---------- REVEAL / EXPLANATION ---------- */
+  /* Reveal is pinned to the bottom of the viewport as an overlay so it is
+     ALWAYS reachable, even when the question + answers are taller than the
+     screen. A backdrop dims the content behind it. */
+  .reveal-backdrop{
+    position:fixed;inset:0;background:rgba(8,10,14,.55);
+    z-index:40;animation:fadein .2s ease;
+  }
+  @keyframes fadein{from{opacity:0}to{opacity:1}}
   .reveal{
-    margin-top:10px;background:var(--panel-2);border:1px solid var(--line);
-    border-radius:var(--r);padding:14px 16px;display:flex;flex-direction:column;gap:12px;
+    position:fixed;left:0;right:0;bottom:0;z-index:50;
+    margin:0 auto;width:100%;max-width:620px;
+    max-height:80vh;overflow-y:auto;-webkit-overflow-scrolling:touch;
+    background:var(--panel-2);border:1px solid var(--line);
+    border-radius:18px 18px 0 0;
+    padding:18px 18px calc(18px + env(safe-area-inset-bottom,0px));
+    display:flex;flex-direction:column;gap:12px;
+    box-shadow:0 -12px 40px -8px rgba(0,0,0,.6);
     animation:rise .25s ease;
   }
-  @keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  @keyframes rise{from{opacity:0;transform:translateY(100%)}to{opacity:1;transform:none}}
   .verdict{font-family:var(--mono);font-size:13px;letter-spacing:1px;text-transform:uppercase;display:flex;justify-content:space-between;align-items:center}
   .verdict.ok{color:var(--good)} .verdict.no{color:var(--bad)}
   .verdict .gain{color:var(--cyan)}
@@ -117,6 +131,7 @@
     appearance:none;border:none;border-radius:12px;cursor:pointer;
     background:var(--chalk);color:#15181f;font-weight:700;font-family:var(--sans);
     font-size:16px;padding:14px;letter-spacing:.3px;
+    position:sticky;bottom:0;
   }
   .next:active{transform:translateY(1px)}
 
@@ -208,7 +223,6 @@
       font-size:clamp(15px,1.15vw,18px);line-height:1.3;align-items:center;
     }
     .tile .ico{font-size:17px;left:16px}
-    .reveal{margin-top:14px;flex:0 0 auto;max-height:34vh;overflow:auto}
     .why{font-size:13.5px}
 
     /* start / game-over: two columns instead of one centered stack */
@@ -543,6 +557,7 @@ function showReveal(right, gained, chosen){
   const btnTxt = lost ? "See results" : "Next";
   const r=$("reveal");
   r.innerHTML=
+    '<div class="reveal-backdrop"></div>'+
     '<div class="reveal">'+
       '<div class="verdict '+cls+'"><span>'+verdict+'</span>'+gainTxt+'</div>'+
       '<div class="ansline" id="ansline"></div>'+
